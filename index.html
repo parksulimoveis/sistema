@@ -518,6 +518,7 @@ html.autpub body>*:not(#autPub):not(#modal):not(#toast){display:none!important}
 
 /* Acesso por nível: corretor = só o Menu; colaborador = Menu + Contratos; master = tudo */
 .usuario .secContr,.usuario [data-sec="contr"],.usuario .secInd{display:none!important}
+html.secvenda .secContr,html.secvenda [data-sec="contr"]{display:none!important}
 .nivtag{padding:2px 9px;border-radius:999px;font-size:.74rem;font-weight:800;background:var(--surface-2)}.nivtag.nv-master{background:#0b1628;color:#fff}.nivtag.nv-colaborador{background:#d9c4a3;color:#3a2a1c}
 .fvgrid{margin-top:8px}
 #v-fvenda .fvgrid .mtile{background:var(--surface)!important;color:var(--fg)!important;border-color:var(--line)!important}
@@ -1409,7 +1410,7 @@ function vista(m,fin){if(!m)return null;if(m.finalidade===fin)return m;const o=m
   if(o&&o.finalidade===fin)return {...m,status:"disponivel",statusObs:"",arquivado:false,baixa:null,anuncioBaixaEm:null,prevEntrega:null,dataAnuncio:null,valor:null,...o,finalidade:fin,_sec:true};return null}
 // Aviso automático ao condomínio (Google Apps Script da Park Sul). Vazio = desligado.
 const LIBERACAO={url:"api",token:""};
-const MOTIVOS_RES=[["visita","Visitar o imóvel","O condomínio recebe o aviso da visita por e-mail, automaticamente."],["proprietario","Devolver a chave ao proprietário",""],["inquilino","Entregar a chave ao inquilino",""],["outro","Outro motivo",""]];
+const MOTIVOS_RES=[["visita","Visitar o imóvel","O condomínio recebe o aviso da visita por e-mail agora e um lembrete 2 horas antes da visita, automaticamente."],["proprietario","Devolver a chave ao proprietário",""],["inquilino","Entregar a chave ao locatário",""],["outro","Outro motivo",""]];
 const motivoHtml=pre=>`<label class="f">Qual é a finalidade da reserva? *<select class="sel motsel" id="${pre}_mot" data-pre="${pre}"><option value="">Selecione…</option>${MOTIVOS_RES.map(([k,v])=>`<option value="${k}">${v}</option>`).join("")}</select></label>
   <p class="note motdica" id="${pre}_motdica" hidden></p>
   <label class="f" id="${pre}_motoutL" hidden>Descreva a finalidade *<input class="inp" id="${pre}_motout" placeholder="Ex.: vistoria de entrada, medição para reforma"></label>
@@ -3411,6 +3412,7 @@ function aplicarPerfil(){
   S.full=!!(S.sessao?.full||(S.sessao?.master&&S.sessao?.full===undefined&&nivelDe(S.corr.get(S.sessao?.id))==="master"));
   document.documentElement.classList.toggle("colab",S.master&&!S.full);
   document.documentElement.classList.toggle("fichasac",!!(S.full||S.sessao?.fichas));
+  document.documentElement.classList.toggle("secvenda",!S.full&&!!S.sessao?.fichas); // Secretaria de Vendas: não vê os contratos de locação
   S.canWrite=S.master&&S.podeGravar;
   document.documentElement.classList.toggle("usuario",!S.master);
   document.documentElement.classList.toggle("podeincluir",!S.master&&!!S.podeGravar&&souCorretorPl());
@@ -4524,7 +4526,7 @@ setInterval(()=>{if(S.ready&&!$("#modal").innerHTML)renderAll()},60000);
 
 /* ---------- Conexão (Google Apps Script + planilha) ---------- */
 // Atualização automática: se houver versão nova do painel no GitHub, recarrega sozinho
-const VERSAO_PAINEL="2026-11-15-v103";
+const VERSAO_PAINEL="2026-11-15-v104";
 async function checarVersao(){try{if(pendente&&pendente())return;const t=await fetch(location.pathname+"?v="+Date.now(),{cache:"no-store"}).then(r=>r.text());const m=t.match(/VERSAO_PAINEL="([^"]+)"/);if(m&&m[1]!==VERSAO_PAINEL){toast("Atualizando para a nova versão do painel…");setTimeout(()=>location.reload(),1200)}}catch{}}
 setInterval(checarVersao,5*60*1000);document.addEventListener("visibilitychange",()=>{if(document.visibilityState==="visible")checarVersao()});
 const API_URL="https://script.google.com/macros/s/AKfycbzkzXeDJUB698vFuUBdLUteSaUWGOmOjsy98-JzSHgwz5LKTXdpw1RnzjEMQWJlP-cjlw/exec";   // endereço do App da Web (termina em /exec)
