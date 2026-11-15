@@ -1411,18 +1411,18 @@ function vista(m,fin){if(!m)return null;if(m.finalidade===fin)return m;const o=m
 // Aviso automático ao condomínio (Google Apps Script da Park Sul). Vazio = desligado.
 const LIBERACAO={url:"api",token:""};
 const MOTIVOS_RES=[["visita","Visitar o imóvel","O condomínio recebe o aviso da visita por e-mail agora e um lembrete 2 horas antes da visita, automaticamente."],["proprietario","Devolver a chave ao proprietário",""],["inquilino","Entregar a chave ao locatário",""],["outro","Outro motivo",""]];
-const motivoHtml=pre=>`<label class="f">Qual é a finalidade da reserva? *<select class="sel motsel" id="${pre}_mot" data-pre="${pre}"><option value="">Selecione…</option>${MOTIVOS_RES.map(([k,v])=>`<option value="${k}">${v}</option>`).join("")}</select></label>
+const motivoHtml=(pre,rot="da reserva")=>`<label class="f">Qual é a finalidade ${rot}? *<select class="sel motsel" id="${pre}_mot" data-pre="${pre}"><option value="">Selecione…</option>${MOTIVOS_RES.map(([k,v])=>`<option value="${k}">${v}</option>`).join("")}</select></label>
   <p class="note motdica" id="${pre}_motdica" hidden></p>
   <label class="f" id="${pre}_motoutL" hidden>Descreva a finalidade *<input class="inp" id="${pre}_motout" placeholder="Ex.: vistoria de entrada, medição para reforma"></label>
   <div class="grid2" id="${pre}_cliL" hidden><label class="f">Nome do cliente *<input class="inp" id="${pre}_cli" placeholder="Ex.: Ana Souza" autocomplete="off"></label><label class="f">WhatsApp do cliente<input class="inp" id="${pre}_clitel" inputmode="tel" placeholder="(61) 99999-9999" autocomplete="off"></label></div>`;
 // cliente da visita (vai para a agenda do corretor)
 function clienteLer(pre){if(motivoSel(pre)!=="visita")return {};const n=nomePessoa(document.getElementById(pre+"_cli")?.value||"");const t=(document.getElementById(pre+"_clitel")?.value||"").replace(/\D/g,"");
   if(!n)return {erro:"Informe o nome do cliente da visita."};if(t&&(t.length<10||t.length>13))return {erro:"WhatsApp do cliente inválido. Use DDD + número."};return {cliente:n,clienteTel:t}}
-document.addEventListener("change",e=>{const t=e.target;if(!t.classList?.contains("motsel"))return;const pre=t.dataset.pre,k=t.value;const d=(MOTIVOS_RES.find(x=>x[0]===k)||[])[2]||"";
+document.addEventListener("change",e=>{const t=e.target;if(!t.classList?.contains("motsel"))return;const pre=t.dataset.pre,k=t.value;const d=pre==="ra"&&k==="visita"?"O condomínio recebe o aviso da visita por e-mail agora, automaticamente.":(MOTIVOS_RES.find(x=>x[0]===k)||[])[2]||"";
   const dc=document.getElementById(pre+"_motdica");dc.textContent=d;dc.hidden=!d;const ol=document.getElementById(pre+"_motoutL");ol.hidden=k!=="outro";if(k==="outro")document.getElementById(pre+"_motout").focus();const cl=document.getElementById(pre+"_cliL");if(cl)cl.hidden=k!=="visita"});
 const motivoSel=pre=>document.getElementById(pre+"_mot")?.value||"";
 // lê a finalidade: devolve {k,desc} ou {erro}
-const motivoLer=pre=>{const k=motivoSel(pre);if(!k)return {erro:"Selecione a finalidade da reserva."};const desc=k==="outro"?frase(document.getElementById(pre+"_motout").value):"";if(k==="outro"&&!desc)return {erro:"Descreva a finalidade da reserva."};return {k,desc}};
+const motivoLer=pre=>{const k=motivoSel(pre);if(!k)return {erro:"Selecione a finalidade."};const desc=k==="outro"?frase(document.getElementById(pre+"_motout").value):"";if(k==="outro"&&!desc)return {erro:"Descreva a finalidade da reserva."};return {k,desc}};
 const motivoTxt=(k,desc)=>k==="outro"&&desc?desc:((MOTIVOS_RES.find(x=>x[0]===k)||[])[1]||"");
 async function avisarCondominio(id,m,who,para,obs){
   if(!m)return;
@@ -3162,6 +3162,7 @@ function retiradaDialog(id,preset,soReserva,livre,fora){
    <label class="f">Retirada da chave<input class="inp" id="r_em" type="datetime-local" value="${spLocal()}"></label>
    <label class="f">Devolução da chave prevista<input class="inp" id="r_prev" type="datetime-local" value="${spLocal(prev)}"${limite?` max="${spLocal(limite).replace(" ","T").slice(0,16)}"`:""}></label>
   </div>
+  <div id="r_agMot">${motivoHtml("ra","da retirada")}</div>
   <div id="r_res" hidden class="resbox">
    <div class="grid2">
     <label class="f big">Dia da retirada<input class="inp" id="r_resdia" type="date" value="${amanhaStr.slice(0,10)}"></label>
@@ -3175,8 +3176,13 @@ function retiradaDialog(id,preset,soReserva,livre,fora){
     $("#r_corr").onchange=()=>{const o=$("#r_corr").value==="__outro";$("#r_outroL").hidden=!o;if(o)$("#r_outro").focus()};$("#r_corr").onchange();
     const syncV=()=>{const v=$("#r_vinc").value;$("#r_servL").hidden=v!=="prestador";$("#r_empL").hidden=!(v==="prestador"||v==="parceiro"||v==="vistoriador");
       $("#r_empT").textContent=v==="parceiro"?"Imobiliária":"Empresa (opcional)";$("#r_emp").placeholder=v==="parceiro"?"Ex.: Mono Imóveis":"Ex.: Pinturas Brasília"};$("#r_vinc").onchange=syncV;syncV();
+    // retirada da própria reserva: traz a finalidade e o cliente que o corretor informou
+    const preRes=()=>{const r=m.reserva,sm=document.getElementById("ra_mot");if(!r||!sm||!r.motivo||$("#r_corr").value!==r.corretor||sm.value)return;
+      sm.value=r.motivo;sm.dispatchEvent(new Event("change",{bubbles:true}));if(r.motivo==="outro")document.getElementById("ra_motout").value=r.motivoDesc||"";
+      if(r.cliente){document.getElementById("ra_cli").value=r.cliente;document.getElementById("ra_clitel").value=r.clienteTel||""}};
+    $("#r_corr").addEventListener("change",preRes);
     let modo=null;
-    const setModo=v=>{modo=v;document.querySelectorAll("#r_modo button").forEach(b=>b.setAttribute("aria-pressed",b.dataset.m===v));$("#r_form").hidden=false;$("#rOk").hidden=false;$("#r_agora").hidden=v!=="agora";$("#r_res").hidden=v!=="reserva";
+    const setModo=v=>{modo=v;document.querySelectorAll("#r_modo button").forEach(b=>b.setAttribute("aria-pressed",b.dataset.m===v));$("#r_form").hidden=false;$("#rOk").hidden=false;$("#r_agora").hidden=v!=="agora";$("#r_agMot").hidden=v!=="agora";if(v==="agora")preRes();$("#r_res").hidden=v!=="reserva";
       $("#r_quem").textContent=v==="agora"?"Quem está retirando":"Para quem fica reservada";
       $("#r_tit").textContent=v==="agora"?"Registrar retirada da chave":"Reservar chave";$("#rOk").textContent=v==="agora"?"Registrar e gerar protocolo":"Reservar chave";$("#rErr").textContent=""};
     if(soReserva){setModo("reserva");$("#r_tit").textContent="Agendar visita";$("#rOk").textContent="Agendar visita";$("#r_modo").hidden=true;$("#r_modo").previousElementSibling.hidden=true;$("#r_res").insertAdjacentHTML("beforeend",`<p class="rcaviso">${esc(orientaSemChave(S.imoveis.get(id)||{},"-").replace("Você é o captador","O corretor é o captador"))}</p>`)}
@@ -3213,13 +3219,16 @@ function retiradaDialog(id,preset,soReserva,livre,fora){
       if(!prevISO){$("#rErr").textContent="Informe a data e o horário previstos para a entrega.";return}
       if(new Date(prevISO)<=new Date(em)){$("#rErr").textContent="A devolução da chave prevista precisa ser depois da retirada.";return}
       if(limite&&new Date(prevISO)>limite){$("#rErr").textContent="A chave está reservada: a devolução precisa ser até "+diaHora(limite)+".";return}
+      const amo=motivoLer("ra");if(amo.erro){$("#rErr").textContent=amo.erro;return}const acl=clienteLer("ra");if(acl.erro){$("#rErr").textContent=acl.erro;return}
+      const jaAvisado=!!(m.reserva&&m.reserva.corretor===who&&m.reserva.motivo==="visita");
       $("#rOk").disabled=true;
       try{
         const uid=user?await user.id():null;const mref=db.collection("movimentos").doc();const sec=S.seg.get(id)||{};
-        const cli=m.reserva&&m.reserva.corretor===who&&m.reserva.cliente?{cliente:m.reserva.cliente,clienteTel:m.reserva.clienteTel||""}:{};
+        const cli={motivo:amo.k,...(amo.desc?{motivoDesc:amo.desc}:{}),...(acl.cliente?{cliente:acl.cliente,clienteTel:acl.clienteTel}:(m.reserva&&m.reserva.corretor===who&&m.reserva.cliente?{cliente:m.reserva.cliente,clienteTel:m.reserva.clienteTel||""}:{}))};
         await mref.set({imovelId:id,imovelRotulo:rotulo(m),corretor:who,vinculo,chave:sec.chave||"",retiradaEm:em,previsao:prevISO,devolvidaEm:null,por:uid||"",porNome:S.sessao?.nome||"",origem:"sistema",...cli});
         await db.doc("imoveis/"+id).update({retirada:{corretor:who,vinculo,em,previsao:prevISO,movId:mref.id,...cli},reserva:(m.reserva&&m.reserva.corretor!==who)?m.reserva:null,atualizadoEm:nowISO()});
-        logEv("retirada",{...evImv(id,m),corretor:who,detalhe:vinculo+" · devolução da chave prevista "+dt(prevISO)});
+        logEv("retirada",{...evImv(id,m),corretor:who,detalhe:vinculo+" · "+motivoTxt(amo.k,amo.desc)+" · devolução da chave prevista "+dt(prevISO)});
+        if(amo.k==="visita"&&!jaAvisado)avisarCondominio(id,m,who,em,"");
         protocolo(id,who,em,prevISO,mref.id,vinculo);
       }catch(e){$("#rOk").disabled=false;$("#rErr").textContent=writeErr(e)}
     };
@@ -4526,7 +4535,7 @@ setInterval(()=>{if(S.ready&&!$("#modal").innerHTML)renderAll()},60000);
 
 /* ---------- Conexão (Google Apps Script + planilha) ---------- */
 // Atualização automática: se houver versão nova do painel no GitHub, recarrega sozinho
-const VERSAO_PAINEL="2026-11-15-v104";
+const VERSAO_PAINEL="2026-11-15-v105";
 async function checarVersao(){try{if(pendente&&pendente())return;const t=await fetch(location.pathname+"?v="+Date.now(),{cache:"no-store"}).then(r=>r.text());const m=t.match(/VERSAO_PAINEL="([^"]+)"/);if(m&&m[1]!==VERSAO_PAINEL){toast("Atualizando para a nova versão do painel…");setTimeout(()=>location.reload(),1200)}}catch{}}
 setInterval(checarVersao,5*60*1000);document.addEventListener("visibilitychange",()=>{if(document.visibilityState==="visible")checarVersao()});
 const API_URL="https://script.google.com/macros/s/AKfycbzkzXeDJUB698vFuUBdLUteSaUWGOmOjsy98-JzSHgwz5LKTXdpw1RnzjEMQWJlP-cjlw/exec";   // endereço do App da Web (termina em /exec)
