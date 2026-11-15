@@ -2212,7 +2212,7 @@ function renderFichaLista(){const el=$("#fvLista");if(!el)return;const tipo=S.fi
     return `<div class="autli st-${({ok:"assinada",pendente:"pendente",vencida:"vencida",aguardando:"aguardando"})[st]}"><div><b>${esc(r.dados?.nome||(r.clienteNome?r.clienteNome+" · ainda não preencheu":FICHA_INFO[tipo].titulo+" · ainda não preenchida"))}</b><small class="s">${esc(r.ref||"Imóvel não informado")}</small><small class="s">${esc(dt(r.recebidaEm||r.criadoEm))}</small></div>
       <span class="autst">${esc(lb)}</span>
       <div class="oscb">${st==="aguardando"?`<button class="btn sm" type="button" data-fvlink="${esc(r.id)}">Link</button>`:""}${st==="pendente"?`<button class="btn sm" type="button" data-fpfalta="${esc(r.id)}">Cobrar documentos</button>`:""}${r.dados?`<button class="btn sm pri" type="button" data-fvdoc="${esc(r.id)}">Ver ficha</button>`:""}</div></div>`}).join("")}</div>`}
-const fichaUrl=t=>location.origin+location.pathname+"?ficha="+encodeURIComponent(t);
+const fichaUrl=t=>{const m=/^fic([a-z0-9]+)\.([0-9a-f]{10})[0-9a-f]*$/.exec(String(t||""));return location.origin+location.pathname+(m?"?f="+m[1]+"."+m[2]:"?ficha="+encodeURIComponent(t))};
 const LINK_DIAS=10; // validade dos links (igual ao servidor)
 const fmtTelFicha=t=>{t=String(t).replace(/\D/g,"").replace(/^55(?=\d{10,11}$)/,"");return t.length===11?`(${t.slice(0,2)}) ${t.slice(2,7)}-${t.slice(7)}`:t.length===10?`(${t.slice(0,2)}) ${t.slice(2,6)}-${t.slice(6)}`:t};
 function fichaMsg(r,url){const I=FICHA_INFO[r.tipo||"vendedor"];const pn=String(r.clienteNome||"").trim().split(" ")[0];
@@ -5229,7 +5229,7 @@ setInterval(()=>{if(S.ready&&!$("#modal").innerHTML)renderAll()},60000);
 
 /* ---------- Conexão (Google Apps Script + planilha) ---------- */
 // Atualização automática: se houver versão nova do painel no GitHub, recarrega sozinho
-const VERSAO_PAINEL="2026-11-15-v107";
+const VERSAO_PAINEL="2026-11-15-v108";
 async function checarVersao(){try{if(pendente&&pendente())return;const t=await fetch(location.pathname+"?v="+Date.now(),{cache:"no-store"}).then(r=>r.text());const m=t.match(/VERSAO_PAINEL="([^"]+)"/);if(m&&m[1]!==VERSAO_PAINEL){toast("Atualizando para a nova versão do painel…");setTimeout(()=>location.reload(),1200)}}catch{}}
 setInterval(checarVersao,5*60*1000);document.addEventListener("visibilitychange",()=>{if(document.visibilityState==="visible")checarVersao()});
 const API_URL="https://script.google.com/macros/s/AKfycbzkzXeDJUB698vFuUBdLUteSaUWGOmOjsy98-JzSHgwz5LKTXdpw1RnzjEMQWJlP-cjlw/exec";   // endereço do App da Web (termina em /exec)
@@ -5334,7 +5334,7 @@ function sair(){api("logout").catch(()=>{});API.tk=null;API.ver=null;try{localSt
   document.querySelectorAll("img[data-logo1]").forEach(im=>{const o=document.querySelector("#gForm img");if(o)im.src=o.src});
   const osT=new URLSearchParams(location.search).get("os");if(osT){osPublicaTela(osT);return}
   const autT=new URLSearchParams(location.search).get("aut");if(autT){autPublicaTela(autT);return}
-  const ficT=new URLSearchParams(location.search).get("ficha");if(ficT){fichaPublicaTela(ficT);return}
+  const qs0=new URLSearchParams(location.search);const ficT=qs0.get("ficha")||(qs0.get("f")?"fic"+qs0.get("f"):"");if(ficT){fichaPublicaTela(ficT);return}
   const accT=new URLSearchParams(location.search).get("acesso");if(accT){try{history.replaceState(null,"",location.pathname)}catch{};API.tk=null;try{localStorage.removeItem("qc_api")}catch{};S.sessao=null;gravarSessao(null);aplicarPerfil();abrirEntrada();conviteTela(accT);return}
   if(!API_URL){$("#listL").innerHTML=`<div class="empty"><b>Sistema em configuração</b>O endereço do servidor ainda não foi informado.</div>`}
   S.sessao=lerSessao();
