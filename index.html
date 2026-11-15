@@ -1544,7 +1544,11 @@ function fillFilters(){
 }
 /* ---------- Células comuns ---------- */
 // Falta contato do condomínio? (o aviso de visita volta para a recepção). Vale o do próprio imóvel ou de outro do mesmo edifício.
+// contato do residencial (aba "Condomínios"), procurado pelo nome como o servidor faz ao enviar os avisos
+function condDe(nome){const n=semAcento(nome||"").replace(/[^a-z0-9 ]/g," ").replace(/\s+/g," ").trim();if(!n||!S.conds)return null;const L=[...S.conds.values()];const nn=x=>semAcento(x.nome||"").replace(/[^a-z0-9 ]/g," ").replace(/\s+/g," ").trim();
+  return L.find(x=>nn(x)===n)||L.find(x=>nn(x)&&(n.includes(nn(x))||nn(x).includes(n)))||null}
 function faltaCond(m){if(!m||!m.endereco)return [];const n=semAcento(m.endereco);let em=m.condEmail,tl=m.condTel;
+  if(!em||!tl){const c=condDe(m.endereco);if(c){em=em||c.email;tl=tl||c.tel}}
   if(!em||!tl)for(const x of S.imoveis.values()){if(semAcento(x.endereco||"")!==n)continue;em=em||x.condEmail;tl=tl||x.condTel;if(em&&tl)break}
   return [em?"":"e-mail",tl?"":"telefone"].filter(Boolean)}
 const ICO_MAIL='<svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg>';
@@ -3008,6 +3012,7 @@ function imovelForm(id,finDefault,cautela=false){
     $("#i_acesso").addEventListener("change",syncAc);setTimeout(syncAc);
     // Condomínio: preenche sozinho se outro imóvel do mesmo edifício já tiver os contatos
     $("#i_endereco").addEventListener("change",()=>{const n=semAcento($("#i_endereco").value);if(!n)return;
+      const cd=condDe($("#i_endereco").value);if(cd&&(cd.email||cd.tel)){if(!$("#i_condEmail").value)$("#i_condEmail").value=cd.email||"";if(!$("#i_condTel").value)$("#i_condTel").value=cd.tel||""}
       for(const x of S.imoveis.values()){if(x!==m&&semAcento(x.endereco)===n&&(x.condEmail||x.condTel)){if(!$("#i_condEmail").value)$("#i_condEmail").value=x.condEmail||"";if(!$("#i_condTel").value)$("#i_condTel").value=x.condTel||"";break}}});
     $("#i_fin").addEventListener("change",syncClav);
     $("#i_vagaTem").onchange=()=>{const t=$("#i_vagaTem").value==="sim";$("#i_vaga").hidden=!t;if(t)$("#i_vaga").focus()};
@@ -4480,7 +4485,7 @@ setInterval(()=>{if(S.ready&&!$("#modal").innerHTML)renderAll()},60000);
 
 /* ---------- Conexão (Google Apps Script + planilha) ---------- */
 // Atualização automática: se houver versão nova do painel no GitHub, recarrega sozinho
-const VERSAO_PAINEL="2026-11-14-v99";
+const VERSAO_PAINEL="2026-11-14-v100";
 async function checarVersao(){try{if(pendente&&pendente())return;const t=await fetch(location.pathname+"?v="+Date.now(),{cache:"no-store"}).then(r=>r.text());const m=t.match(/VERSAO_PAINEL="([^"]+)"/);if(m&&m[1]!==VERSAO_PAINEL){toast("Atualizando para a nova versão do painel…");setTimeout(()=>location.reload(),1200)}}catch{}}
 setInterval(checarVersao,5*60*1000);document.addEventListener("visibilitychange",()=>{if(document.visibilityState==="visible")checarVersao()});
 const API_URL="https://script.google.com/macros/s/AKfycbzkzXeDJUB698vFuUBdLUteSaUWGOmOjsy98-JzSHgwz5LKTXdpw1RnzjEMQWJlP-cjlw/exec";   // endereço do App da Web (termina em /exec)
@@ -4545,6 +4550,7 @@ function ligarEscutas(){
   db.collection("acessos").onSnapshot(s=>{S.acessos=new Map(s.docs.map(d=>[d.id,d.data()]))},onErr);
   db.collection("fichas").onSnapshot(s=>{S.fichas=new Map(s.docs.map(d=>[d.id,d.data()]));if(!$("#v-fvend").hidden)renderFichaLista();if(!$("#v-fpainel").hidden)renderFPainel()},onErr);
   db.collection("contatos").onSnapshot(s=>{S.contatos=new Map(s.docs.map(d=>[d.id,d.data()]));if(!$("#v-aut").hidden)autPreencheCorr()},onErr);
+  db.collection("condominios").onSnapshot(s=>{S.conds=new Map(s.docs.map(d=>[d.id,d.data()]));if(S.ready&&(!$("#v-loc").hidden||!$("#v-ven").hidden))schedule()},onErr);
   db.collection("autorizacoes").onSnapshot(s=>{S.autz=new Map(s.docs.map(d=>[d.id,d.data()]));if(!$("#v-aut").hidden)renderAutLista();if(!$("#v-fpainel").hidden)renderFPainel()},onErr);
   db.collection("os").onSnapshot(s=>{S.os=new Map(s.docs.map(d=>[d.id,d.data()]));if(!$("#v-os").hidden)renderOS();const ab=[...S.os.values()].filter(o=>!["concluida","baixada","arquivada"].includes(o.status)).length;$("#hbOs")&&($("#hbOs").textContent=S.master&&ab?ab+" aberta"+(ab>1?"s":""):"")},onErr);
   db.collection("checkins").onSnapshot(s=>{S.checkins=new Map(s.docs.map(d=>[d.id,d.data()]));if(!$("#v-pres").hidden)renderPres();homeCheckin()},onErr);
