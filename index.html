@@ -577,6 +577,7 @@ body.temsel{padding-bottom:96px}.selfab[hidden]{display:none!important}.selfab .
 .osthumbs{display:flex;gap:6px;flex-wrap:wrap}.osthumbs a{font-size:.8rem;font-weight:700}.osthumbs img{width:72px;height:72px;object-fit:cover;border-radius:8px;border:1px solid var(--line);display:block}
 .ossol{font-size:.82rem;color:var(--muted)}.ossol b{color:var(--fg)}.osnova{align-self:flex-start;justify-self:start;width:fit-content;font-size:.7rem;font-weight:700;color:#7a3d14;background:#FBEDE3;border-radius:999px;padding:3px 10px}
 .osreps2{display:grid;gap:8px}.btn.danger{background:#b3261e;border-color:#b3261e;color:#fff}.pdpode{padding:10px 12px;border-radius:10px;background:var(--surface-2);font-size:.86rem}.pdpode ul{margin:6px 0 0;padding-left:18px}.pwst{display:inline-block;font-weight:700;font-size:.78rem;padding:2px 8px;border-radius:999px;margin-bottom:2px}.pwst.ok{background:#e3efe6;color:#1b6b3a}.pwst.wait{background:#fdf1e0;color:#8a5a00}.pwst.late{background:#fde8e6;color:#a32a1d}.pwst.no{background:var(--surface-2);color:var(--muted)}td .pwst+.s+.btn,td .pwst+.btn{margin-top:4px;display:block}
+.fvimv{grid-column:1/-1;display:grid;gap:6px;margin-bottom:10px}.fvimvt{font-size:.74rem;text-transform:uppercase;letter-spacing:.08em;color:var(--acc);font-weight:700}.grid3{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px 12px}@media (max-width:700px){.grid3{grid-template-columns:minmax(0,1fr) minmax(0,1fr)}}
 .osdica{margin:0;padding:10px 12px;border-radius:10px;background:var(--acc-soft);color:var(--fg);font-size:.88rem;border-left:4px solid #C1652F}.spfotos{display:flex;flex-wrap:wrap;gap:8px}.spfotos label{display:grid;gap:4px;justify-items:center;font-size:.8rem}.spfotos img{width:72px;height:72px;object-fit:cover;border-radius:8px}.osaddb{justify-self:start;font-weight:700}.f[hidden]{display:none!important}.osmatch{color:#1b6b3a;font-weight:600}.osmatch:empty{display:none}.osbxm{border:1px solid var(--line);border-radius:12px;padding:10px 12px;display:grid;gap:8px;margin:0;min-width:0}.osbxm legend{font-size:.82rem;color:var(--muted);padding:0 4px}.osrr{display:grid;grid-template-columns:auto 1fr;gap:2px 10px;font-size:.82rem;margin-top:2px}.osrr span{color:var(--muted)}.osrr b{font-weight:600;min-width:0;overflow-wrap:anywhere}.osrep{display:grid;gap:4px;padding:9px 11px;border-radius:10px;background:var(--surface-2);border-left:4px solid #9aa3b5}.osrep p{margin:0;font-size:.86rem}.osrep small.rm{font-size:.78rem}
 .osreph{display:flex;justify-content:space-between;gap:8px;align-items:baseline}.osreph em{font-style:normal;font-size:.7rem;font-weight:700;white-space:nowrap}
 .osrep.a-visita,.osrep.a-orcamento{border-left-color:#2f6fb3}.osrep.a-aprovacao{border-left-color:#f2a01c}.osrep.a-autorizado{border-left-color:#0e8f8f}.osrep.a-agendado{border-left-color:#7c3aed}.osrep.a-fazendo,.osrep.a-aguardando{border-left-color:#c1652f}.osrep.a-feito{border-left-color:#1f9d55}.osrep.a-cancelado{opacity:.6}
@@ -1155,8 +1156,15 @@ label.f .inp,label.f .sel{color:var(--fg);font-size:.9rem;width:100%}
     <div class="autf" id="fvWrap">
       <p class="count" id="fvIntro">Dados do promitente vendedor(a), necessários para o contrato de compra e venda.</p>
       <fieldset class="autsec" id="fvIni"><legend>Corretor, imóvel e cliente</legend>
-        <div class="grid2"><label class="f">Imóvel (referência)<input class="inp" id="fv_ref" placeholder="Ex.: Prime Residence · Bloco G · Apto 603"></label>
-        <label class="f">E-mail do corretor *<input class="inp" id="fv_cmail" type="email" inputmode="email" placeholder="Para receber a ficha"></label>
+        <div class="fvimv"><span class="fvimvt">Imóvel</span>
+        <div class="grid3"><label class="f">Tipo do imóvel *<select class="sel" id="fr_tipo"><option value="">Selecione…</option><option>Apartamento</option><option>Casa</option><option>Sala comercial</option><option>Loja</option><option>Lote</option><option>Galpão</option><option>Outro</option></select></label>
+        <label class="f">Residencial / condomínio<input class="inp" id="fr_res" list="fr_resl" autocomplete="off" maxlength="60" placeholder="Ex.: Prime Residence"></label>
+        <label class="f">Bloco<input class="inp" id="fr_bloco" maxlength="3" placeholder="Ex.: G"></label>
+        <label class="f">Nº do apartamento / unidade<input class="inp" id="fr_un" maxlength="10" placeholder="Ex.: 603"></label>
+        <label class="f">Endereço (quadra, rua, conjunto, lote)<input class="inp" id="fr_end" maxlength="80" placeholder="Ex.: SQS 308 · Rua 12 Sul, Lote 4"></label>
+        <label class="f">Bairro / região *<select class="sel" id="fr_reg"><option value="">Selecione…</option></select></label></div><datalist id="fr_resl"></datalist>
+        <input type="hidden" id="fv_ref"></div>
+        <div class="grid2"><label class="f">E-mail do corretor *<input class="inp" id="fv_cmail" type="email" inputmode="email" placeholder="Para receber a ficha"></label>
         <label class="f" style="grid-column:1/-1"><span id="fvCliL">Nome do cliente</span><input class="inp" id="fv_cnome" placeholder="Para personalizar a mensagem"></label>
         <label class="f">E-mail do cliente<input class="inp" id="fv_cemail" type="email" inputmode="email" placeholder="Para enviar o link por e-mail"></label>
         <label class="f">WhatsApp do cliente *<input class="inp" id="fv_ctel" inputmode="tel" placeholder="(61) 90000-0000"></label></div>
@@ -2032,7 +2040,7 @@ async function fichaSubmeter(o){const sch=fichaSchema(o.tipo);const r=fichaLer(o
     b.dataset.conf="";o.ok(res,rec,r)}
   catch(e){o.err.textContent=e.message}finally{b.disabled=false;b.textContent=lbl}}
 // ---- tela do corretor
-function prepFicha(){const tipo=S.fichaTipo||"vendedor",I=FICHA_INFO[tipo];$("#subTitulo").textContent=I.titulo;
+function prepFicha(){const tipo=S.fichaTipo||"vendedor",I=FICHA_INFO[tipo];try{fvRefPrep()}catch{}$("#subTitulo").textContent=I.titulo;
   if($("#fvForm").dataset.tipo!==tipo){$("#fvForm").innerHTML=fichaHtml(fichaSchema(tipo));$("#fvForm").dataset.tipo=tipo;if(!$("#fvForm").dataset.lig){fichaLigar($("#fvForm"));$("#fvForm").dataset.lig=1}
     $("#fvForm").hidden=true;$("#fvActs").hidden=true;$("#fvJunto").hidden=false;$("#fvErr").textContent=""}
   $("#fvIntro").textContent=I.intro;$("#fvLink").textContent=`Enviar para o ${I.quem} preencher`;$("#fvJunto").textContent=`Preencher junto com o ${I.quem} agora`;
@@ -2109,23 +2117,36 @@ function fichaCobrarDialog(id){const r=S.fichas?.get(id);if(!r)return;const I=FI
       try{const k=$("#fc_k").value;const anexos=await fichaAnexos(fs.map(file=>({campo:k,file})));const res=await api("fichaAnexarSis",{id,anexos});
         fichaGuardar(id,{anexos:res.anexos,faltando:res.faltando});closeModal();toast("Documento anexado e enviado à Secretaria de Vendas");if(!$("#v-fpainel").hidden)renderFPainel()}
       catch(e){$("#fcErr").textContent=e.message;b.disabled=false;b.textContent="Anexar documento"}}})}
+// Imóvel da ficha: campos separados, juntados na referência ("Prime Residence · Bloco G · Apto 603 · SQS 308 · Park Sul")
+function fvRefMontar(){const v=k=>($("#fr_"+k)?.value||"").trim();const t=v("tipo"),un=v("un");
+  const unTxt=un?({Apartamento:"Apto ",Casa:"Casa ","Sala comercial":"Sala ",Loja:"Loja ",Lote:"Lote "}[t]||"Unidade ")+un:"";
+  const ref=[v("res"),v("bloco")?"Bloco "+v("bloco").toUpperCase():"",unTxt,v("end"),v("reg")].filter(Boolean).join(" · ");$("#fv_ref").value=ref;
+  if(!t)return {erro:"Escolha o tipo do imóvel."};if(!v("res")&&!v("end"))return {erro:"Informe o residencial/condomínio ou o endereço do imóvel."};if(!v("reg"))return {erro:"Escolha o bairro / região do imóvel."};
+  return {ref,imovel:{tipo:t,residencial:v("res"),bloco:v("bloco").toUpperCase(),unidade:un,endereco:v("end"),regiao:v("reg")}}}
+function fvRefLimpar(){["tipo","res","bloco","un","end","reg"].forEach(k=>{const e=$("#fr_"+k);if(e)e.value=""});$("#fv_ref").value=""}
+function fvRefPrep(){const r=$("#fr_reg");if(r&&r.options.length<2)r.insertAdjacentHTML("beforeend",REGIOES.map(x=>`<option>${esc(x)}</option>`).join(""));
+  const dl=$("#fr_resl");if(dl)dl.innerHTML=osResSugest().map(x=>`<option value="${esc(x.n)}">${esc([x.qd,x.reg].filter(Boolean).join(" · "))}</option>`).join("");
+  $("#fr_res").oninput=()=>{const x=osResSugest().find(z=>semAcento(z.n)===semAcento($("#fr_res").value));if(x){$("#fr_res").value=x.n;if(x.reg&&REGIOES.includes(x.reg)&&!$("#fr_reg").value)$("#fr_reg").value=x.reg;if(x.qd&&!$("#fr_end").value)$("#fr_end").value=x.qd}};
+  $("#fr_bloco").oninput=()=>{$("#fr_bloco").value=$("#fr_bloco").value.toUpperCase().replace(/[^A-Z0-9]/g,"")}}
 document.addEventListener("click",async e=>{
   const ft=e.target.closest("[data-ftipo]");if(ft)S.fichaTipo=ft.dataset.ftipo;
   if(e.target.closest("#fvJunto")){$("#fvForm").hidden=false;$("#fvActs").hidden=false;$("#fvJunto").hidden=true;$("#fvForm").scrollIntoView({behavior:"smooth",block:"start"});return}
   if(e.target.closest("#fvLink")){const em=$("#fv_cmail").value.trim();if(!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(em)){$("#fvErr").textContent="Informe o seu e-mail para receber a ficha.";return}$("#fvErr").textContent="";
     const ctel=$("#fv_ctel").value.replace(/\D/g,"");if(ctel.length<10||ctel.length>13){$("#fvErr").textContent="Informe o WhatsApp do cliente com DDD, para enviar o link.";$("#fv_ctel").focus();return}
     const ce=$("#fv_cemail").value.trim();if(ce&&!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(ce)){$("#fvErr").textContent="E-mail do cliente inválido.";return}
-    const b=e.target.closest("#fvLink");b.disabled=true;try{const r=await api("fichaLink",{tipo:S.fichaTipo||"vendedor",ref:$("#fv_ref").value.trim(),corrEmail:em,corretor:S.sessao?.nome||"",clienteNome:$("#fv_cnome").value.trim(),clienteEmail:ce,clienteTel:$("#fv_ctel").value.trim()});
-      fichaGuardar(r.id,r.data);["#fv_ref","#fv_cnome","#fv_cemail","#fv_ctel"].forEach(x=>$(x).value="");fichaLinkDialog(r.data,r.id)}catch(er){$("#fvErr").textContent=er.message}finally{b.disabled=false}return}
+    const im=fvRefMontar();if(im.erro){$("#fvErr").textContent=im.erro;return}
+    const b=e.target.closest("#fvLink");b.disabled=true;try{const r=await api("fichaLink",{tipo:S.fichaTipo||"vendedor",ref:im.ref,imovel:im.imovel,corrEmail:em,corretor:S.sessao?.nome||"",clienteNome:$("#fv_cnome").value.trim(),clienteEmail:ce,clienteTel:$("#fv_ctel").value.trim()});
+      fichaGuardar(r.id,r.data);fvRefLimpar();["#fv_cnome","#fv_cemail","#fv_ctel"].forEach(x=>$(x).value="");fichaLinkDialog(r.data,r.id)}catch(er){$("#fvErr").textContent=er.message}finally{b.disabled=false}return}
   const l=e.target.closest("[data-fvlink]");if(l){const r=S.fichas?.get(l.dataset.fvlink);if(r)fichaLinkDialog(r,l.dataset.fvlink);return}
   const dc=e.target.closest("[data-fvdoc]");if(dc){const r=S.fichas?.get(dc.dataset.fvdoc);if(r)abrirFichaDoc(r);return}
   const fa=e.target.closest("[data-fpfalta]");if(fa){fichaCobrarDialog(fa.dataset.fpfalta);return}
   if(e.target.closest("#fpPlan")){const b=e.target.closest("#fpPlan");b.disabled=true;try{const r=await api("fichaPlanilha",{});if(r.url)window.open(r.url,"_blank");else toast("Na demonstração a planilha não abre.")}catch(er){toast(er.message)}finally{b.disabled=false}return}
   if(e.target.closest("#fvEnviar")){e.preventDefault();const em=$("#fv_cmail").value.trim();if(!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(em)){$("#fvErr").textContent="Informe o seu e-mail para receber a ficha.";return}
-    const tipo=S.fichaTipo||"vendedor",ref=$("#fv_ref").value.trim(),corretor=S.sessao?.nome||"";
+    const im=fvRefMontar();if(im.erro){$("#fvErr").textContent=im.erro;$("#fvIni").scrollIntoView({behavior:"smooth",block:"start"});return}
+    const tipo=S.fichaTipo||"vendedor",ref=im.ref,corretor=S.sessao?.nome||"";
     await fichaSubmeter({tipo,root:$("#fvForm"),btn:$("#fvEnviar"),lbl:"Salvar e enviar a ficha",err:$("#fvErr"),acao:"fichaSalvar",ref,corretor,payload:{ref,corrEmail:em,corretor},
       ok:(res,rec,r)=>{fichaGuardar(res.id,res.data||{...rec,corrEmail:em,status:"recebida",criadoEm:nowISO(),por:S.sessao?.id,faltando:r.falta});
-        toast("Ficha enviada ao corretor, ao "+FICHA_INFO[tipo].quem+" e à Secretaria de Vendas");$("#fvForm").dataset.tipo="";$("#fv_ref").value="";prepFicha()}})}});
+        toast("Ficha enviada ao corretor, ao "+FICHA_INFO[tipo].quem+" e à Secretaria de Vendas");$("#fvForm").dataset.tipo="";fvRefLimpar();prepFicha()}})}});
 // ---- Painel de fichas (Secretaria de Vendas e master)
 const podePainelFichas=()=>!!(S.full||S.sessao?.fichas);
 function renderFPainel(){const el=$("#fpBox");if(!el)return;if(!podePainelFichas()){el.innerHTML=`<p class="note">Sem acesso.</p>`;return}
@@ -4426,7 +4447,7 @@ setInterval(()=>{if(S.ready&&!$("#modal").innerHTML)renderAll()},60000);
 
 /* ---------- Conexão (Google Apps Script + planilha) ---------- */
 // Atualização automática: se houver versão nova do painel no GitHub, recarrega sozinho
-const VERSAO_PAINEL="2026-11-14-v93";
+const VERSAO_PAINEL="2026-11-14-v94";
 async function checarVersao(){try{if(pendente&&pendente())return;const t=await fetch(location.pathname+"?v="+Date.now(),{cache:"no-store"}).then(r=>r.text());const m=t.match(/VERSAO_PAINEL="([^"]+)"/);if(m&&m[1]!==VERSAO_PAINEL){toast("Atualizando para a nova versão do painel…");setTimeout(()=>location.reload(),1200)}}catch{}}
 setInterval(checarVersao,5*60*1000);document.addEventListener("visibilitychange",()=>{if(document.visibilityState==="visible")checarVersao()});
 const API_URL="https://script.google.com/macros/s/AKfycbzkzXeDJUB698vFuUBdLUteSaUWGOmOjsy98-JzSHgwz5LKTXdpw1RnzjEMQWJlP-cjlw/exec";   // endereço do App da Web (termina em /exec)
