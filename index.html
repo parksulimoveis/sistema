@@ -577,6 +577,7 @@ body.temsel{padding-bottom:96px}.selfab[hidden]{display:none!important}.selfab .
 .osthumbs{display:flex;gap:6px;flex-wrap:wrap}.osthumbs a{font-size:.8rem;font-weight:700}.osthumbs img{width:72px;height:72px;object-fit:cover;border-radius:8px;border:1px solid var(--line);display:block}
 .ossol{font-size:.82rem;color:var(--muted)}.ossol b{color:var(--fg)}.osnova{align-self:flex-start;justify-self:start;width:fit-content;font-size:.7rem;font-weight:700;color:#7a3d14;background:#FBEDE3;border-radius:999px;padding:3px 10px}
 .osreps2{display:grid;gap:8px}.btn.danger{background:#b3261e;border-color:#b3261e;color:#fff}#corrBox table{min-width:0;font-size:.84rem}#corrBox th,#corrBox td{padding:8px 7px}#corrBox td code{font-size:.78rem;overflow-wrap:anywhere}#corrBox td:nth-child(6){white-space:nowrap}#corrBox td .acts{margin-top:6px}#corrBox .acts{flex-direction:column;align-items:stretch}#corrBox .pwst{white-space:nowrap}
+.aglist{display:grid;gap:8px;margin-bottom:18px}.agc{display:grid;grid-template-columns:64px minmax(0,1fr);gap:12px;background:var(--surface);border:1px solid var(--line);border-left:4px solid var(--acc);border-radius:12px;padding:10px 12px}.agc.atr{border-left-color:var(--danger)}.agh{display:grid;align-content:start;text-align:center}.agh b{font-family:var(--f-display);font-size:1.3rem}.agh small{color:var(--muted);font-size:.74rem}.agb{display:grid;gap:3px;min-width:0}.agb .cobrar{justify-self:start}
 .pfbusca{position:relative;display:flex;align-items:center;flex:1 1 260px;min-width:200px}.pfbusca svg{position:absolute;left:12px;color:var(--muted);pointer-events:none}.pfbusca .inp{padding-left:36px;width:100%}
 .pdpode{padding:10px 12px;border-radius:10px;background:var(--surface-2);font-size:.86rem}.pdpode ul{margin:6px 0 0;padding-left:18px}.pwst{display:inline-block;font-weight:700;font-size:.78rem;padding:2px 8px;border-radius:999px;margin-bottom:2px}.pwst.ok{background:#e3efe6;color:#1b6b3a}.pwst.wait{background:#fdf1e0;color:#8a5a00}.pwst.late{background:#fde8e6;color:#a32a1d}.pwst.no{background:var(--surface-2);color:var(--muted)}td .pwst+.s+.btn,td .pwst+.btn{margin-top:4px;display:block}
 .fvimv{grid-column:1/-1;display:grid;gap:6px;margin-bottom:10px}.fvimvt{font-size:.74rem;text-transform:uppercase;letter-spacing:.08em;color:var(--acc);font-weight:700}.grid3{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px 12px}@media (max-width:700px){.grid3{grid-template-columns:minmax(0,1fr) minmax(0,1fr)}}
@@ -1265,7 +1266,7 @@ label.f .inp,label.f .sel{color:var(--fg);font-size:.9rem;width:100%}
   <section id="v-indloc" hidden><div id="ilBox"></div></section>
 
   <section id="v-agenda" hidden>
-    <p class="count">Visitas e reservas agendadas e as chaves que estão fora agora. Toque em “Agenda” para ver os detalhes de um imóvel.</p>
+    <p class="count" id="agIntro">Visitas e reservas agendadas e as chaves que estão fora agora. Toque em “Agenda” para ver os detalhes de um imóvel.</p>
     <div id="agendaBox"></div>
   </section>
 
@@ -1405,9 +1406,13 @@ const LIBERACAO={url:"api",token:""};
 const MOTIVOS_RES=[["visita","Visitar o imóvel","O condomínio recebe o aviso da visita por e-mail, automaticamente."],["proprietario","Devolver a chave ao proprietário",""],["inquilino","Entregar a chave ao inquilino",""],["outro","Outro motivo",""]];
 const motivoHtml=pre=>`<label class="f">Qual é a finalidade da reserva? *<select class="sel motsel" id="${pre}_mot" data-pre="${pre}"><option value="">Selecione…</option>${MOTIVOS_RES.map(([k,v])=>`<option value="${k}">${v}</option>`).join("")}</select></label>
   <p class="note motdica" id="${pre}_motdica" hidden></p>
-  <label class="f" id="${pre}_motoutL" hidden>Descreva a finalidade *<input class="inp" id="${pre}_motout" placeholder="Ex.: vistoria de entrada, medição para reforma"></label>`;
+  <label class="f" id="${pre}_motoutL" hidden>Descreva a finalidade *<input class="inp" id="${pre}_motout" placeholder="Ex.: vistoria de entrada, medição para reforma"></label>
+  <div class="grid2" id="${pre}_cliL" hidden><label class="f">Nome do cliente *<input class="inp" id="${pre}_cli" placeholder="Ex.: Ana Souza" autocomplete="off"></label><label class="f">WhatsApp do cliente<input class="inp" id="${pre}_clitel" inputmode="tel" placeholder="(61) 99999-9999" autocomplete="off"></label></div>`;
+// cliente da visita (vai para a agenda do corretor)
+function clienteLer(pre){if(motivoSel(pre)!=="visita")return {};const n=nomePessoa(document.getElementById(pre+"_cli")?.value||"");const t=(document.getElementById(pre+"_clitel")?.value||"").replace(/\D/g,"");
+  if(!n)return {erro:"Informe o nome do cliente da visita."};if(t&&(t.length<10||t.length>13))return {erro:"WhatsApp do cliente inválido. Use DDD + número."};return {cliente:n,clienteTel:t}}
 document.addEventListener("change",e=>{const t=e.target;if(!t.classList?.contains("motsel"))return;const pre=t.dataset.pre,k=t.value;const d=(MOTIVOS_RES.find(x=>x[0]===k)||[])[2]||"";
-  const dc=document.getElementById(pre+"_motdica");dc.textContent=d;dc.hidden=!d;const ol=document.getElementById(pre+"_motoutL");ol.hidden=k!=="outro";if(k==="outro")document.getElementById(pre+"_motout").focus()});
+  const dc=document.getElementById(pre+"_motdica");dc.textContent=d;dc.hidden=!d;const ol=document.getElementById(pre+"_motoutL");ol.hidden=k!=="outro";if(k==="outro")document.getElementById(pre+"_motout").focus();const cl=document.getElementById(pre+"_cliL");if(cl)cl.hidden=k!=="visita"});
 const motivoSel=pre=>document.getElementById(pre+"_mot")?.value||"";
 // lê a finalidade: devolve {k,desc} ou {erro}
 const motivoLer=pre=>{const k=motivoSel(pre);if(!k)return {erro:"Selecione a finalidade da reserva."};const desc=k==="outro"?frase(document.getElementById(pre+"_motout").value):"";if(k==="outro"&&!desc)return {erro:"Descreva a finalidade da reserva."};return {k,desc}};
@@ -2540,14 +2545,35 @@ function renderHome(){homeCheckin();
   renderMural(hj);
   $("#hbImv").textContent=disp?disp+" disponíveis":"";$("#hbAg").textContent=ag?ag+" hoje":"";$("#hbFora").textContent=fora||"";
 }
+// Agenda do corretor: só as dele. Visitas por dia (com o cliente), a chave que está com ele e as visitas já feitas.
+function minhaAgenda(box){const eu=meuNomePl();const k=semAcento(eu||"");const meu=n=>semAcento(n||"")===k;$("#agIntro")&&($("#agIntro").textContent="A sua agenda: visitas marcadas, a chave que está com você e as visitas já feitas.");
+  const L=[...S.imoveis.entries()].filter(([,m])=>!m.arquivado);
+  const vis=L.filter(([,m])=>m.reserva&&meu(m.reserva.corretor)).map(([id,m])=>({id,m,v:m.reserva,q:new Date(m.reserva.para)})).sort((a,b)=>a.q-b.q);
+  const comigo=L.filter(([,m])=>m.retirada&&meu(m.retirada.corretor));
+  const hj=ymd.format(new Date()),am=ymd.format(new Date(Date.now()+864e5));
+  const grupo=t=>vis.filter(x=>{const d=ymd.format(x.q);return t==="hoje"?d<=hj:t==="amanha"?d===am:d>am});
+  const lembrete=(x)=>{const p1=String(x.v.cliente||"").split(" ")[0];const t=waNum(x.v.clienteTel);if(!t)return "";
+    const msg=`Olá, ${p1}! Aqui é ${eu}, da Park Sul Imóveis. Confirmando a nossa visita ao imóvel ${rotulo(x.m)}${x.m.bairro?" ("+x.m.bairro+")":""} ${ymd.format(x.q)===hj?"hoje":"em "+dmTxt(ymd.format(x.q))} às ${spLocal(x.q).slice(11,16)}. Até lá!`;
+    return `<a class="btn sm cobrar" target="_blank" rel="noopener" href="https://wa.me/${t}?text=${encodeURIComponent(msg)}">${ZAP_SVG}Lembrar o cliente</a>`};
+  const card=x=>`<div class="agc${x.q<Date.now()-2*36e5?" atr":""}"><div class="agh"><b>${esc(spLocal(x.q).slice(11,16))}</b><small>${esc(dmTxt(ymd.format(x.q)))}</small></div>
+    <div class="agb"><b>${esc(rotulo(x.m))}</b><span class="s">${esc([x.m.codigo?"cód. "+x.m.codigo:"",x.m.bairro,FIN[x.m.finalidade]].filter(Boolean).join(" · "))}</span>
+    ${x.v.cliente?`<span>Cliente: <b>${esc(x.v.cliente)}</b>${x.v.clienteTel?" · "+esc(fmtTelFicha(x.v.clienteTel)):""}</span>`:`<span class="s">${esc(motivoTxt(x.v.motivo,x.v.motivoDesc)||"Reserva")}</span>`}
+    <span class="s">${["chave","senha","cartao","chave_senha","parceiro"].includes(x.m.acesso)?(x.q<Date.now()-2*36e5?"Chave não retirada":"Retirar a chave na recepção"):"Visita "+esc(semChaveCom(x.m))}</span>${lembrete(x)}</div></div>`;
+  const sec=(t,arr,vazio)=>`<h3 class="subt">${t}</h3>${arr.length?`<div class="aglist">${arr.map(card).join("")}</div>`:`<p class="note">${vazio}</p>`}`;
+  const passadas=(S.movs||[]).filter(mv=>meu(mv.corretor)&&mv.retiradaEm&&new Date(mv.retiradaEm)>Date.now()-30*864e5).slice(0,15);
+  box.innerHTML=sec("Hoje",grupo("hoje"),"Nenhuma visita hoje.")+sec("Amanhã",grupo("amanha"),"Nenhuma visita amanhã.")+sec("Próximos dias",grupo("depois"),"Nenhuma visita marcada para os próximos dias.")
+   +(comigo.length?`<h3 class="subt">Chave com você agora</h3><div class="aglist">${comigo.map(([id,m])=>{const r=m.retirada;return `<div class="agc${atrasada(r)?" atr":""}"><div class="agh"><b>${esc(spLocal(prevDe(r)).slice(11,16))}</b><small>devolver</small></div><div class="agb"><b>${esc(rotulo(m))}</b>${r.cliente?`<span>Cliente: <b>${esc(r.cliente)}</b></span>`:""}<span class="s">Devolva até ${esc(diaHora(prevDe(r)))}${atrasada(r)?" · atrasada":""}</span></div></div>`}).join("")}</div>`:"")
+   +`<h3 class="subt">Visitas dos últimos 30 dias</h3>${passadas.length?`<div class="tblwrap"><table><thead><tr><th>Quando</th><th>Imóvel</th><th>Cliente</th></tr></thead><tbody>${passadas.map(mv=>`<tr><td>${esc(dt(mv.retiradaEm))}</td><td>${esc(mv.imovelRotulo||"")}</td><td>${mv.cliente?esc(mv.cliente):"—"}</td></tr>`).join("")}</tbody></table></div>`:`<p class="note">Nenhuma retirada de chave nos últimos 30 dias.</p>`}
+   <p class="note" style="margin-top:14px">Para marcar uma visita, abra o imóvel em <b>Imóveis disponíveis</b> e toque em <b>Reservar chave</b> ou <b>Agendar visita</b>. Escolha a finalidade "Visitar o imóvel" e informe o cliente.</p>`}
 function renderAgenda(){
   if(!S.ready)return;const box=$("#agendaBox");if(!box)return;
+  if(!S.master){minhaAgenda(box);return}
   const at=[...S.imoveis.entries()].filter(([,m])=>ativoImv(m)&&(!SO_LOCACAO||m.finalidade==="locacao"));
   const res=at.filter(([,m])=>m.reserva).sort((a,b)=>new Date(a[1].reserva.para)-new Date(b[1].reserva.para));
   const fora=at.filter(([,m])=>m.retirada).sort((a,b)=>new Date(a[1].retirada.previsao||a[1].retirada.em)-new Date(b[1].retirada.previsao||b[1].retirada.em));
   const bt=id=>`<button class="btn sm ghost" data-act="histImv" data-id="${esc(id)}">Agenda</button>`;
-  const r1=res.length?`<h3 class="subt">Visitas e reservas</h3><div class="tblwrap" style="margin-bottom:22px"><table><thead><tr><th>Dia e horário</th><th>Imóvel</th><th>Reservada para</th><th>Finalidade</th><th></th></tr></thead><tbody>${res.map(([id,m])=>{const v=m.reserva;const passou=new Date(v.para)<Date.now()-2*36e5;
-    return `<tr><td><b>${esc(diaHora(new Date(v.para)))}</b>${passou?' <span class="late">não retirou</span>':""}</td><td>${esc(rotulo(m))}<div class="s">${esc([m.codigo,FIN[m.finalidade],m.bairro].filter(Boolean).join(" · "))}</div></td><td>${quemHtml(v.corretor,v.vinculo)}</td><td class="s">${esc(motivoTxt(v.motivo,v.motivoDesc)||"—")}</td><td>${bt(id)}</td></tr>`}).join("")}</tbody></table></div>`
+  const r1=res.length?`<h3 class="subt">Visitas e reservas</h3><div class="tblwrap" style="margin-bottom:22px"><table><thead><tr><th>Dia e horário</th><th>Imóvel</th><th>Reservada para</th><th>Cliente</th><th>Finalidade</th><th></th></tr></thead><tbody>${res.map(([id,m])=>{const v=m.reserva;const passou=new Date(v.para)<Date.now()-2*36e5;
+    return `<tr><td><b>${esc(diaHora(new Date(v.para)))}</b>${passou?' <span class="late">não retirou</span>':""}</td><td>${esc(rotulo(m))}<div class="s">${esc([m.codigo,FIN[m.finalidade],m.bairro].filter(Boolean).join(" · "))}</div></td><td>${quemHtml(v.corretor,v.vinculo)}</td><td>${v.cliente?`<b>${esc(v.cliente)}</b>${v.clienteTel?`<div class="s">${esc(fmtTelFicha(v.clienteTel))}</div>`:""}`:'<span class="s">—</span>'}</td><td class="s">${esc(motivoTxt(v.motivo,v.motivoDesc)||"—")}</td><td>${bt(id)}</td></tr>`}).join("")}</tbody></table></div>`
     :`<div class="empty" style="margin-bottom:22px"><b>Nenhuma visita agendada</b>Quando alguém reservar uma chave, a reserva aparece aqui.</div>`;
   const r2=fora.length?`<h3 class="subt">Chaves fora agora</h3><div class="tblwrap"><table><thead><tr><th>Com quem</th><th>Imóvel</th><th>Retirada</th><th>Devolução prevista</th><th></th></tr></thead><tbody>${fora.map(([id,m])=>{const r=m.retirada;
     return `<tr><td>${quemHtml(r.corretor,r.vinculo)}</td><td>${esc(rotulo(m))}<div class="s">${esc([m.codigo,FIN[m.finalidade],m.bairro].filter(Boolean).join(" · "))}</div></td><td>${esc(diaHora(new Date(r.em)))}</td><td>${esc(diaHora(prevDe(r)))}${atrasada(r)?` <span class="late">atrasada</span>${S.canWrite?`<div><a class="btn sm cobrar" href="${esc(cobrarUrl(m,r))}" target="_blank" rel="noopener">Cobrar no WhatsApp</a></div>`:""}`:""}</td><td>${bt(id)}</td></tr>`}).join("")}</tbody></table></div>`
@@ -3166,10 +3192,10 @@ function retiradaDialog(id,preset,soReserva,livre,fora){
         if(!para){$("#rErr").textContent="Informe a data e o horário da retirada.";return}
         if(new Date(para)<Date.now()-5*6e4){$("#rErr").textContent="A reserva precisa ser para uma data e horário futuros.";return}
         {const rr=S.imoveis.get(id)?.retirada;if(rr&&new Date(para)<liberaEm(rr)){$("#rErr").textContent="A chave está fora. "+avisoLibera(rr);return}}
-        const mo=motivoLer("r");if(mo.erro){$("#rErr").textContent=mo.erro;return}const motivo=mo.k;
+        const mo=motivoLer("r");if(mo.erro){$("#rErr").textContent=mo.erro;return}const motivo=mo.k;const cl=clienteLer("r");if(cl.erro){$("#rErr").textContent=cl.erro;return}
         $("#rOk").disabled=true;
         try{const obs=frase($("#r_resobs").value);
-          await db.doc("imoveis/"+id).update({reserva:{corretor:who,vinculo,para,obs,motivo,motivoDesc:mo.desc,criadaEm:nowISO(),por:S.uid||"",porNome:S.sessao?.nome||""},atualizadoEm:nowISO()});
+          await db.doc("imoveis/"+id).update({reserva:{corretor:who,vinculo,para,obs,motivo,motivoDesc:mo.desc,...(cl.cliente?{cliente:cl.cliente,clienteTel:cl.clienteTel}:{}),criadaEm:nowISO(),por:S.uid||"",porNome:S.sessao?.nome||""},atualizadoEm:nowISO()});
           logEv("reserva",{...evImv(id,m),corretor:who,detalhe:motivoTxt(motivo,mo.desc)+" · reservada para "+dt(para)+(obs?" · "+obs:"")});closeModal();toast("Chave reservada para "+who+" em "+dt(para));if(motivo==="visita")avisarCondominio(id,m,who,para,obs)}
         catch(e){$("#rOk").disabled=false;$("#rErr").textContent=writeErr(e)}
         return}
@@ -3181,8 +3207,9 @@ function retiradaDialog(id,preset,soReserva,livre,fora){
       $("#rOk").disabled=true;
       try{
         const uid=user?await user.id():null;const mref=db.collection("movimentos").doc();const sec=S.seg.get(id)||{};
-        await mref.set({imovelId:id,imovelRotulo:rotulo(m),corretor:who,vinculo,chave:sec.chave||"",retiradaEm:em,previsao:prevISO,devolvidaEm:null,por:uid||"",porNome:S.sessao?.nome||"",origem:"sistema"});
-        await db.doc("imoveis/"+id).update({retirada:{corretor:who,vinculo,em,previsao:prevISO,movId:mref.id},reserva:(m.reserva&&m.reserva.corretor!==who)?m.reserva:null,atualizadoEm:nowISO()});
+        const cli=m.reserva&&m.reserva.corretor===who&&m.reserva.cliente?{cliente:m.reserva.cliente,clienteTel:m.reserva.clienteTel||""}:{};
+        await mref.set({imovelId:id,imovelRotulo:rotulo(m),corretor:who,vinculo,chave:sec.chave||"",retiradaEm:em,previsao:prevISO,devolvidaEm:null,por:uid||"",porNome:S.sessao?.nome||"",origem:"sistema",...cli});
+        await db.doc("imoveis/"+id).update({retirada:{corretor:who,vinculo,em,previsao:prevISO,movId:mref.id,...cli},reserva:(m.reserva&&m.reserva.corretor!==who)?m.reserva:null,atualizadoEm:nowISO()});
         logEv("retirada",{...evImv(id,m),corretor:who,detalhe:vinculo+" · devolução da chave prevista "+dt(prevISO)});
         protocolo(id,who,em,prevISO,mref.id,vinculo);
       }catch(e){$("#rOk").disabled=false;$("#rErr").textContent=writeErr(e)}
@@ -3231,10 +3258,10 @@ function reservaCorretor(id){
       const dia=$("#rc_dia").value,hora=$("#rc_hora").value;if(!dia||!hora){$("#rcErr").textContent="Escolha a data e o horário da retirada.";return}
       const para=inputToISO(dia+"T"+hora);if(!para||new Date(para)<Date.now()-5*6e4){$("#rcErr").textContent="Escolha uma data e horário futuros.";return}
       {const rr=S.imoveis.get(id)?.retirada;if(rr&&new Date(para)<liberaEm(rr)){$("#rcErr").textContent=avisoLibera(rr);return}}
-      const mo=motivoLer("rc");if(mo.erro){$("#rcErr").textContent=mo.erro;return}const motivo=mo.k;
+      const mo=motivoLer("rc");if(mo.erro){$("#rcErr").textContent=mo.erro;return}const motivo=mo.k;const cl=clienteLer("rc");if(cl.erro){$("#rcErr").textContent=cl.erro;return}
       const atual=S.imoveis.get(id);if(atual?.reserva){$("#rcErr").textContent="Alguém acabou de reservar esta chave.";return}
       $("#rcOk").disabled=true;const obs=frase($("#rc_obs").value);
-      try{await db.doc("imoveis/"+id).update({reserva:{corretor:eu,vinculo:"Corretor PSI",para,obs,motivo,motivoDesc:mo.desc,criadaEm:nowISO(),por:S.uid||"",porNome:eu},atualizadoEm:nowISO()});
+      try{await db.doc("imoveis/"+id).update({reserva:{corretor:eu,vinculo:"Corretor PSI",para,obs,motivo,motivoDesc:mo.desc,...(cl.cliente?{cliente:cl.cliente,clienteTel:cl.clienteTel}:{}),criadaEm:nowISO(),por:S.uid||"",porNome:eu},atualizadoEm:nowISO()});
         logEv("reserva",{...evImv(id,m),corretor:eu,detalhe:motivoTxt(motivo,mo.desc)+" · reservada pelo corretor para "+dt(para)+(obs?" · "+obs:"")});closeModal();if(semCh)openModal({sm:1,body:`<header><h2>Visita agendada</h2><button class="btn ghost x" data-close-btn>Fechar</button></header><div class="bd"><p class="note">${esc(rotulo(m))} · ${esc(diaHora(new Date(para)))}</p><p class="rcaviso">${esc(orientaSemChave(m,eu))}</p></div><footer><button class="btn pri" data-close-btn>Entendi</button></footer>`});else toast("Chave reservada para "+dt(para)+(m.acesso==="senha"?"":" · retirada no balcão da recepção"));if(motivo==="visita")avisarCondominio(id,m,eu,para,obs);if(temSenhaAc(m.acesso))mostrarSenha(id,para)}
       catch(e){$("#rcOk").disabled=false;$("#rcErr").textContent=writeErr(e)}};
   });
@@ -4489,7 +4516,7 @@ setInterval(()=>{if(S.ready&&!$("#modal").innerHTML)renderAll()},60000);
 
 /* ---------- Conexão (Google Apps Script + planilha) ---------- */
 // Atualização automática: se houver versão nova do painel no GitHub, recarrega sozinho
-const VERSAO_PAINEL="2026-11-14-v101";
+const VERSAO_PAINEL="2026-11-15-v102";
 async function checarVersao(){try{if(pendente&&pendente())return;const t=await fetch(location.pathname+"?v="+Date.now(),{cache:"no-store"}).then(r=>r.text());const m=t.match(/VERSAO_PAINEL="([^"]+)"/);if(m&&m[1]!==VERSAO_PAINEL){toast("Atualizando para a nova versão do painel…");setTimeout(()=>location.reload(),1200)}}catch{}}
 setInterval(checarVersao,5*60*1000);document.addEventListener("visibilitychange",()=>{if(document.visibilityState==="visible")checarVersao()});
 const API_URL="https://script.google.com/macros/s/AKfycbzkzXeDJUB698vFuUBdLUteSaUWGOmOjsy98-JzSHgwz5LKTXdpw1RnzjEMQWJlP-cjlw/exec";   // endereço do App da Web (termina em /exec)
