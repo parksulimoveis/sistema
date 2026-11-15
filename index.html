@@ -564,7 +564,8 @@ body.temsel{padding-bottom:96px}.selfab[hidden]{display:none!important}.selfab .
 .ospfil .f{max-width:260px;flex:1 1 160px}
 .ilgrp{display:grid;grid-template-columns:repeat(var(--n),minmax(0,1fr));gap:4px;margin-top:4px}.ilgrp span{font-size:.7rem;font-weight:700;color:var(--muted,#6B7A99);text-align:center;border-top:2px solid var(--line);padding-top:3px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 .ilstk{display:flex!important;flex-direction:column-reverse;overflow:visible;background:none!important;max-width:30px!important}.ilstk u{display:block;min-height:2px}.ilstk u:last-child{border-radius:4px 4px 0 0}.ilstk em{position:absolute;top:-16px;left:50%;transform:translateX(-50%);font-style:normal;font-size:.68rem;font-weight:700}
-.ilma .ilb i.ilstk{max-width:34px!important}.ilstk u{position:relative;text-decoration:none;display:flex!important;align-items:center;justify-content:center}.ilstk u span{font-size:.66rem;font-weight:700;font-style:normal;color:#fff;line-height:1;pointer-events:none}
+.ilma .ilb i.ilstk{max-width:34px!important}.ilstk u{position:relative;text-decoration:none;display:flex!important;align-items:center;justify-content:center}.ilrot .ilb small{transform:translateX(-50%) rotate(-40deg);transform-origin:center;bottom:-2px;font-size:.58rem}.ilrot{margin-bottom:24px}
+.ilstk u span{font-size:.66rem;font-weight:700;font-style:normal;color:#fff;line-height:1;pointer-events:none}
 .ilanos{align-items:center}.anoch{display:inline-flex;align-items:center;gap:6px;border:1px solid var(--line);background:var(--surface);color:var(--fg);border-radius:999px;padding:3px 10px;font:600 .78rem var(--f-body);cursor:pointer}.anoch b{width:10px;height:10px;border-radius:3px;display:inline-block}.anoch[aria-pressed="false"]{opacity:.45;text-decoration:line-through}
 .ilprog{display:grid;gap:10px}.ilprog>div{display:grid;grid-template-columns:64px minmax(0,1fr) 44px 74px;gap:10px;align-items:center}.ilprog.comv>div{grid-template-columns:52px minmax(0,1fr) 34px 64px 84px}.ilprog em{white-space:nowrap}.ilpv{font-size:.8rem;color:var(--muted,#6B7A99);text-align:right;white-space:nowrap}.ilpa{font-weight:700;display:grid;line-height:1.1}.ilpa small{font-weight:400;font-size:.66rem;color:var(--muted,#6B7A99)}
 .ilpt{height:14px;border-radius:999px;background:var(--line);overflow:hidden}.ilpt i{display:block;height:100%;border-radius:999px}.ilprog strong{text-align:right}.ilprog em{font-style:normal;font-size:.76rem;font-weight:700;color:var(--muted,#6B7A99)}.ilprog em.up{color:#C1652F}.ilprog em.dn{color:#1f9d55}
@@ -2561,16 +2562,19 @@ function locFichaTela(box,tipo){const esc0=tipo==="loc";if(esc0)tipo="locpf";con
     return {...im,anun,prop,vprop,corretor,corrEmail:c?.email||""}};
   const criar=async(x,cli)=>{const ref=db.collection("locprocs").doc();const pid=ref.id;const base={ref:x.ref,imovelId:x.imovelId,carteira:x.carteira,valor:x.vprop,anuncio:x.anun,proposta:!!x.prop,corretor:x.corretor,corrEmail:x.corrEmail,cliNome:cli.nome||"",cliTel:cli.tel||"",cliEmail:cli.em||"",status:"aberto",criadoEm:nowISO(),por:S.sessao?.id||"",porNome:S.sessao?.nome||""};
     const propInfo={carteira:x.carteira?"Sim":"Não, captação nesta locação",anuncio:x.anun,proposta:x.prop?"Sim":"Não",vprop:x.prop?x.vprop:"",corretor:x.corretor};let nota="";
-    if(loc){await ref.set({...base,kind:"loc",garantia:"",tipoLoc:tipo,hist:locHist(null,"aberto",x.prop?`Proposta de ${brlV(x.vprop)} (anúncio ${brlV(x.anun)})`:"Ficha criada pelo valor de anúncio")});
+    let pd;if(loc){pd={...base,kind:"loc",garantia:"",tipoLoc:tipo,hist:locHist(null,"aberto",x.prop?`Proposta de ${brlV(x.vprop)} (anúncio ${brlV(x.anun)})`:"Ficha criada pelo valor de anúncio")};
       if(!x.carteira&&x.capt)S.lfCapt={ref:x.ref,anun:x.anun,corretor:x.corretor,de:pid}}
     else{const pct=Math.round(numBR($("#lt_pct").value));if(!(pct>=1&&pct<=100))throw new Error("A intermediação vai de 1% a 100% do primeiro aluguel.");
-      await ref.set({...base,kind:"adm",atividade:$("#lt_at").value,pct,adm:LOC_ADM,deProc:S.lfCapt?.de||"",hist:locHist(null,"aberto","Captação criada")});nota=locCondTxt(pct);if(S.lfCapt)S.lfCapt=null}
-    return await locCriarFicha(pid,tipo,tipo,{ref:x.ref,corretor:x.corretor,corrEmail:x.corrEmail,nome:cli.nome||"",tel:cli.tel||"",em:cli.em||""},{prop:propInfo,...(nota?{nota}:{})})};
+      pd={...base,kind:"adm",atividade:$("#lt_at").value,pct,adm:LOC_ADM,deProc:S.lfCapt?.de||"",hist:locHist(null,"aberto","Captação criada")};nota=locCondTxt(pct);if(S.lfCapt)S.lfCapt=null}
+    // processo e link vão juntos numa ida só ao servidor (mais rápido); aparece na tela na hora e some se der erro
+    const m=DATA.locprocs||(DATA.locprocs=new Map());m.set(pid,{...pd});avisar(new Set(["locprocs"]));
+    try{return await locCriarFicha(pid,tipo,tipo,{ref:x.ref,corretor:x.corretor,corrEmail:x.corrEmail,nome:cli.nome||"",tel:cli.tel||"",em:cli.em||""},{prop:propInfo,...(nota?{nota}:{}),procOp:{path:"locprocs/"+pid,data:pd}})}
+    catch(e){m.delete(pid);avisar(new Set(["locprocs"]));throw e}};
   $("#ltLink").onclick=()=>{let x;try{$("#ltErr").textContent="";x=ler()}catch(e){$("#ltErr").textContent=e.message;return}
     openModal({sm:1,body:`<header><h2>Enviar para o ${esc(quem)}</h2><button class="btn ghost x" data-close-btn>Fechar</button></header><div class="bd"><p class="note" style="margin:0 0 8px">${esc(x.ref)}</p><div class="grid2">${locCliCampos("lk",quem)}</div><p class="err" id="lkErr"></p></div>
     <footer><button class="btn" data-close-btn>Cancelar</button><button class="btn pri" id="lkOk">Gerar o link</button></footer>`},()=>{$("#lkOk").onclick=async()=>{const tel=$("#lk_ctel").value.replace(/\D/g,"");if(tel.length<10||tel.length>13){$("#lkErr").textContent="Informe o WhatsApp com DDD, para enviar o link.";return}
-      const em=$("#lk_cemail").value.trim();if(em&&!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(em)){$("#lkErr").textContent="E-mail inválido.";return}const bt=$("#lkOk");bt.disabled=true;
-      try{const r=await criar(x,{nome:nomePessoa($("#lk_cnome").value),tel,em});closeModal();renderLocFic();fichaLinkDialog({...r.data,papel:tipo},r.id)}catch(er){$("#lkErr").textContent=er.message;bt.disabled=false}}})};
+      const em=$("#lk_cemail").value.trim();if(em&&!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(em)){$("#lkErr").textContent="E-mail inválido.";return}const bt=$("#lkOk");bt.disabled=true;bt.textContent="Gerando o link…";
+      try{const r=await criar(x,{nome:nomePessoa($("#lk_cnome").value),tel,em});closeModal();renderLocFic();fichaLinkDialog({...r.data,papel:tipo},r.id)}catch(er){$("#lkErr").textContent=er.message;bt.disabled=false;bt.textContent="Gerar o link"}}})};
   $("#ltJunto").onclick=async()=>{const bt=$("#ltJunto");bt.disabled=true;try{$("#ltForm").hidden=false;$("#ltErr").textContent="";const x=ler();S.ltTela=tipo;S.ltAtual={pend:1};const r=await criar(x,{});S.ltAtual=r;$("#ltForm").innerHTML=fichaHtml(fichaSchema(tipo));fichaLigar($("#ltForm"));$("#ltForm").hidden=false;$("#ltActs").hidden=false;
       box.querySelector(".autescolha").hidden=true;box.querySelector("fieldset.autsec").querySelectorAll("input,select,button").forEach(el=>el.disabled=true);box.querySelector("fieldset.autsec").classList.add("lftrav");$("#ltForm").scrollIntoView({behavior:"smooth",block:"start"})}catch(e){$("#ltErr").textContent=e.message}finally{bt.disabled=false}};
   $("#ltEnviar").onclick=async()=>{const r=S.ltAtual;if(!r)return;await fichaSubmeter({tipo,root:$("#ltForm"),btn:$("#ltEnviar"),lbl:"Salvar e enviar a ficha",err:$("#ltErr"),acao:"fichaEnviar",ref:r.data.ref,corretor:r.data.corretor,prop:r.data.prop,payload:{t:r.data.t||r.t},
@@ -2877,7 +2881,7 @@ function locLerBase(pre){const imv=$(`#${pre}_imv`).value.trim();if(!imv)return 
   const corretor=$(`#${pre}_corr`)?.value||S.sessao?.nome||"";const c=[...(S.contatos||new Map()).values()].find(x=>semAcento(x.nome)===semAcento(corretor));
   return {ref:o?o.lb:imv,imovelId:o?.id||"",tel,em,nome:nomePessoa($(`#${pre}_cnome`).value),corretor,corrEmail:c?.email||""}}
 async function locCriarFicha(pid,tipo,papel,b,extra){const r=await api("fichaLink",{tipo,ref:b.ref,corretor:b.corretor,corrEmail:b.corrEmail,clienteNome:b.nome,clienteEmail:b.em,clienteTel:b.tel,procId:pid,papel:papel||tipo,...(extra||{})});
-  fichaGuardar(r.id,{...r.data,procId:pid,papel:papel||tipo});return r}
+  fichaGuardar(r.id,{...r.data,procId:pid,papel:papel||tipo});setTimeout(()=>sincronizar(),300);return r}
 function locHist(p,st,obs){return [...(p?.hist||[]),{em:nowISO(),por:S.sessao?.nome||"",st,obs:obs||""}]}
 function locNovaProposta(){openModal({body:`<header><h2>Nova proposta de locação</h2><button class="btn ghost x" data-close-btn>Fechar</button></header>
   <div class="bd"><div class="grid2">${locImovelCampo("np")}
@@ -3065,7 +3069,7 @@ function locAcao(pid,ac,ds={}){const p=S.locprocs?.get(pid);if(!p||!locPode())re
   const eu=(S.sessao?.nome||"").split(" ")[0];const n1=locNome1({id:pid,...p});const salvo=(d,h)=>db.doc("locprocs/"+pid).update({...d,hist:locHist(p,p.status,h),atualizadoEm:nowISO()});
   if(ac==="garesc"){const g=ds.g;if(!g)return;db.doc("locprocs/"+pid).update({garantia:g,garObs:"",garPor:S.sessao?.nome||"",garRes:null,hist:locHist(p,p.status,"Locatário escolheu a garantia: "+g),atualizadoEm:nowISO()});
     if(g==="Fiador"){(async()=>{const AVx=p.fichaAval||{};const val=locFichas(pid).filter(f=>f.tipo==="fiador"&&!["nao","des"].includes(AVx[f.id]?.st));
-      for(let n=val.length;n<LOC_FIADORES;n++)await locCriarFicha(pid,"fiador","fiador",{ref:p.ref,corretor:p.corretor,corrEmail:p.corrEmail,nome:"",tel:"",em:""});
+      const fz=[];for(let n=val.length;n<LOC_FIADORES;n++)fz.push(locCriarFicha(pid,"fiador","fiador",{ref:p.ref,corretor:p.corretor,corrEmail:p.corrEmail,nome:"",tel:"",em:""}));await Promise.all(fz);
       setTimeout(()=>locAcao(pid,"fialinks"),150)})();return}
     toast("Garantia escolhida: "+g);setTimeout(()=>{closeModal();locProcDialog(pid)},60);return}
   if(ac==="fialinks"){const AVx=p.fichaAval||{};const L=locFichas(pid).filter(f=>f.tipo==="fiador"&&f.status!=="recebida"&&!["nao","des"].includes(AVx[f.id]?.st));if(!L.length){toast("Todas as fichas de fiador já chegaram");return}
@@ -3309,16 +3313,51 @@ function ilMesesBase(F,listas){// eixo de meses do período filtrado
 const noBalde=(r,x)=>r.ano===x.a&&(!x.m||r.mes===x.m);
 const porMes=(L,meses)=>meses.map(x=>L.filter(r=>noBalde(r,x)).length);
 const somaMes=(L,meses,v)=>meses.map(x=>Math.round(L.filter(r=>noBalde(r,x)).reduce((s,r)=>s+(v(r)||0),0)));
+/* Indicadores que se alimentam sozinhos: o histórico vem da planilha Locações e o que é registrado no sistema
+   (locações aprovadas, carteira, encerramentos, vistorias, renovações e análises) entra junto, sem contar duas vezes. */
+const GAR_SIS={"Caução":"CAUCAO","Fiador":"FIADOR","Seguro fiança":"FIANCA","Título de capitalização":"CAPITALIZACAO","Garantia enxoval (aluguel à vista)":"ENXOVAL"};
+const ymOf=iso=>{const m=String(iso||"").match(/^(\d{4})-(\d{2})/);return m?{ano:+m[1],mes:+m[2]}:{ano:0,mes:0}};
+function ilSis(){const o={adm:[],loc:[],fec:[],vis:[],ren:[],an:[]};
+  for(const [id,p] of (S.locprocs||new Map())){const k=p.kind||"loc";const im=p.imovelId&&S.imoveis?.get(p.imovelId);const reg=im?.bairro||"";
+    if(k==="loc"){const m=locPrincipal(locFichas(id));const tp=m?.tipo==="locpj"?"PJ":"PF";const a=p.aprov;
+      if(["aprovado","concluido"].includes(p.status)&&a)o.loc.push({sis:1,...ymOf(a.inicio),end:p.ref||"",reg,inq:p.cliNome||m?.dados?.nome||"",gar:GAR_SIS[a.garantia]||semAcento(a.garantia||"").toUpperCase(),val:Number(a.valor)||0,vgar:Number(a.vgar)||0,seg:a.seguroSit||"",corr:p.corretor||""});
+      const st={aprovado:"APROVADO",concluido:"APROVADO",reprovado:"REPROVADO",desistencia:"DESISTENCIA"}[p.status];
+      if(st){const q=(p.hist||[]).slice().reverse().find(h=>h.st===(p.status==="concluido"?"aprovado":p.status))?.em||a?.em||p.atualizadoEm||p.criadoEm;o.an.push({sis:1,tp,st,corr:p.corretor||"",...ymOf(q)})}}
+    else if(p.status==="carteira"&&p.cart)o.adm.push({sis:1,...ymOf(p.cart.em),end:p.ref||"",reg:p.cart.reg||reg,val:Number(p.cart.valor)||0,prop:p.cart.prop||p.cliNome||"",corr:p.corretor||"",vist:/sim/i.test(p.cart.vist||"")?"SIM":""})}
+  for(const [,e] of (S.encerramentos||new Map()))if(e.status==="concluido")o.fec.push({sis:1,...ymOf(e.concluidoEm||e.saida),end:[e.imovel,e.empreendimento].filter(Boolean).join(" "),reg:e.regiao||"",inq:e.inquilino||"",gar:GAR_SIS[e.garantia]||"",prop:e.proprietario||"",acao:e.acao||""});
+  if(typeof vistTodas==="function")vistTodas().filter(v=>v.feita).forEach(v=>o.vis.push({sis:1,...ymOf(v.feita.em||v.quando),end:v.ref||"",inq:v.pessoa||"",tipo:v.tipo==="entrada"?"ENTRADA":"SAIDA",pend:v.pendencia==="com"?"COM":v.pendencia==="sem"?"SEM":""}));
+  for(const [,r] of (S.renovacoes||new Map()))if(["renovado","naorenova"].includes(r.status))o.ren.push({sis:1,...ymOf(r.vigencia),end:[r.imovel,r.empreendimento].filter(Boolean).join(" "),inq:r.inquilino||"",renov:r.status==="renovado"?"SIM":"NAO",vAtual:Number(r.valorAtual)||0,vProp:Number(r.valorProposto)||0,vAcord:Number(r.valorAcordado)||0});
+  return o}
+function ilMesclar(D){const s=ilSis();const ch=r=>r.ano+"-"+r.mes+"-"+chaveNome(r.inq||r.prop||r.end||"").split(" ").slice(0,2).join(" ");
+  const junta=(P,X)=>{const ks=new Set((P||[]).map(ch));return (P||[]).concat(X.filter(r=>r.ano&&!ks.has(ch(r))))};
+  const out={...D,adm:junta(D.adm,s.adm),loc:junta(D.loc,s.loc),fec:junta(D.fec,s.fec),vis:junta(D.vis,s.vis),ren:junta(D.ren,s.ren),an:(D.an||[]).concat(s.an.filter(r=>r.ano))};
+  out.nSis=["adm","loc","fec","vis","ren","an"].reduce((t,k)=>t+out[k].filter(r=>r.sis).length,0);return out}
+// garantias e destinos com nomes e cores fixos (identidade Park Sul)
+const GAR_K=[["CAUCAO","Caução","#0B1628"],["FIADOR","Fiador","#C1652F"],["FIANCA","Seguro fiança","#6B7A99"],["CAPITALIZACAO","Título de capitalização","#D9C4A3"],["OUTRO","Outro / enxoval","#6F4E37"],["SEM","Sem garantia","#8e9bb5"]];
+const garK=g=>{g=String(g||"");return /CAUC/.test(g)?"CAUCAO":/FIADOR/.test(g)?"FIADOR":/FIAN/.test(g)?"FIANCA":/CAPITAL|TITULO/.test(g)?"CAPITALIZACAO":/SEM/.test(g)||!g?"SEM":"OUTRO"};
+const ACAO_K=[["LOC","Anúncio locação","#0B1628"],["VENDA","Anúncio venda","#C1652F"],["DEV","Imóvel devolvido","#6B7A99"],["VENDIDO","Imóvel vendido","#D9C4A3"],["NI","A definir","#8e9bb5"]];
+const acaoK=a=>{a=semAcento(String(a||"")).toUpperCase();return /VENDID/.test(a)?"VENDIDO":/VENDA/.test(a)?"VENDA":/DEVOLV/.test(a)?"DEV":/LOCA/.test(a)?"LOC":"NI"};
+const AN_K=[["APROVADO","Aprovado","#0B1628"],["REPROVADO","Reprovado","#C1652F"],["DESISTENCIA","Desistência","#D9C4A3"],["ANALISE","Em análise","#8e9bb5"]];
+const anK=s=>{s=semAcento(String(s||"")).toUpperCase();return /REPROV/.test(s)?"REPROVADO":/DESIST/.test(s)?"DESISTENCIA":/APROV/.test(s)?"APROVADO":"ANALISE"};
+const ilLabM=m=>m.m?MESES_ABR[m.m-1]+"/"+String(m.a).slice(2):String(m.a);
+// barras empilhadas: cada barra é um mês (Abr/25) dividida pelas categorias, com o total em cima
+function ilPilha(L,meses,cats,kf){const series=cats.map(([k,n,cor])=>({nome:n,cor,vals:meses.map(x=>L.filter(r=>noBalde(r,x)&&kf(r)===k).length)})).filter(s=>s.vals.some(Boolean));
+  if(!meses.length||!series.length)return `<p class="note">Sem dados no período.</p>`;
+  const tot=meses.map((_,i)=>series.reduce((t,s)=>t+s.vals[i],0)),mx=Math.max(1,...tot);
+  return `<div class="ilbars ilma ilpil${meses.length>12?" ilrot":""}" style="--n:${meses.length}">${meses.map((m,i)=>`<div class="ilb" title="${esc(ilLabM(m)+": "+series.filter(s=>s.vals[i]).map(s=>s.nome+" "+s.vals[i]).join(" · ")+(tot[i]?" · total "+tot[i]:""))}"><i class="ilstk" style="height:${tot[i]?Math.max(4,tot[i]/mx*100):0}%">${series.map(s=>s.vals[i]?`<u style="flex:${s.vals[i]};background:${s.cor}">${s.vals[i]/mx>=.12?`<span>${s.vals[i]}</span>`:""}</u>`:"").join("")}<em>${tot[i]||""}</em></i><small>${esc(ilLabM(m))}</small></div>`).join("")}</div>
+  <div class="illeg">${series.map(s=>`<span><b style="background:${s.cor}"></b>${esc(s.nome)} · ${s.vals.reduce((a,b)=>a+b,0)}</span>`).join("")}</div>`}
+const ilSegK=(L,cats,kf)=>{const c=new Map();L.forEach(r=>{const k=kf(r);c.set(k,(c.get(k)||0)+1)});const tot=L.length||1;const P=cats.filter(([k])=>c.get(k));
+  return P.length?`<div class="ilseg">${P.map(([k,n,cor])=>`<b style="flex:${c.get(k)};background:${cor}" title="${esc(n)}: ${c.get(k)}"></b>`).join("")}</div><div class="ilsegl">${P.map(([k,n,cor])=>`<div><b style="background:${cor}"></b><span>${esc(n)}</span><strong>${c.get(k)}</strong><small>${Math.round(c.get(k)/tot*100)}%</small></div>`).join("")}</div>`:`<p class="note">Sem dados no período.</p>`};
 function renderIndLoc(){const box=$("#ilBox");if(!box)return;
   if(S.locErro){box.innerHTML=`<div class="ilerro"><b>Não consegui ler a planilha.</b><p>${esc(S.locErro)}</p><button class="btn" type="button" id="ilTentar">Tentar de novo</button></div>`;$("#ilTentar").onclick=()=>carregarLoc(true);return}
   if(!S.loc){carregarLoc();return}
-  const D=S.loc,F=S.ilF||(S.ilF={aba:"geral",ano:new Date().getFullYear(),mes:0,corr:"",time:"",reg:""});
+  const D=ilMesclar(S.loc),F=S.ilF||(S.ilF={aba:"geral",ano:new Date().getFullYear(),mes:0,corr:"",time:"",reg:""});
   const anos=[...new Set([...D.adm,...D.loc,...D.fec].map(r=>r.ano).filter(Boolean))].sort();
   const todosCorr=new Map();[...D.adm,...D.loc].forEach(r=>{const c=corrLoc(r.corr);if(c.id)todosCorr.set(c.id,c)});
   const regs=[...new Set([...D.adm,...D.loc,...D.fec].map(r=>chaveNome(r.reg)).filter(Boolean))].sort();
   const regNome=k=>{const r=[...D.adm,...D.loc,...D.fec].find(x=>chaveNome(x.reg)===k);return r?String(r.reg).trim():k};
   const adm=locFiltrar(D.adm,F,{reg:1,corr:1}),loc=locFiltrar(D.loc,F,{reg:1,corr:1}),fec=locFiltrar(D.fec,F,{reg:1}),vis=locFiltrar(D.vis,F,{}),ren=locFiltrar(D.ren,F,{}),rea=locFiltrar(D.rea,F,{});
-  const meses=ilMeses(F,[D.adm,D.loc,D.fec]);
+  const meses=ilMeses(F,[D.adm,D.loc,D.fec]);const mp=(b=>b.length<=36?b:meses)(ilMesesBase(F,[D.adm,D.loc,D.fec])),pm=mp[0]&&!mp[0].m?"por ano":"por mês";const an=locFiltrar(D.an||[],F,{corr:1});
   const anosLoc=[...new Set([...D.adm,...D.loc,...D.fec,...D.rea].map(r=>r.ano))].filter(Boolean).sort();
   // um ano escolhido: Jan a Dez daquele ano; todos os anos: cada mês dividido pelos anos (anos clicáveis)
   const serieUma=(L,nome,cor,v)=>{if(F.ano||anosLoc.length<2)return ilBarras([{nome,cor,vals:v?somaMes(L,meses,v):porMes(L,meses)}],meses);
@@ -3329,7 +3368,7 @@ function renderIndLoc(){const box=$("#ilBox");if(!box)return;
   const timeC=r=>corrLoc(r.corr).time||"Sem equipe";
   const garN=g=>({CAUCAO:"Caução",FIADOR:"Fiador",FIANCA:"Fiança",CAPITALIZACAO:"Capitalização","SEM GARANTIA":"Sem garantia"})[g]||(g?g.charAt(0)+g.slice(1).toLowerCase():"Não informada");
   const per=(F.mes?MESES_ABR[F.mes-1]+"/":"")+(F.ano||"todo o período");
-  const abas=[["geral","Visão geral"],["capt","Captação"],["loc","Locação"],["fec","Fechamento"],["vis","Vistoria"],["ren","Renovação e reajuste"],["corr","Corretores e equipes"]];
+  const abas=[["geral","Visão geral"],["capt","Captação"],["loc","Locação"],["an","Análise de cadastro"],["fec","Encerramento"],["vis","Vistoria"],["ren","Renovação e reajuste"],["corr","Corretores e equipes"]];
   let h=`<div class="ilfil">
     <label class="f">Ano<select class="sel" data-ilf="ano"><option value="0">Todos</option>${anos.map(a=>`<option ${F.ano===a?"selected":""}>${a}</option>`).join("")}</select></label>
     <label class="f">Mês<select class="sel" data-ilf="mes"><option value="0">Todos</option>${MESES_ABR.map((m,i)=>`<option value="${i+1}" ${F.mes===i+1?"selected":""}>${m}</option>`).join("")}</select></label>
@@ -3338,41 +3377,55 @@ function renderIndLoc(){const box=$("#ilBox");if(!box)return;
     <label class="f">Região<select class="sel" data-ilf="reg"><option value="">Todas</option>${regs.map(r=>`<option value="${esc(r)}" ${F.reg===r?"selected":""}>${esc(regNome(r))}</option>`).join("")}</select></label>
     <button class="btn" type="button" id="ilAtual" title="Ler a planilha de novo">Atualizar</button></div>
   <div class="iltabs" role="tablist">${abas.map(([k,t])=>`<button type="button" role="tab" data-ilaba="${k}" aria-selected="${F.aba===k}">${t}</button>`).join("")}</div>
-  <p class="note ilsub">Período: <b>${esc(per)}</b> · dados da planilha Locações, lidos ${esc(dt(D.lidoEm))}</p>`;
+  <p class="note ilsub">Período: <b>${esc(per)}</b> · dados da planilha Locações, lidos ${esc(dt(D.lidoEm))}${D.nSis?` · <b>${D.nSis}</b> ${D.nSis===1?"registro":"registros"} do sistema somados`:""}</p>`;
   const entradasVis=vis.filter(v=>v.tipo==="ENTRADA").length,saidasVis=vis.filter(v=>/SA/.test(v.tipo)).length,pendVis=vis.filter(v=>v.pend==="COM").length;
   if(F.aba==="geral"){
     h+=`<div class="ilkpis">${ilKpi("Imóveis captados",adm.length,"para administração")}${ilKpi("Valor captado",brl0(vadm),"soma dos aluguéis","ouro")}${ilKpi("Imóveis locados",loc.length,"contratos novos")}${ilKpi("VGL",brl0(vgl),"valor geral locado","ouro")}${ilKpi("Ticket médio",brl0(loc.length?vgl/loc.length:0),"aluguel médio")}${ilKpi("Fechamentos",fec.length,"imóveis devolvidos")}</div>
     <div class="ilg2">${ilPan("Visão consolidada por mês","Captações, locações e fechamentos",ilBarras([{nome:"Captações",cor:"#6B7A99",vals:porMes(adm,meses)},{nome:"Locações",cor:"#0B1628",vals:porMes(loc,meses)},{nome:"Fechamentos",cor:"#C1652F",vals:porMes(fec,meses)}],meses))}
-    ${ilPan("Contratos por garantia","Locações do período",ilSeg(contar(loc,r=>garN(r.gar))))}</div>
+    ${ilPan("Contratos por garantia","Locações do período",ilSegK(loc,GAR_K,r=>garK(r.gar)))}</div>
     <div class="ilg2">${ilPan("Top 3 · Captação","Imóveis captados",ilRank(contar(adm,nomeC),null,3))}${ilPan("Top 3 · Locação","Imóveis locados",ilRank(contar(loc,nomeC),null,3))}</div>
     <div class="ilg2">${ilPan("Desempenho por equipe","Captações + locações",ilRank(contar([...adm,...loc],timeC)))}${ilPan("Imóveis por região","Captados e locados",ilRank(contar([...adm,...loc],r=>String(r.reg||"").trim()||"Não informada")))}</div>`}
   if(F.aba==="capt"){
     h+=`<div class="ilkpis">${ilKpi("Imóveis captados",adm.length,"para administração")}${ilKpi("Valor captado",brl0(vadm),"soma dos aluguéis","ouro")}${ilKpi("Aluguel médio",brl0(adm.length?vadm/adm.length:0),"por imóvel")}${ilKpi("Com vistoria de entrada",adm.filter(r=>r.vist==="SIM").length,"na captação")}</div>
-    <div class="ilg2">${ilPan("Captações por mês","",serieUma(adm,"Captações","#0B1628"))}${ilPan("Valor captado por mês","Soma dos aluguéis (R$)",serieUma(adm,"R$","#C1652F",r=>r.val))}</div>
+    <div class="ilg2">${ilPan("Contratos de administração por mês","Imóveis que entraram na carteira",serieUma(adm,"Contratos","#0B1628"))}${ilPan("Valor captado por mês","Soma dos aluguéis (R$)",serieUma(adm,"R$","#C1652F",r=>r.val))}</div>
     <div class="ilg2">${ilPan("Ranking de captações","Imóveis por corretor",ilRank(contar(adm,nomeC),null,15))}${ilPan("Captações por equipe","",ilSeg(contar(adm,timeC)))}</div>
     ${ilPan("Imóveis captados por região","",ilRank(contar(adm,r=>String(r.reg||"").trim()||"Não informada"),null,12))}`}
   if(F.aba==="loc"){const seg=loc.filter(r=>/PAGO|CONTRATAD/i.test(r.seg)).length;
     h+=`<div class="ilkpis">${ilKpi("Imóveis locados",loc.length,"contratos novos")}${ilKpi("VGL",brl0(vgl),"valor geral locado","ouro")}${ilKpi("Ticket médio",brl0(loc.length?vgl/loc.length:0),"aluguel médio")}${ilKpi("Garantias (valor)",brl0(loc.reduce((s,r)=>s+r.vgar,0)),"caução, fiança e capitalização")}${ilKpi("Seguro incêndio",seg+" de "+loc.length,"pago ou contratado")}</div>
+    ${ilPan("Contratos de locação "+pm+" × garantia","Cada barra é um mês, dividida pela garantia",ilPilha(loc,mp,GAR_K,r=>garK(r.gar)))}
     <div class="ilg2">${ilPan("Locações por mês","",serieUma(loc,"Locações","#0B1628"))}${ilPan("VGL por mês","Soma dos aluguéis locados (R$)",serieUma(loc,"R$","#C1652F",r=>r.val))}</div>
     <div class="ilg2">${ilPan("Ranking de locações","Contratos por corretor",ilRank(contar(loc,nomeC),null,15))}${ilPan("VGL por corretor","",ilRank(somar(loc,nomeC,r=>r.val),brl,15))}</div>
-    <div class="ilg2">${ilPan("Contratos por garantia","",ilSeg(contar(loc,r=>garN(r.gar))))}${ilPan("Locações por equipe","",ilSeg(contar(loc,timeC)))}</div>
+    <div class="ilg2">${ilPan("Distribuição das garantias","Locações do período",ilSegK(loc,GAR_K,r=>garK(r.gar)))}${ilPan("Locações por equipe","",ilSeg(contar(loc,timeC)))}</div>
     ${ilPan("Imóveis locados por região","",ilRank(contar(loc,r=>String(r.reg||"").trim()||"Não informada"),null,12))}`}
-  if(F.aba==="fec"){
-    h+=`<div class="ilkpis">${ilKpi("Fechamentos",fec.length,"imóveis devolvidos")}${ilKpi("Voltam para locação",fec.filter(r=>/LOCA/i.test(semAcento(r.acao))).length,"anúncio de locação")}${ilKpi("Vão para venda",fec.filter(r=>/VENDA/i.test(semAcento(r.acao))).length,"anúncio de venda")}${ilKpi("Devolvidos ao proprietário",fec.filter(r=>/DEVOLV/i.test(semAcento(r.acao))).length,"saem da carteira")}</div>
-    <div class="ilg2">${ilPan("Comparativo mensal · entrada × saída","Locações novas e fechamentos",ilBarras([{nome:"Entradas (locações)",cor:"#0B1628",vals:porMes(loc,meses)},{nome:"Saídas (fechamentos)",cor:"#C1652F",vals:porMes(fec,meses)}],meses))}
-    ${ilPan("Destino do imóvel","Depois do fechamento",ilSeg(contar(fec,r=>String(r.acao||"").trim()||"Não informado")))}</div>
-    ${ilPan("Garantias no fechamento","",ilSeg(contar(fec,r=>garN(r.gar))))}`}
-  if(F.aba==="vis"){
-    h+=`<div class="ilkpis">${ilKpi("Vistorias",vis.length,"no período")}${ilKpi("De entrada",entradasVis,"novos inquilinos")}${ilKpi("De saída",saidasVis,"encerramentos")}${ilKpi("Com pendência",pendVis,vis.length?Math.round(pendVis/vis.length*100)+"% das vistorias":"","alerta")}</div>
-    <div class="ilg2">${ilPan("Vistorias por mês","Entrada e saída",ilBarras([{nome:"Entrada",cor:"#0B1628",vals:porMes(vis.filter(v=>v.tipo==="ENTRADA"),meses)},{nome:"Saída",cor:"#C1652F",vals:porMes(vis.filter(v=>/SA/.test(v.tipo)),meses)}],meses))}
-    ${ilPan("Pendências","",ilSeg(contar(vis,v=>v.pend==="COM"?"Com pendência":v.pend==="SEM"?"Sem pendência":"Não informado")))}</div>`}
+  if(F.aba==="fec"){const nA=k=>fec.filter(r=>acaoK(r.acao)===k).length;
+    h+=`<div class="ilkpis">${ilKpi("Encerramentos",fec.length,"chaves devolvidas")}${ilKpi("Anúncio locação",nA("LOC"),"voltam para locação")}${ilKpi("Anúncio venda",nA("VENDA"),"vão para venda")}${ilKpi("Imóvel devolvido",nA("DEV"),"saem da carteira")}${ilKpi("Imóvel vendido",nA("VENDIDO"),"")}</div>
+    ${ilPan("Encerramentos "+pm+" × ação","O que acontece com o imóvel depois da saída",ilPilha(fec,mp,ACAO_K,r=>acaoK(r.acao)))}
+    <div class="ilg2">${ilPan("Comparativo · entrada × saída","Locações novas e encerramentos",ilBarras([{nome:"Entradas (locações)",cor:"#0B1628",vals:porMes(loc,meses)},{nome:"Saídas (encerramentos)",cor:"#C1652F",vals:porMes(fec,meses)}],meses))}
+    ${ilPan("Destino do imóvel","Depois do encerramento",ilSegK(fec,ACAO_K,r=>acaoK(r.acao)))}</div>
+    ${ilPan("Garantias no encerramento","",ilSegK(fec,GAR_K,r=>garK(r.gar)))}`}
+  if(F.aba==="vis"){const tipoV=r=>r.tipo==="ENTRADA"?"ENT":/SA/.test(r.tipo)?"SAI":"";const semP=vis.filter(v=>v.pend==="SEM").length;
+    h+=`<div class="ilkpis">${ilKpi("Vistorias realizadas",vis.length,"no período")}${ilKpi("De entrada",entradasVis,"novos inquilinos")}${ilKpi("De saída",saidasVis,"encerramentos")}${ilKpi("Sem pendência",semP,vis.length?Math.round(semP/vis.length*100)+"% das vistorias":"")}${ilKpi("Com pendência",pendVis,vis.length?Math.round(pendVis/vis.length*100)+"% das vistorias":"","alerta")}</div>
+    ${ilPan("Vistorias realizadas "+pm+" · entrada × saída","Quantidade por mês",ilPilha(vis,mp,[["ENT","Entrada","#0B1628"],["SAI","Saída","#C1652F"]],tipoV))}
+    <div class="ilg2">${ilPan("Com × sem pendência "+pm,"",ilPilha(vis,mp,[["SEM","Sem pendência","#6B7A99"],["COM","Com pendência","#C1652F"]],r=>r.pend))}
+    ${ilPan("Pendências","Todas as vistorias do período",ilSegK(vis,[["SEM","Sem pendência","#6B7A99"],["COM","Com pendência","#C1652F"],["NI","Não informado","#D9C4A3"]],r=>r.pend==="COM"||r.pend==="SEM"?r.pend:"NI"))}</div>
+    <div class="ilg2">${ilPan("Entrada","Com e sem pendência",ilSegK(vis.filter(r=>tipoV(r)==="ENT"),[["SEM","Sem pendência","#6B7A99"],["COM","Com pendência","#C1652F"]],r=>r.pend))}${ilPan("Saída","Com e sem pendência",ilSegK(vis.filter(r=>tipoV(r)==="SAI"),[["SEM","Sem pendência","#6B7A99"],["COM","Com pendência","#C1652F"]],r=>r.pend))}</div>`}
   if(F.aba==="ren"){const renSim=ren.filter(r=>r.renov==="SIM"),reaSim=rea.filter(r=>r.reaj==="SIM");
     const difRen=renSim.reduce((s,r)=>s+((r.vAcord||r.vProp)-r.vAtual>0&&r.vAtual?(r.vAcord||r.vProp)-r.vAtual:0),0),difRea=reaSim.reduce((s,r)=>s+(r.vNovo&&r.vAtual?r.vNovo-r.vAtual:0),0);
-    h+=`<div class="ilkpis">${ilKpi("Contratos para renovar",ren.length,"no período")}${ilKpi("Renovados",renSim.length,ren.length?Math.round(renSim.length/ren.length*100)+"%":"")}${ilKpi("Ganho nas renovações",brl0(difRen),"por mês","ouro")}${ilKpi("Reajustes aplicados",reaSim.length+" de "+rea.length,"")}${ilKpi("Ganho nos reajustes",brl0(difRea),"por mês","ouro")}</div>
-    <div class="ilg2">${ilPan("Renovações por mês","",ilBarras([{nome:"Para renovar",cor:"#6B7A99",vals:porMes(ren,meses)},{nome:"Renovados",cor:"#0B1628",vals:porMes(renSim,meses)}],meses))}${ilPan("Reajustes por mês","",serieUma(rea,"Reajustes","#C1652F"))}</div>`}
+    h+=`<div class="ilkpis">${ilKpi("Contratos para renovar",ren.length,"no período")}${ilKpi("Renovados",renSim.length,ren.length?Math.round(renSim.length/ren.length*100)+"%":"")}${ilKpi("Não renovam",ren.filter(r=>r.renov==="NAO").length,"vão para encerramento","alerta")}${ilKpi("Ganho nas renovações",brl0(difRen),"por mês","ouro")}${ilKpi("Reajustes aplicados",reaSim.length+" de "+rea.length,"")}${ilKpi("Ganho nos reajustes",brl0(difRea),"por mês","ouro")}</div>
+    ${ilPan("Renovados × não renovam "+pm,"Quem não renova segue para o encerramento",ilPilha(ren,mp,[["SIM","Renovados","#0B1628"],["NAO","Não renovam (encerramento)","#C1652F"],["NI","Sem decisão","#D9C4A3"]],r=>r.renov==="SIM"||r.renov==="NAO"?r.renov:"NI"))}
+    <div class="ilg2">${ilPan("Resultado das renovações","Contratos do período",ilSegK(ren,[["SIM","Renovados","#0B1628"],["NAO","Não renovam (encerramento)","#C1652F"],["NI","Sem decisão","#D9C4A3"]],r=>r.renov==="SIM"||r.renov==="NAO"?r.renov:"NI"))}${ilPan("Reajustes por mês","",serieUma(rea,"Reajustes","#C1652F"))}</div>`}
+  if(F.aba==="an"){const nS=(L,k)=>L.filter(r=>anK(r.st)===k).length,pf=an.filter(r=>r.tp==="PF"),pj=an.filter(r=>r.tp==="PJ"),fim=an.filter(r=>anK(r.st)!=="ANALISE");const pc=(n,L)=>L.length?Math.round(n/L.length*100)+"% das decididas":"";
+    const corrA=[...new Map(an.map(r=>[corrLoc(r.corr).id||r.corr,r])).keys()];
+    h+=`${D.anErro?`<p class="note ilsub">Histórico das fichas antigas: ${esc(D.anErro)}</p>`:""}<div class="ilkpis">${ilKpi("Cadastros analisados",an.length,"pessoa física e jurídica")}${ilKpi("Aprovados",nS(an,"APROVADO"),pc(nS(an,"APROVADO"),fim))}${ilKpi("Reprovados",nS(an,"REPROVADO"),pc(nS(an,"REPROVADO"),fim),"alerta")}${ilKpi("Desistências",nS(an,"DESISTENCIA"),pc(nS(an,"DESISTENCIA"),fim))}${ilKpi("Em análise",nS(an,"ANALISE"),"sem decisão ainda")}</div>
+    ${ilPan("Análises "+pm+" × resultado","Fichas de locatário (PF e PJ) pelo mês em que chegaram",ilPilha(an,mp,AN_K,r=>anK(r.st)))}
+    <div class="ilg2">${ilPan("Pessoa física",pf.length+" cadastros",ilSegK(pf,AN_K,r=>anK(r.st)))}${ilPan("Pessoa jurídica",pj.length+" cadastros",ilSegK(pj,AN_K,r=>anK(r.st)))}</div>
+    ${ilPan("Resultado por corretor","Aprovados · reprovados · desistências",`<div class="tblwrap"><table class="iltab"><thead><tr><th>Corretor</th><th class="n">Fichas</th><th class="n">Aprovados</th><th class="n">Reprovados</th><th class="n">Desistências</th><th class="n">Aprovação</th></tr></thead><tbody>${corrA.map(id=>{const L=an.filter(r=>(corrLoc(r.corr).id||r.corr)===id);const ap=nS(L,"APROVADO"),dec=L.filter(r=>anK(r.st)!=="ANALISE").length;return {n:corrLoc(L[0].corr).nome||L[0].corr||"—",L,ap,dec}}).sort((a,b)=>b.L.length-a.L.length).map(x=>`<tr><td>${esc(x.n)}</td><td class="n">${x.L.length}</td><td class="n">${x.ap}</td><td class="n">${nS(x.L,"REPROVADO")}</td><td class="n">${nS(x.L,"DESISTENCIA")}</td><td class="n">${x.dec?Math.round(x.ap/x.dec*100)+"%":"—"}</td></tr>`).join("")||`<tr><td colspan="6" class="note">Sem dados no período.</td></tr>`}</tbody></table></div>`)}`}
   if(F.aba==="corr"){const semCad=new Map();[...D.adm,...D.loc].forEach(r=>{const c=corrLoc(r.corr);if(c.semCadastro)semCad.set(c.id,{c,raw:String(r.corr).trim()})});
-    const tab=[...todosCorr.values()].map(c=>({c,cap:adm.filter(r=>corrLoc(r.corr).id===c.id).length,loc:loc.filter(r=>corrLoc(r.corr).id===c.id).length,vgl:loc.filter(r=>corrLoc(r.corr).id===c.id).reduce((s,r)=>s+r.val,0)})).filter(x=>x.cap||x.loc).sort((a,b)=>(b.cap+b.loc)-(a.cap+a.loc));
-    h+=`${ilPan("Desempenho dos corretores","Período filtrado · * = nome da planilha ainda sem cadastro",`<div class="tblwrap"><table class="iltab"><thead><tr><th>#</th><th>Corretor</th><th>Equipe</th><th class="n">Captações</th><th class="n">Locações</th><th class="n">VGL</th></tr></thead><tbody>${tab.map((x,i)=>`<tr class="${x.c.ativo?"":"inat"}"><td>${i+1}</td><td>${esc(x.c.nome)}${x.c.semCadastro?" *":x.c.ativo?"":` <span class="nivtag">inativo</span>`}</td><td>${esc(x.c.time||"—")}</td><td class="n">${x.cap}</td><td class="n">${x.loc}</td><td class="n">${brl0(x.vgl)}</td></tr>`).join("")}</tbody></table></div>`)}
+    const tab=[...todosCorr.values()].map(c=>({c,cap:adm.filter(r=>corrLoc(r.corr).id===c.id).length,loc:loc.filter(r=>corrLoc(r.corr).id===c.id).length,vgl:loc.filter(r=>corrLoc(r.corr).id===c.id).reduce((s,r)=>s+r.val,0),vadm:adm.filter(r=>corrLoc(r.corr).id===c.id).reduce((s,r)=>s+r.val,0)})).filter(x=>x.cap||x.loc).sort((a,b)=>(b.cap+b.loc)-(a.cap+a.loc));
+    const vT=somar([...adm,...loc],timeC,r=>r.val);
+    h+=`<div class="ilkpis">${ilKpi("Volume geral",brl0(vgl+vadm),"locado + captado (aluguéis)","ouro")}${ilKpi("VGL",brl0(vgl),loc.length+" locações")}${ilKpi("Valor captado",brl0(vadm),adm.length+" administrações")}${ilKpi("Equipes",vT.length,"com movimento no período")}</div>
+    <div class="ilg2">${ilPan("Volume por equipe","Locado + captado (R$)",ilRank(vT,brl0))}${ilPan("Volume por corretor","Locado + captado (R$)",ilRank(somar([...adm,...loc],nomeC,r=>r.val),brl0,12))}</div>
+    ${ilPan("Desempenho dos corretores","Período filtrado · * = nome da planilha ainda sem cadastro",`<div class="tblwrap"><table class="iltab"><thead><tr><th>#</th><th>Corretor</th><th>Equipe</th><th class="n">Captações</th><th class="n">Locações</th><th class="n">VGL</th><th class="n">Volume total</th></tr></thead><tbody>${tab.map((x,i)=>`<tr class="${x.c.ativo?"":"inat"}"><td>${i+1}</td><td>${esc(x.c.nome)}${x.c.semCadastro?" *":x.c.ativo?"":` <span class="nivtag">inativo</span>`}</td><td>${esc(x.c.time||"—")}</td><td class="n">${x.cap}</td><td class="n">${x.loc}</td><td class="n">${brl0(x.vgl)}</td><td class="n">${brl0(x.vgl+x.vadm)}</td></tr>`).join("")}</tbody></table></div>`)}
     ${semCad.size?ilPan("Nomes da planilha sem cadastro","Ligue cada nome ao corretor certo. Quem não está no cadastro continua aparecendo com o nome da planilha.",`<div class="illig">${[...semCad.values()].map(x=>`<label class="f"><span>${esc(x.raw)}</span><select class="sel" data-illig="${esc(chaveNome(x.raw))}"><option value="">Manter como está</option>${[...S.corr].sort((a,b)=>a[1].nome.localeCompare(b[1].nome,"pt-BR")).map(([id,c])=>`<option value="${id}">${esc(c.nome)}${c.ativo===false?" (inativo)":""}</option>`).join("")}</select></label>`).join("")}</div>`):""}
     ${ilPan("Equipes","A equipe de cada corretor se ajusta em Equipe e acessos › editar",TIMES_LOC.map(t=>`<div class="iltime"><b>${t}</b><span>${[...todosCorr.values()].filter(c=>c.time===t).map(c=>esc(c.nome)+(c.ativo?"":" (inativo)")).join(" · ")||"—"}</span></div>`).join(""))}`}
   // gráficos de várias séries viram "por ano" quando o período é longo; os de uma série ficam "por mês" comparando os anos
@@ -5460,7 +5513,7 @@ setInterval(()=>{if(S.ready&&!$("#modal").innerHTML)renderAll()},60000);
 
 /* ---------- Conexão (Google Apps Script + planilha) ---------- */
 // Atualização automática: se houver versão nova do painel no GitHub, recarrega sozinho
-const VERSAO_PAINEL="2026-11-15-v110";
+const VERSAO_PAINEL="2026-11-15-v111";
 async function checarVersao(){try{if(pendente&&pendente())return;const t=await fetch(location.pathname+"?v="+Date.now(),{cache:"no-store"}).then(r=>r.text());const m=t.match(/VERSAO_PAINEL="([^"]+)"/);if(m&&m[1]!==VERSAO_PAINEL){toast("Atualizando para a nova versão do painel…");setTimeout(()=>location.reload(),1200)}}catch{}}
 setInterval(checarVersao,5*60*1000);document.addEventListener("visibilitychange",()=>{if(document.visibilityState==="visible")checarVersao()});
 const API_URL="https://script.google.com/macros/s/AKfycbzkzXeDJUB698vFuUBdLUteSaUWGOmOjsy98-JzSHgwz5LKTXdpw1RnzjEMQWJlP-cjlw/exec";   // endereço do App da Web (termina em /exec)
