@@ -584,6 +584,101 @@ body.temsel{padding-bottom:96px}.selfab[hidden]{display:none!important}.selfab .
 @media (max-width:620px){.agrow{grid-template-columns:58px minmax(0,1fr)}.agrow .cobrar{grid-column:2;justify-self:start}}
 .agkey{background:#fff4d6;border:1.5px solid #e0a526;border-radius:14px;padding:12px 14px;margin:6px 0 18px;color:#4a3405;display:grid;gap:8px}.agkt{font-weight:800;font-size:1rem}.agki{display:grid;gap:2px;background:rgba(255,255,255,.65);border-radius:10px;padding:8px 10px}.agki.atr{background:#fde2e1;color:#7a1712}.agki em{font-style:normal;font-weight:800;color:#b42318}
 [data-theme="dark"] .agkey{background:#3a2c0a;border-color:#b98712;color:#ffe9b0}[data-theme="dark"] .agki{background:rgba(0,0,0,.25)}[data-theme="dark"] .agki.atr{background:#4a1714;color:#ffd6d3}
+
+/* ---- módulo de locação ---- */
+html.secvenda .locTile{display:none!important}
+.lftabs{display:flex;gap:6px;border-bottom:1px solid var(--line);margin-bottom:14px;overflow-x:auto}.lftab{border:0;background:none;padding:10px 14px;font:600 .95rem var(--f-body,inherit);color:var(--muted);border-bottom:3px solid transparent;cursor:pointer;white-space:nowrap}.lftab[aria-selected="true"]{color:var(--ink,inherit);border-bottom-color:var(--acc)}
+.lfacts{display:flex;flex-wrap:wrap;gap:10px 16px;align-items:center;margin-bottom:12px}.lfacts .note{flex:1 1 280px;margin:0}
+.lfchips{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:14px}.lfchip{border:1px solid var(--line);background:var(--surface);border-radius:999px;padding:6px 12px;font-size:.85rem;cursor:pointer}.lfchip b{margin-left:4px}.lfchip[aria-pressed="true"]{background:var(--acc);border-color:var(--acc);color:#fff}
+.lflist{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:10px}
+.lfcard{display:grid;gap:4px;text-align:left;border:1px solid var(--line);border-left:4px solid var(--line);border-radius:12px;background:var(--surface);padding:12px 14px;cursor:pointer;font:inherit;color:inherit}.lfcard:hover{box-shadow:0 2px 10px rgba(0,0,0,.07)}
+.lfcard b{font-size:1rem;overflow-wrap:anywhere}.lfref{font-size:.85rem;overflow-wrap:anywhere}.lfmeta{font-size:.8rem;color:var(--muted)}
+.lfst{justify-self:start;font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:.04em;padding:3px 8px;border-radius:999px;background:var(--line);color:var(--ink,inherit)}
+.st-aguardando{border-left-color:#9aa3b2}.st-pendente{border-left-color:#e0a526}.st-pendente .lfst{background:#fff1cc;color:#6b4a00}.st-pronto{border-left-color:#2f6fdb}.st-pronto .lfst{background:#dce8ff;color:#123d8a}
+.st-analise{border-left-color:#7a4cc2}.st-analise .lfst{background:#ece2fb;color:#4a2384}.st-aprovado,.st-carteira{border-left-color:#1e8a4c}.st-aprovado .lfst,.st-carteira .lfst{background:#d9f2e3;color:#14532d}
+.st-reprovado{border-left-color:#b42318}.st-reprovado .lfst{background:#fde2e1;color:#7a1712}.st-desistencia{border-left-color:#9aa3b2}
+.lfmini{display:flex;flex-wrap:wrap;gap:4px;margin-top:4px}.lfmini i{font-style:normal;font-size:.72rem;padding:2px 7px;border-radius:6px;background:var(--line)}.lfmini i.m-ok{background:#d9f2e3;color:#14532d}.lfmini i.m-pendente{background:#fff1cc;color:#6b4a00}.lfmini i.m-vencida{background:#fde2e1;color:#7a1712}
+.lfvazio{padding:20px;text-align:center}
+.lfq{display:grid;gap:6px}@media(max-width:640px){.lfgap{display:none}}.lfqs{max-width:520px}.lfqt{margin:0;font-weight:600}.lfqb{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.lfqb button{display:grid;gap:2px;text-align:left;border:2px solid var(--line);border-radius:12px;background:var(--surface);padding:14px 16px;cursor:pointer;font:inherit;color:inherit;min-height:64px}
+.lfqb button b{font-size:1.08rem}.lfqb button span{font-size:.84rem;color:var(--muted)}.lfqb button:hover{border-color:var(--acc)}
+.lfqb button[aria-checked="true"]{border-color:var(--acc);background:color-mix(in srgb,var(--acc) 12%,var(--surface));box-shadow:inset 0 0 0 1px var(--acc)}
+.lfqb button[aria-checked="true"] b::before{content:"✓ ";color:var(--acc)}.lftrav .lfqb button{cursor:default}
+.lfvals{display:grid;gap:8px}.lfdif{display:flex;flex-wrap:wrap;gap:6px 18px;align-items:baseline;border-radius:10px;padding:10px 14px;background:color-mix(in srgb,var(--muted) 10%,var(--surface))}.lfdif small{flex-basis:100%;color:var(--muted)}
+.lfdif.neg{background:color-mix(in srgb,#d9822b 14%,var(--surface))}.lfdif.neg span:nth-child(3) b{color:#b4541a}.lfdif.pos span:nth-child(3) b{color:#1f7a3f}
+.lfpassos{display:grid;gap:8px}
+
+.lfav{font-style:normal;font-size:.7rem;font-weight:700;letter-spacing:.04em;text-transform:uppercase;border-radius:999px;padding:1px 7px;margin-left:4px}.lfav.ok{background:#dff3e6;color:#1f7a3f}.lfav.nao{background:#fde2dc;color:#a8321c}
+.lfgchip.off{text-decoration:line-through;opacity:.6}.lfgtent{color:#a8321c}
+
+.lfdocs{grid-column:1/-1;width:100%;margin-top:4px}.fpdoc.add{border-style:dashed;background:transparent;cursor:pointer}
+.lffalta{border:1.5px solid #e6a08f;background:#fff1ed;color:#5c1f12;border-radius:12px;padding:10px 14px;margin-top:12px}.lffalta ul{margin:6px 0;padding-left:18px}.lffalta li span{font-weight:600}
+[data-theme="dark"] .lffalta{background:#3a1d16;color:#ffd9cf}
+.lffiads{margin:6px 0 0;padding-left:20px;display:grid;gap:3px}.lffiads li span{color:var(--muted);font-size:.88rem}.lffiads li.ok span{color:#1f7a3f;font-weight:600}.lffiads li.nao span{color:#a8321c;font-weight:600}
+.lffi{flex-wrap:wrap}
+
+.lfpess{font-size:.68rem;font-weight:700;letter-spacing:.04em;text-transform:uppercase;color:var(--muted);border:1px solid var(--line);border-radius:999px;padding:1px 7px;vertical-align:middle;white-space:nowrap}
+.lfcks{display:grid;gap:4px;margin-top:6px;border-top:1px solid var(--line);padding-top:8px}.lfck{display:flex;gap:8px;font-size:.82rem;align-items:baseline}.lfck i{font-style:normal;color:var(--muted);min-width:68px;font-size:.76rem;text-transform:uppercase;letter-spacing:.04em}
+.lfck.ok{color:#1f7a3f;font-weight:600}.lfck.nao{color:#a8321c;font-weight:600}.lfck.and{color:#7a4d0d}.lfck.pen{color:#a06a00}
+
+.lfid{border:1px solid var(--line);border-left:4px solid var(--acc);border-radius:12px;padding:12px 14px;display:grid;gap:10px}.lfidtop{display:flex;flex-wrap:wrap;justify-content:space-between;gap:6px 12px;align-items:center}.lfcorr{font-size:.92rem}
+.lfidg{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px 14px}.lfidg .c{display:grid;gap:1px;min-width:0}.lfidg .c span{font-size:.72rem;text-transform:uppercase;letter-spacing:.04em;color:var(--muted)}.lfidg .c b{font-weight:600;overflow-wrap:anywhere}
+@media(max-width:640px){.lfidg{grid-template-columns:1fr 1fr}}
+.lfpend{border:1.5px solid #e6a08f;background:#fff4f1;border-radius:12px;padding:10px 14px;margin-top:12px;display:grid;gap:8px}.lfpendh{display:flex;flex-wrap:wrap;gap:6px 12px;align-items:center}
+.lfpendl{display:flex;flex-wrap:wrap;gap:8px}.lfpd{display:flex;gap:10px;align-items:center;border:1px solid #f0b8aa;background:var(--surface);border-radius:10px;padding:8px 10px;flex:1 1 260px}.lfpd>div{display:grid;gap:1px;flex:1;min-width:0}.lfpd span{font-size:.8rem;color:var(--muted)}
+[data-theme="dark"] .lfpend{background:#2e1a15}
+.lfanls{display:grid;gap:8px}.lfanl{display:flex;flex-wrap:wrap;justify-content:space-between;gap:8px 12px;align-items:center;border:1px solid var(--line);border-radius:10px;padding:10px 12px}.lfanl>div:first-child{display:grid;gap:2px;min-width:0;flex:1 1 220px}
+.lfanl.ok{border-color:#9fd3b0}.lfanl.nao{border-color:#f0b8aa}.lfanr{display:flex;gap:6px;align-items:center;flex-wrap:wrap}.lfres{font-size:.74rem;font-weight:700;text-transform:uppercase;letter-spacing:.04em;border-radius:999px;padding:3px 9px;background:color-mix(in srgb,var(--muted) 14%,transparent);color:var(--muted)}.lfres.ok{background:#dff3e6;color:#1f7a3f}.lfres.nao{background:#fde2dc;color:#a8321c}
+.lfdocl{grid-column:1/-1;width:100%;display:grid;grid-template-columns:repeat(auto-fill,minmax(380px,1fr));gap:6px;margin-top:6px}.lfdoc{display:flex;gap:8px;align-items:center;border:1px solid var(--line);border-radius:9px;padding:7px 9px;font-size:.86rem}.lfdoc>div:first-child{display:grid;gap:1px;flex:1;min-width:0}.lfdoc span{font-size:.76rem;color:var(--muted)}
+.lfdoc.ok{border-color:#9fd3b0;background:#f1faf4}.lfdoc.ok span{color:#1f7a3f}.lfdoc.pend,.lfdoc.nao{border-color:#f0b8aa;background:#fff4f1}.lfdoc.pend span,.lfdoc.nao span{color:#a8321c}.lfdoc.env{border-color:#b9cdf0}.lfdoc.env span{color:#2a5bb5}.lfdoc.opc{opacity:.7}
+.lfdocf a{margin-right:8px;font-weight:600}.lfdocb{display:flex;gap:4px;flex:none}.lfdocb .btn{padding:4px 8px;min-height:0}
+[data-theme="dark"] .lfdoc.ok{background:#14301f}[data-theme="dark"] .lfdoc.pend,[data-theme="dark"] .lfdoc.nao{background:#2e1a15}
+
+.lffiadores{margin-top:8px}.lffiact{display:flex;gap:6px;flex-wrap:wrap}.lfanl .lfdocl{margin-top:4px}
+.lfgok{border:1.5px solid #9fd3b0;background:#f1faf4;border-radius:10px;padding:10px 12px;display:grid;gap:8px;margin-top:8px}.lfgok b{color:#1f7a3f}[data-theme="dark"] .lfgok{background:#14301f}
+.lfaviso2{margin:0 0 8px;color:#a06a00}.lfres.des,.lfanl.des{color:var(--muted)}.lfanl.des{opacity:.75}
+
+.lfgbox{border:1px solid var(--line);border-radius:12px;overflow:hidden}.lfgl{display:grid;grid-template-columns:190px 1fr;gap:12px;padding:12px 14px;align-items:start}.lfgl+.lfgl{border-top:1px solid var(--line)}
+.lfgk{font-size:.74rem;font-weight:700;text-transform:uppercase;letter-spacing:.04em;color:var(--muted);padding-top:4px}.lfgv{display:grid;gap:8px;min-width:0}.lfgv>.lfres{justify-self:start}.lfgv .placoes{margin:0}
+@media(max-width:640px){.lfgl{grid-template-columns:1fr;gap:6px}}
+.lfgchip.ok{border-color:#9fd3b0;background:#f1faf4;color:#1f7a3f}.lfgesc{display:flex;flex-wrap:wrap;gap:8px}
+.lfgopt2{border:1.5px solid var(--line);background:var(--surface);color:inherit;border-radius:10px;padding:8px 14px;font:inherit;font-weight:600;cursor:pointer}.lfgopt2:not([disabled]):hover{border-color:var(--acc)}.lfgopt2.on{border-color:var(--acc);background:color-mix(in srgb,var(--acc) 12%,var(--surface));color:var(--acc)}.lfgopt2[disabled]:not(.on){opacity:.55;cursor:default}
+.lfgres{display:flex;flex-wrap:wrap;gap:6px;align-items:center}.lffcs{display:grid;gap:6px}
+.lffc{display:flex;flex-wrap:wrap;justify-content:space-between;gap:8px 12px;align-items:center;border:1px solid var(--line);border-radius:10px;padding:9px 12px}.lffc.ok{border-color:#9fd3b0}.lffc.nao{border-color:#f0b8aa}.lffc.des{opacity:.7}
+.lffcn{display:grid;gap:1px;min-width:0;flex:1 1 200px}.lffcb{display:flex;flex-wrap:wrap;gap:6px;align-items:center}
+.lfnb{font-style:normal;background:#a8321c;color:#fff;border-radius:999px;padding:0 6px;font-size:.72rem;margin-left:4px}
+.lfdh{display:flex;flex-wrap:wrap;justify-content:space-between;gap:8px 12px;align-items:center;margin-bottom:10px}.lfdh>div:first-child{display:grid;gap:2px}
+.lfhistd{margin-top:16px;border:1px solid var(--line);border-radius:12px}.lfhistd summary{cursor:pointer;padding:10px 14px;display:flex;gap:8px;flex-wrap:wrap;align-items:baseline}.lfhistd .lfhist{margin:0;padding:4px 16px 12px 34px;max-height:260px;overflow:auto}.lfhistd li{margin:4px 0;font-size:.88rem}.lfhd2{display:block;font-size:.74rem;color:var(--muted)}
+
+.lfgl{grid-template-columns:1fr!important;gap:6px!important}.lfgk{padding-top:0!important}
+.lfpbox{border:1px solid var(--line);border-radius:12px;overflow:hidden}.lfprow{display:flex;flex-wrap:wrap;justify-content:space-between;gap:8px 12px;align-items:center;padding:10px 14px}.lfprow+.lfprow{border-top:1px solid var(--line)}
+.lfprow.ok{background:color-mix(in srgb,#1f7a3f 5%,transparent)}.lfprow.nao{background:color-mix(in srgb,#a8321c 6%,transparent)}.lfprow.des{opacity:.7}.lfprow.lfcj{padding-left:30px;border-top-style:dashed!important}.lfprow.lfcj .lfprn{border-left:2px solid var(--line);padding-left:10px}.lfprn{display:grid;gap:1px;min-width:0;flex:1 1 200px}
+.lfgar.lfgar2{display:block;padding:0}.lfgar2>.lfgrow{width:100%;box-sizing:border-box}.lfgrow .placoes{margin:0}.lfgrow{display:flex;flex-wrap:wrap;justify-content:space-between;gap:8px 12px;align-items:center;padding:12px 14px}.lfgrow+.lfgrow{border-top:1px solid var(--line)}.lfgrow>div:first-child{display:grid;gap:3px;min-width:0;flex:1 1 220px}
+.lfgchips{display:flex;flex-wrap:wrap;gap:6px}.lfgchip{border:1px solid var(--line);border-radius:999px;padding:3px 10px;font-size:.86rem;font-weight:600}.lfgchip.on{background:var(--acc);border-color:var(--acc);color:#fff}
+.lfatend{margin:10px 0 0;color:#1f7a3f}
+.lfpasso{display:flex;align-items:center;gap:12px;border:1px solid var(--line);border-radius:10px;padding:10px 12px}.lfpasso>div{flex:1;display:grid;gap:2px;min-width:0}
+.lfpck{width:26px;height:26px;flex:none;border-radius:50%;border:2px solid var(--line);display:grid;place-items:center;font-weight:700;color:#fff}.lfpasso.ok .lfpck{background:#1f7a3f;border-color:#1f7a3f}
+#v-centr .lflist{margin-top:12px}
+.seg.lfseg{display:inline-flex;flex-wrap:wrap;gap:4px;width:auto;max-width:100%}.lfseg+*{margin-top:0}.f>.lfseg{margin-top:6px}.lfseg button{border:1px solid var(--line);background:var(--surface);border-radius:999px;padding:8px 14px;font:inherit;font-size:.9rem;cursor:pointer;color:inherit}.lfseg button[aria-pressed="true"]{background:var(--acc);border-color:var(--acc);color:#fff}
+.lfsrch{position:relative;display:block}.lfsrch svg{position:absolute;left:12px;top:50%;transform:translateY(-50%);color:var(--muted);pointer-events:none}.lfsrch .inp{padding-left:38px}
+.lfres{display:grid;gap:6px;margin-top:6px;max-height:340px;overflow:auto}.lfopt{display:grid;gap:2px;text-align:left;border:1px solid var(--line);border-radius:10px;background:var(--surface);padding:9px 12px;cursor:pointer;font:inherit;color:inherit}.lfopt:hover{border-color:var(--acc)}.lfopt span{font-size:.82rem;color:var(--muted)}
+.lfsel{display:flex;justify-content:space-between;align-items:center;gap:10px;border:1.5px solid var(--acc);border-radius:10px;padding:10px 12px}.lfsel>div{display:grid;gap:2px;min-width:0}
+.lfaviso{display:flex;flex-wrap:wrap;justify-content:space-between;gap:8px 12px;align-items:center;background:#fff4d6;border:1.5px solid #e0a526;border-radius:12px;padding:10px 14px;color:#4a3405;margin-bottom:12px}.lfaviso>div{display:grid;gap:2px}
+[data-theme="dark"] .lfaviso{background:#3a2c0a;color:#ffe9b0}
+
+.lfgar{display:flex;flex-wrap:wrap;justify-content:space-between;gap:8px 12px;align-items:center;border:1px solid var(--line);border-radius:10px;padding:10px 12px}.lfgar>div:first-child{display:grid;gap:2px}.lfgopt{grid-template-columns:auto 1fr;align-items:start;column-gap:8px}.lfgopt input{margin-top:3px}.lfgopt span{grid-column:2}
+.lfsits{display:grid;gap:8px}.lfsit{display:grid;gap:2px;text-align:left;border:1px solid var(--line);border-radius:12px;background:var(--surface);padding:12px 14px;cursor:pointer;font:inherit;color:inherit}.lfsit:hover{border-color:var(--acc)}.lfsit span{font-size:.85rem;color:var(--muted)}.lfvolta{margin-bottom:10px}.lfvolta[hidden]{display:none!important}
+
+.lfhd{display:grid;gap:4px;border-left:4px solid var(--line);padding:4px 0 4px 12px;margin-bottom:12px}.lfhd b{font-size:1.05rem}
+.lffis{display:grid;gap:8px}.lffi{display:flex;flex-wrap:wrap;justify-content:space-between;gap:8px;align-items:center;border:1px solid var(--line);border-radius:10px;padding:10px 12px}.lffi>div:first-child{display:grid;gap:2px;min-width:0}.lfpap{font-size:.72rem;text-transform:uppercase;letter-spacing:.05em;color:var(--muted)}
+.lfaprov{display:grid;gap:2px;background:#e9f7ef;border-radius:10px;padding:10px 12px;margin-bottom:12px;color:#14532d}.lfaprov.rep{background:#fde2e1;color:#7a1712}
+.lfacoes{gap:8px}.lfhist{margin:0;padding-left:18px;display:grid;gap:6px;font-size:.88rem}
+.lfcond{background:#fff4d6;border-radius:10px;padding:8px 12px;color:#4a3405}
+.fchk{display:grid;gap:6px}.fchks{display:flex;flex-wrap:wrap;gap:6px 16px}.fchks label{display:flex;gap:6px;align-items:center;font-weight:400}
+.faceitew{display:grid;gap:10px}.lgpdd{border:1px solid var(--line);border-radius:10px;background:var(--surface)}.lgpdd summary{cursor:pointer;padding:10px 14px;font-weight:600;color:var(--acc)}
+.lgpdt{max-height:360px;overflow:auto;padding:4px 16px 14px;font-size:.88rem;line-height:1.5;border-top:1px solid var(--line)}.lgpdt h4{margin:12px 0 4px;font-size:.92rem}.lgpdt p,.lgpdt ul{margin:0 0 6px}.lgpdt ul{padding-left:18px}.lgpdh{font-weight:700;margin:10px 0 4px}.lgpdh small{font-weight:400;color:var(--muted)}.lgpdf{font-weight:600}
+.faceite{display:flex;gap:10px;align-items:flex-start;font-size:.92rem;line-height:1.4}.faceite input{margin-top:3px;width:18px;height:18px;flex:none}
+[data-theme="dark"] .lfaprov{background:#173826;color:#c9f0d8}[data-theme="dark"] .lfaprov.rep{background:#4a1714;color:#ffd6d3}[data-theme="dark"] .lfcond{background:#3a2c0a;color:#ffe9b0}
 .aghist{display:grid;gap:0;border:1px solid var(--line);border-radius:12px;background:var(--surface);margin-bottom:18px}.aghr{display:grid;grid-template-columns:minmax(0,150px) minmax(0,1fr) minmax(0,auto);gap:4px 12px;padding:9px 12px;border-top:1px solid var(--line);align-items:baseline}.aghr:first-child{border-top:0}.aghr span{font-family:var(--f-mono);font-size:.82rem;color:var(--muted)}.aghr b{min-width:0;overflow-wrap:anywhere}.aghr small{color:var(--muted)}@media (max-width:620px){.aghr{grid-template-columns:1fr}}
 .pfbusca{position:relative;display:flex;align-items:center;flex:1 1 260px;min-width:200px}.pfbusca svg{position:absolute;left:12px;color:var(--muted);pointer-events:none}.pfbusca .inp{padding-left:36px;width:100%}
 .pdpode{padding:10px 12px;border-radius:10px;background:var(--surface-2);font-size:.86rem}.pdpode ul{margin:6px 0 0;padding-left:18px}.pwst{display:inline-block;font-weight:700;font-size:.78rem;padding:2px 8px;border-radius:999px;margin-bottom:2px}.pwst.ok{background:#e3efe6;color:#1b6b3a}.pwst.wait{background:#fdf1e0;color:#8a5a00}.pwst.late{background:#fde8e6;color:#a32a1d}.pwst.no{background:var(--surface-2);color:var(--muted)}td .pwst+.s+.btn,td .pwst+.btn{margin-top:4px;display:block}
@@ -1125,17 +1220,16 @@ label.f .inp,label.f .sel{color:var(--fg);font-size:.9rem;width:100%}
       <button class="mtile" type="button" data-goto="plantao"><span class="mic"><svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="9" cy="8" r="3.5"/><path d="M2.5 20c.8-3.6 3.4-5.5 6.5-5.5s5.7 1.9 6.5 5.5M16 4.5a3.5 3.5 0 0 1 0 7M18.5 14.8c1.7.8 2.7 2.5 3 5.2"/></svg></span><span class="mk">Corretores</span><b>Plantão</b><span class="md">Escala da semana: escolha os seus plantões.</span></button>
       <button class="mtile" type="button" data-goto="pres"><span class="mic"><svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="3" width="16" height="18" rx="2"/><path d="M8 8l1.5 1.5L12 7M8 14l1.5 1.5L12 13M14 8.5h3M14 14.5h3"/></svg></span><span class="mk">Corretores · Bolsão</span><b>Check-in de presença</b><span class="md">Presença diária na imobiliária.</span></button>
       <button class="mtile" type="button" data-goto="os"><span class="mbadge" id="hbOs"></span><span class="mic"><svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14.7 6.3a4 4 0 0 0-5.4 5.2L3 17.8V21h3.2l6.3-6.3a4 4 0 0 0 5.2-5.4l-2.5 2.5-2.4-.6-.6-2.4z"/></svg></span><span class="mk">Suporte/Manutenção</span><b>O.S. · Ordem de serviço</b><span class="md">Abrir chamado de manutenção do imóvel.</span></button>
-      <button class="mtile breve" type="button" disabled><span class="mbadge soon">Em breve</span><span class="mic"><svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8z"/><path d="M14 3v5h5M9 13h6M9 17h6"/></svg></span><span class="mk">Fichas</span><b>Locação</b><span class="md">Fichas de inquilinos, fiadores e proprietários.</span></button>
+      <button class="mtile locTile" type="button" data-goto="locfic"><span class="mbadge" id="hbLoc"></span><span class="mic"><svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8z"/><path d="M14 3v5h5M9 13h6M9 17h6"/></svg></span><span class="mk">Fichas</span><b>Locação</b><span class="md">Fichas de inquilinos, fiadores e proprietários.</span></button>
       <button class="mtile secVenda" type="button" data-goto="fvenda"><span class="mic"><svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8z"/><path d="M14 3v5h5"/><path d="m9 17 1.5-1.5L15 11l1.5 1.5L12 17l-3 .5z"/></svg></span><span class="mk">Fichas</span><b>Venda</b><span class="md">Autorização de venda, ficha do comprador e ficha do vendedor.</span></button>
       
     </div>
     <p class="hsec secContr">Contratos</p>
     <div data-sec="contr" class="hgrid cgrid">
-      <button class="mtile ctile breve" type="button" disabled><span class="mbadge soon">Em breve</span><span class="mic"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="8" cy="15" r="4"/><path d="m10.8 12.2 8.7-8.7M17 6l2.5 2.5M14.5 8.5 16 10"/></svg></span><span class="mk">Contratos · Locação</span><b>Entrada</b><span class="md">Novos contratos: assinatura, entrega das chaves e vistoria de entrada.</span></button>
-      <button class="mtile ctile breve" type="button" disabled><span class="mbadge soon">Em breve</span><span class="mic"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4M16 17l5-5-5-5M21 12H9"/></svg></span><span class="mk">Contratos · Locação</span><b>Encerramento</b><span class="md">Fim do contrato: devolução das chaves e vistoria de saída.</span></button>
+            <button class="mtile ctile breve" type="button" disabled><span class="mbadge soon">Em breve</span><span class="mic"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4M16 17l5-5-5-5M21 12H9"/></svg></span><span class="mk">Contratos · Locação</span><b>Encerramento</b><span class="md">Fim do contrato: devolução das chaves e vistoria de saída.</span></button>
       <button class="mtile ctile breve" type="button" disabled><span class="mbadge soon">Em breve</span><span class="mic"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 5H7a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V7a2 2 0 0 0-2-2h-2"/><rect x="9" y="3" width="6" height="4" rx="1"/><circle cx="11.5" cy="13.5" r="2.5"/><path d="m16 18-2.7-2.7"/></svg></span><span class="mk">Vistoria</span><b>Entrada e saída</b><span class="md">Vistoria de entrada na locação e de saída na devolução do imóvel.</span></button>
-      <button class="mtile ctile breve" type="button" disabled><span class="mbadge soon">Em breve</span><span class="mic"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8z"/><path d="M14 3v5h5M9 14l2 2 4-4"/></svg></span><span class="mk">Contratos</span><b>Locação</b><span class="md">Andamento dos contratos de locação.</span></button>
-      <button class="mtile ctile breve" type="button" disabled><span class="mbadge soon">Em breve</span><span class="mic"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 21h18M5 21V8l7-5 7 5v13M9 21v-6h6v6"/></svg></span><span class="mk">Contratos</span><b>Administração</b><span class="md">Imóveis administrados pela Park Sul.</span></button>
+      <button class="mtile ctile" type="button" data-goto="cloc"><span class="mbadge" id="hbCLoc"></span><span class="mic"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8z"/><path d="M14 3v5h5M9 14l2 2 4-4"/></svg></span><span class="mk">Contratos</span><b>Locação</b><span class="md">Locatários pessoa física e empresa: da ficha recebida ao contrato e entrega das chaves.</span></button>
+      <button class="mtile ctile" type="button" data-goto="cadm"><span class="mbadge" id="hbCAdm"></span><span class="mic"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 21h18M5 21V8l7-5 7 5v13M9 21v-6h6v6"/></svg></span><span class="mk">Contratos</span><b>Administração</b><span class="md">Proprietários pessoa física e empresa: da ficha recebida ao contrato de administração.</span></button>
       <button class="mtile ctile breve" type="button" disabled><span class="mbadge soon">Em breve</span><span class="mic"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="5" y="4" width="14" height="17" rx="2"/><path d="M9 3h6v3H9zM9 13l2 2 4-4"/></svg></span><span class="mk">Contratos</span><b>Em análise</b><span class="md">Fichas aguardando a aprovação do cliente.</span></button>
     </div>
     <p class="hsec secInd">Indicadores</p>
@@ -1162,6 +1256,8 @@ label.f .inp,label.f .sel{color:var(--fg);font-size:.9rem;width:100%}
       <button class="mtile fpTile" type="button" data-goto="fpainel"><span class="mic"><svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 3v18h18"/><path d="M7 15l4-4 3 3 5-6"/></svg></span><span class="mk">Secretaria de Vendas</span><b>Painel<br>de fichas</b><span class="md">Fichas recebidas por dia, documentos faltando e cobrança.</span></button>
     </div>
   </section>
+  <section id="v-centr" hidden><div id="ceBox"></div></section>
+  <section id="v-locfic" hidden><button type="button" class="btn sm ghost lfvolta" id="lfVolta" hidden>‹ Fichas · Locação</button><div id="lfBox"></div></section>
   <section id="v-fvend" hidden>
     <div class="autf" id="fvWrap">
       <p class="count" id="fvIntro">Dados do promitente vendedor(a), necessários para o contrato de compra e venda.</p>
@@ -2008,7 +2104,7 @@ async function autAssinarDialog(a,recId){
    e o documento pode ser mandado depois pelo mesmo link (a Secretaria de Vendas cobra pelo Painel de fichas). */
 const EC_FICHA=["Solteiro(a)","Casado(a)","União estável","Divorciado(a)","Viúvo(a)"];
 const REGIMES=["Comunhão parcial de bens","Comunhão universal de bens","Separação total de bens","Participação final nos aquestos","Separação obrigatória de bens"];
-function fichaSchema(tipo){const v=tipo==="vendedor",q=v?"vendedor":"comprador";
+function fichaSchema(tipo){if(FICHA_INFO[tipo]?.mod==="loc")return fichaNorm(fichaSchemaLoc(tipo));const v=tipo==="vendedor",q=v?"vendedor":"comprador";
   return [{sec:`Dados do promitente ${q}(a)`},
   {k:"nome",l:"Nome completo",req:1,full:1},
   {k:"cpf",l:"CPF",req:1,t:"cpf"},{k:"rg",l:"RG",req:1},
@@ -2029,35 +2125,58 @@ function fichaSchema(tipo){const v=tipo==="vendedor",q=v?"vendedor":"comprador";
   {k:"ax_doc",l:"Documento pessoal (RG ou CNH)",t:"file",req:1,full:1},
   ...(v?[{k:"ax_end",l:"Comprovante de endereço",t:"file",req:1,full:1}]:[]),
   {k:"ax_cas",l:"Certidão de casamento ou escritura de união estável",t:"file",casado:1,req:1,full:1},
-  {k:"ax_cjdoc",l:"Documento pessoal do cônjuge (RG ou CNH)",t:"file",casado:1,req:1,full:1}]}
+  {k:"ax_cjdoc",l:"Documento pessoal do cônjuge (RG ou CNH)",t:"file",casado:1,req:1,full:1},
+  {sec:"Privacidade (LGPD)"},{k:"lgpd",l:LOC_LGPD,t:"aceite",req:1}]}
 const FICHA_INFO={vendedor:{titulo:"Ficha do vendedor",quem:"vendedor",intro:"Dados do promitente vendedor(a), necessários para o contrato de compra e venda."},
-  comprador:{titulo:"Ficha do comprador",quem:"comprador",intro:"Dados do promitente comprador(a), necessários para o contrato de compra e venda."}};
+  comprador:{titulo:"Ficha do comprador",quem:"comprador",intro:"Dados do promitente comprador(a), necessários para o contrato de compra e venda."},
+  locador:{mod:"loc",titulo:"Ficha do proprietário",quem:"proprietário",intro:"Cadastro do imóvel e do proprietário para a administração da locação.",sub:"CADASTRO DO PROPRIETÁRIO · ADMINISTRAÇÃO DE LOCAÇÃO",msg:"o cadastro do seu imóvel para a administração da locação",cob:"o cadastro do imóvel"},
+  locpf:{mod:"loc",titulo:"Ficha do locatário · pessoa física",quem:"locatário",intro:"Dados e documentos para a análise cadastral da locação.",sub:"ANÁLISE CADASTRAL PARA LOCAÇÃO · PESSOA FÍSICA",msg:"a análise cadastral da locação",cob:"a análise da locação"},
+  locpj:{mod:"loc",titulo:"Ficha do locatário · pessoa jurídica",quem:"locatário",intro:"Dados da empresa e documentos para a análise cadastral da locação.",sub:"ANÁLISE CADASTRAL PARA LOCAÇÃO · PESSOA JURÍDICA",msg:"a análise cadastral da locação",cob:"a análise da locação"},
+  fiador:{mod:"loc",titulo:"Ficha do fiador",quem:"fiador",intro:"Dados e documentos do fiador para a análise da locação.",sub:"ANÁLISE CADASTRAL PARA LOCAÇÃO · FIADOR",msg:"a análise do fiador da locação",cob:"a análise da locação"}};
+// campos com condição (se: {k, v}) — vale para a seção e os campos dela
+function fichaNorm(sch){let se=null;return sch.map(f=>{if(f.sec){se=f.se||null;return f}return se&&!f.se?{...f,se,secSe:1}:f})}
+const fichaSeOk=(f,get)=>!f.se||[].concat(f.se.v).includes(get(f.se.k));
 const fichaCasado=v=>v==="Casado(a)"||v==="União estável";
-const fichaDocs=(tipo,ec)=>fichaSchema(tipo).filter(f=>f.t==="file"&&(!f.casado||fichaCasado(ec)));
+const fichaDocs=(tipo,ec,d)=>fichaSchema(tipo).filter(f=>f.t==="file"&&(!f.casado||fichaCasado(ec))&&fichaSeOk(f,k=>(d||{})[k]||""));
 // autorização no painel: mesmo formato das fichas
 function autItem(id,r){const d=r.dados||{},p=(d.props||[])[0]||{};return {id,kind:"aut",tipo:"autorizacao",autStatus:r.status,status:r.status==="assinada"?"recebida":r.status==="preenchida"?"preenchida":"aguardando",temDados:!!r.dados,
   dados:{nome:p.nome||"",cpf:p.cpf||"",tel:p.tel||""},ref:[d.tipo,d.res,d.bloco?"Bloco "+d.bloco:"",d.un,d.end].filter(Boolean).join(" · "),corretor:r.cond?.corretor||r.porNome||"",
   recebidaEm:r.assinadaEm||r.preenchidaEm,criadoEm:r.criadoEm,expira:r.expira,pdfUrl:r.pdfUrl,pastaUrl:r.pastaUrl,anexos:r.anexos||{},t:r.t}}
 const AUT_DOC_LBL={doc:"Documento pessoal",iptu:"IPTU",esc:"Escritura ou matrícula"};
 function autChips(r){if(!r.temDados)return "";return `<div class="fpdocs">${Object.entries(AUT_DOC_LBL).map(([k,l])=>{const L=(r.anexos||{})[k]||[];return L.length?`<a class="fpdoc ok" href="${esc(L[0].url||"#")}" target="_blank" rel="noopener">✓ ${esc(l)}${L.length>1?` (${L.length})`:""}</a>`:`<span class="fpdoc nao">${esc(l)} · não enviado</span>`}).join("")}</div>`}
-function fichaFaltaRec(r){if(r.kind==="aut")return [];const ax=r.anexos||{};return fichaDocs(r.tipo||"vendedor",r.dados?.ec).filter(f=>f.req&&!(ax[f.k]||[]).length).map(f=>({k:f.k,l:f.l}))}
+function fichaFaltaRec(r){if(r.kind==="aut")return [];const ax=r.anexos||{};return fichaDocs(r.tipo||"vendedor",r.dados?.ec,r.dados).filter(f=>f.req&&!(ax[f.k]||[]).length).map(f=>({k:f.k,l:f.l}))}
 function fichaHtml(sch){let h="",aberto=false;const fecha=()=>{if(aberto){h+="</div></fieldset>";aberto=false}};
-  sch.forEach(f=>{if(f.sec){fecha();h+=`<fieldset class="autsec ${f.doc?"fdocs":""}" ${f.casado?`data-casado hidden`:""}><legend>${esc(f.sec)}</legend>${f.nota?`<p class="note" style="margin:0">${esc(f.nota)}</p>`:""}<div class="grid2">`;aberto=true;return}
-    const req=f.req?" *":"";const cls=(f.full?' style="grid-column:1/-1"':"")+(f.casado?" data-casado hidden":"");
+  const seA=f=>f.se?` data-se="${f.se.k}" data-sev="${esc([].concat(f.se.v).join("|"))}" hidden`:"";
+  sch.forEach(f=>{if(f.sec){fecha();h+=`<fieldset class="autsec ${f.doc?"fdocs":""}" ${f.casado?`data-casado hidden`:""}${seA(f)}><legend>${esc(f.sec)}</legend>${f.nota?`<p class="note" style="margin:0">${esc(f.nota)}</p>`:""}<div class="grid2">`;aberto=true;return}
+    const req=f.req?" *":"";const cls=(f.full||f.t==="txt"||f.t==="chk"||f.t==="aceite"?' style="grid-column:1/-1"':"")+(f.casado?" data-casado hidden":"")+(f.se&&!f.secSe?seA(f):"");
     if(f.t==="sel")h+=`<label class="f"${cls}>${esc(f.l)}${req}<select class="sel" data-fk="${f.k}"><option value="">Selecione…</option>${f.opts.map(o=>`<option>${esc(o)}</option>`).join("")}</select></label>`;
     else if(f.t==="file")h+=`<label class="f fax"${cls}>${esc(f.l)}${req}<input class="inp" type="file" data-fk="${f.k}" accept="image/*,application/pdf" multiple></label>`;
-    else h+=`<label class="f"${cls}>${esc(f.l)}${req}<input class="inp" data-fk="${f.k}" ${f.t==="email"?'type="email" inputmode="email"':f.t==="tel"?'inputmode="tel"':f.t==="cpf"?'inputmode="numeric" placeholder="000.000.000-00" data-cpf':""} ${f.ph?`placeholder="${esc(f.ph)}"`:""}></label>`});
+    else if(f.t==="txt")h+=`<label class="f"${cls}>${esc(f.l)}${req}<textarea class="inp" rows="3" data-fk="${f.k}" ${f.ph?`placeholder="${esc(f.ph)}"`:""}></textarea></label>`;
+    else if(f.t==="chk")h+=`<div class="f fchk"${cls}><span>${esc(f.l)}${req}</span><div class="fchks" data-fk="${f.k}" data-chk="1">${f.opts.map(o=>`<label><input type="checkbox" value="${esc(o)}"> ${esc(o)}</label>`).join("")}</div></div>`;
+    else if(f.t==="aceite")h+=`<div class="faceitew"${cls}>${f.k==="lgpd"?`<details class="lgpdd"><summary>Ler o Termo de Privacidade e Consentimento (LGPD)</summary>${lgpdHtml()}</details>`:""}<label class="faceite"><input type="checkbox" data-fk="${f.k}" data-aceite="1"> <span>${esc(f.l)}${req}</span></label></div>`;
+    else h+=`<label class="f"${cls}>${esc(f.l)}${req}<input class="inp" data-fk="${f.k}" ${f.t==="email"?'type="email" inputmode="email"':f.t==="tel"?'inputmode="tel"':f.t==="cpf"?'inputmode="numeric" placeholder="000.000.000-00" data-cpf':f.t==="cnpj"?'inputmode="numeric" placeholder="00.000.000/0000-00" data-cnpj':f.t==="cep"?'inputmode="numeric" placeholder="00000-000" data-cep':f.t==="date"?'type="date"':f.t==="money"?'inputmode="decimal" placeholder="R$ 0,00" data-money':f.t==="num"?'inputmode="decimal"':""} ${f.ph?`placeholder="${esc(f.ph)}"`:""}></label>`});
   fecha();return h}
-function fichaLigar(root){root.addEventListener("input",e=>{if(e.target.matches("[data-cpf]"))e.target.value=mascCPF(e.target.value)});
-  root.addEventListener("change",e=>{if(e.target.dataset.fk==="ec"){const c=fichaCasado(e.target.value);root.querySelectorAll("[data-casado]").forEach(x=>x.hidden=!c)}})}
-function fichaLer(root,sch){const d={},files=[];const cas=fichaCasado(root.querySelector('[data-fk="ec"]')?.value);
-  for(const f of sch){if(f.sec||!f.k)continue;if(f.casado&&!cas)continue;const el=root.querySelector(`[data-fk="${f.k}"]`);if(!el)continue;
-    if(f.t==="file")[...(el.files||[])].slice(0,5).forEach(x=>files.push({campo:f.k,file:x}));else d[f.k]=(el.value||"").trim()}
-  const falta=sch.filter(f=>f.t==="file"&&f.req&&(!f.casado||cas)&&!files.some(x=>x.campo===f.k)).map(f=>({k:f.k,l:f.l}));
-  return {d,files,cas,falta}}
-function fichaValida(sch,r){for(const f of sch){if(f.sec||!f.k||!f.req||f.t==="file")continue;if(f.casado&&!r.cas)continue;if(!r.d[f.k])return "Informe: "+f.l+".";
-    if(f.t==="cpf"&&r.d[f.k].replace(/\D/g,"").length!==11)return f.l+" inválido.";if(f.t==="email"&&!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(r.d[f.k]))return f.l+" inválido."}
-  for(const f of sch)if(f.t==="email"&&!f.req&&r.d[f.k]&&!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(r.d[f.k]))return f.l+" inválido.";return ""}
+function fichaLigar(root){root.addEventListener("input",e=>{const t=e.target;if(t.matches("[data-cpf]"))t.value=mascCPF(t.value);else if(t.matches("[data-cnpj]"))t.value=mascCNPJ(t.value);else if(t.matches("[data-cep]")){const d=t.value.replace(/\D/g,"").slice(0,8);t.value=d.length>5?d.slice(0,5)+"-"+d.slice(5):d}});
+  root.addEventListener("focusout",e=>{const t=e.target;if(t.matches("[data-money]")&&t.value.trim()){const n=numBR(t.value);t.value=isNaN(n)?t.value:n.toLocaleString("pt-BR",{style:"currency",currency:"BRL"})}});
+  const se=()=>{const c=fichaCasado(root.querySelector('[data-fk="ec"]')?.value||"");root.querySelectorAll("[data-casado],[data-se]").forEach(x=>{let ok=x.hasAttribute("data-casado")?c:true;
+    if(ok&&x.dataset.se){const v=root.querySelector(`[data-fk="${x.dataset.se}"]`)?.value||"";ok=x.dataset.sev.split("|").includes(v)}x.hidden=!ok})};
+  root.addEventListener("change",e=>{if(e.target.dataset.fk)se()});se()}
+const mascCNPJ=v=>{const d=String(v).replace(/\D/g,"").slice(0,14);return d.replace(/^(\d{2})(\d)/,"$1.$2").replace(/^(\d{2})\.(\d{3})(\d)/,"$1.$2.$3").replace(/\.(\d{3})(\d)/,".$1/$2").replace(/(\d{4})(\d)/,"$1-$2")};
+const numBR=v=>{let t=String(v||"").replace(/[^\d,.-]/g,"");if(t.includes(","))t=t.replace(/\./g,"").replace(",",".");else if(/^\d{1,3}(\.\d{3})+$/.test(t))t=t.replace(/\./g,"");return t?Number(t):NaN};
+function fichaLer(root,sch){const d={},files=[];const cas=fichaCasado(root.querySelector('[data-fk="ec"]')?.value);const vis=new Set();
+  const val=k=>{const el=root.querySelector(`[data-fk="${k}"]`);if(!el)return "";if(el.dataset.chk)return [...el.querySelectorAll("input:checked")].map(x=>x.value).join("; ");if(el.dataset.aceite)return el.checked?(k==="lgpd"?"Sim · termo LGPD versão "+LGPD_VER+" · "+new Date().toLocaleString("pt-BR"):"Sim"):"";return (el.value||"").trim()};
+  for(const f of sch){if(f.sec||!f.k)continue;if(f.casado&&!cas)continue;if(!fichaSeOk(f,val))continue;const el=root.querySelector(`[data-fk="${f.k}"]`);if(!el)continue;vis.add(f.k);
+    if(f.t==="file")[...(el.files||[])].slice(0,5).forEach(x=>files.push({campo:f.k,file:x}));else d[f.k]=val(f.k)}
+  const falta=sch.filter(f=>f.t==="file"&&f.req&&vis.has(f.k)&&!files.some(x=>x.campo===f.k)).map(f=>({k:f.k,l:f.l}));
+  return {d,files,cas,falta,vis}}
+function fichaValida(sch,r){const em=v=>/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v);
+  for(const f of sch){if(f.sec||!f.k||f.t==="file")continue;if(r.vis&&!r.vis.has(f.k))continue;if(!r.vis&&f.casado&&!r.cas)continue;const v=r.d[f.k]||"";
+    if(f.req&&!v)return (f.t==="aceite"?"Marque: ":"Informe: ")+f.l+".";if(!v)continue;
+    if(f.t==="cpf"&&v.replace(/\D/g,"").length!==11)return f.l+" inválido.";if(f.t==="cnpj"&&v.replace(/\D/g,"").length!==14)return f.l+" inválido.";
+    if(f.t==="email"&&!em(v))return f.l+" inválido.";if(f.t==="cep"&&v.replace(/\D/g,"").length!==8)return f.l+" inválido.";
+    if(f.t==="money"&&isNaN(numBR(v)))return f.l+": informe só o valor, em reais.";
+    if(f.t==="date"){const y=Number(v.slice(0,4));if(!/^\d{4}-\d{2}-\d{2}$/.test(v)||y<1900||y>2100)return f.l+" inválida."}}
+  return ""}
 const fichaRot=sch=>Object.fromEntries(sch.filter(f=>f.k).map(f=>[f.k,f.l]));
 const fichaCols=sch=>{let sec="";return sch.filter(f=>{if(f.sec){sec=f.sec;return false}f.secN=sec;return true}).map(f=>({k:f.k,l:f.l,sec:f.secN,doc:f.t==="file"}))};
 async function fichaAnexos(files){const out=[];for(const x of files){const a=await arqB64(x.file);out.push({campo:x.campo,...a})}return out}
@@ -2067,7 +2186,7 @@ async function fichaSubmeter(o){const sch=fichaSchema(o.tipo);const r=fichaLer(o
   if(r.falta.length){o.err.innerHTML=`<b>Anexe os documentos obrigatórios:</b> ${esc(r.falta.map(f=>f.l).join(", "))}.`;o.err.classList.add("aviso");o.root.querySelector(`[data-fk="${r.falta[0].k}"]`)?.scrollIntoView({behavior:"smooth",block:"center"});return}
   b.disabled=true;b.textContent="Gerando a ficha…";
   try{const ax={};r.files.forEach(x=>(ax[x.campo]=ax[x.campo]||[]).push({nome:x.file.name}));
-    const rec={tipo:o.tipo,ref:o.ref||"",corretor:o.corretor||"",dados:r.d,anexos:ax,recebidaEm:nowISO()};
+    const rec={tipo:o.tipo,ref:o.ref||"",corretor:o.corretor||"",prop:o.prop||null,dados:r.d,anexos:ax,recebidaEm:nowISO()};
     let pdf="";try{pdf=await gerarPdfHtml(fichaDoc(rec))}catch(e){console.warn(e)}
     b.textContent="Enviando…";const anexos=await fichaAnexos(r.files);
     const res=await api(o.acao,{...o.payload,tipo:o.tipo,dados:r.d,anexos,pdf,faltando:r.falta,rotulos:fichaRot(sch),colunas:fichaCols(sch)});
@@ -2097,7 +2216,7 @@ const fichaUrl=t=>location.origin+location.pathname+"?ficha="+encodeURIComponent
 const LINK_DIAS=10; // validade dos links (igual ao servidor)
 const fmtTelFicha=t=>{t=String(t).replace(/\D/g,"").replace(/^55(?=\d{10,11}$)/,"");return t.length===11?`(${t.slice(0,2)}) ${t.slice(2,7)}-${t.slice(7)}`:t.length===10?`(${t.slice(0,2)}) ${t.slice(2,6)}-${t.slice(6)}`:t};
 function fichaMsg(r,url){const I=FICHA_INFO[r.tipo||"vendedor"];const pn=String(r.clienteNome||"").trim().split(" ")[0];
-  return `Olá${pn?", "+pn:""}! Aqui é ${r.corretor||"a equipe"}, da Park Sul Imóveis.\n\nEsta é a sua ficha de ${I.quem}, com as informações necessárias para a elaboração do contrato de compra e venda${r.ref?` do imóvel ${r.ref}`:""}. Preencha os seus dados e anexe os documentos por este link:\n${url}\n\nOs documentos são obrigatórios. O link vale por ${LINK_DIAS} dias, até ${dt(r.expira).slice(0,10)}.`}
+  return `Olá${pn?", "+pn:""}! Aqui é ${r.corretor||"a equipe"}, da Park Sul Imóveis.\n\nEsta é a sua ficha de ${I.quem}, com as informações necessárias para ${I.mod==="loc"?I.msg:"a elaboração do contrato de compra e venda"}${r.ref?` do imóvel ${r.ref}`:""}. Preencha os seus dados e anexe os documentos por este link:\n${url}\n\nOs documentos são obrigatórios. O link vale por ${LINK_DIAS} dias, até ${dt(r.expira).slice(0,10)}.${r.nota?"\n\n"+r.nota:""}`}
 function fichaLinkDialog(r,id){const I=FICHA_INFO[r.tipo||"vendedor"];const url=fichaUrl(r.t);const msg=fichaMsg(r,url);
   const tel=String(r.clienteTel||"").replace(/\D/g,"");const wa=`https://wa.me/${tel?(tel.length<=11?"55":"")+tel:""}?text=${encodeURIComponent(msg)}`;
   const env=(r.enviadoEmail||[]).map(x=>x.email);
@@ -2118,10 +2237,10 @@ function fichaLinkDialog(r,id){const I=FICHA_INFO[r.tipo||"vendedor"];const url=
         $("#flOk").hidden=false;$("#flOk").textContent="✓ Enviado por e-mail para "+[...new Set(l2)].join(", ");toast("Ficha enviada por e-mail")}
       catch(e){$("#flErr").textContent=e.message}finally{b.disabled=false;b.textContent="Enviar por e-mail"}}})}
 const copiar=(t,ok)=>(navigator.clipboard?navigator.clipboard.writeText(t):Promise.reject()).then(()=>toast(ok)).catch(()=>toast("Não foi possível copiar"));
-function fichaDoc(r){const tipo=r.tipo||"vendedor",sch=fichaSchema(tipo),titulo=FICHA_INFO[tipo].titulo;const d=r.dados||{};const E=esc;let h="",ab=false;const cas=fichaCasado(d.ec);
-  sch.forEach(f=>{if(f.casado&&!cas)return;if(f.sec){if(ab)h+="</div></div>";h+=`<div class="bx"><div class="bt">${E(f.sec)}</div><div class="g2">`;ab=true;return}
-    let v=d[f.k],cl="";if(f.t==="file"){const L=(r.anexos?.[f.k]||[]);v=L.length?L.map(x=>x.nome).join(", "):(f.req?"Pendente":"—");if(!L.length&&f.req)cl=' class="pend"'}if(f.t==="cpf")v=fmtCPF(v||"");
-    h+=`<div class="c"${f.full?' style="grid-column:1/-1"':""}><span>${E(f.l)}</span><b${cl}>${E(v||"—")}</b></div>`});
+function fichaDoc(r){const tipo=r.tipo||"vendedor",sch=fichaSchema(tipo),titulo=FICHA_INFO[tipo].titulo,I=FICHA_INFO[tipo];const d=r.dados||{};const E=esc;let h="",ab=false;const cas=fichaCasado(d.ec);
+  sch.forEach(f=>{if(f.casado&&!cas)return;if(!fichaSeOk(f,k=>d[k]||""))return;if(f.sec){if(ab)h+="</div></div>";h+=`<div class="bx"><div class="bt">${E(f.sec)}</div><div class="g2">`;ab=true;return}
+    let v=d[f.k],cl="";if(f.t==="file"){const L=(r.anexos?.[f.k]||[]);v=L.length?L.map(x=>x.nome).join(", "):(f.req?"Pendente":"—");if(!L.length&&f.req)cl=' class="pend"'}if(f.t==="cpf")v=fmtCPF(v||"");if(f.t==="date"&&v)v=v.split("-").reverse().join("/");
+    h+=`<div class="c"${f.full||f.t==="txt"||f.t==="chk"||f.t==="aceite"?' style="grid-column:1/-1"':""}><span>${E(f.l)}</span><b${cl}>${E(v||"—")}</b></div>`});
   if(ab)h+="</div></div>";
   return `<!doctype html><html lang="pt-BR"><head><meta charset="utf-8"><title>${E(titulo)} · ${E(d.nome||"")}</title><style>@page{size:A4;margin:14mm}*{box-sizing:border-box}body{font-family:Arial,Helvetica,sans-serif;color:#0B1628;font-size:10.5pt;margin:0;background:#e9e6e0}
 .bar{position:sticky;top:0;background:#0B1628;color:#fff;padding:10px 16px;display:flex;gap:10px;justify-content:center;align-items:center;font-size:14px}.bar button{font:700 14px Arial;padding:10px 18px;border-radius:10px;border:0;background:#C1652F;color:#fff;cursor:pointer}
@@ -2129,27 +2248,38 @@ function fichaDoc(r){const tipo=r.tipo||"vendedor",sch=fichaSchema(tipo),titulo=
 .bx{border:1px solid #d9d3c7;border-radius:6px;margin:0 0 10px;overflow:hidden;break-inside:avoid}.bt{background:#0B1628;color:#fff;font-weight:700;font-size:8.5pt;letter-spacing:.1em;text-transform:uppercase;padding:4px 10px}
 .g2{display:grid;grid-template-columns:1fr 1fr}.c{padding:5px 10px;border-top:1px solid #eee7da;border-right:1px solid #eee7da}.c span{display:block;font-size:7.5pt;color:#6B7A99;text-transform:uppercase;letter-spacing:.06em}.c b{font-size:10pt}.c b.pend{color:#B3261E}
 .rod{font-size:8.5pt;color:#6B7A99;margin-top:12px}@media print{body{background:#fff}.bar{display:none}.pg{margin:0;padding:0;max-width:none}}</style></head><body><div class="bar">Ficha pronta para imprimir ou salvar em PDF. <button onclick="window.print()">Imprimir / salvar em PDF</button></div><div class="pg">
-<div class="hd"><div><h1>${E(titulo)}</h1><h2>INFORMAÇÕES PARA O CONTRATO DE COMPRA E VENDA</h2></div><img src="${AUT_LOGO}" alt="Park Sul Imóveis"></div>
-${r.ref?`<div class="bx"><div class="bt">Imóvel</div><div class="g2"><div class="c" style="grid-column:1/-1"><span>Referência</span><b>${E(r.ref)}</b></div></div></div>`:""}${h}
+<div class="hd"><div><h1>${E(titulo)}</h1><h2>${E(I.sub||"INFORMAÇÕES PARA O CONTRATO DE COMPRA E VENDA")}</h2></div><img src="${AUT_LOGO}" alt="Park Sul Imóveis"></div>
+${r.ref?`<div class="bx"><div class="bt">${r.prop?"Imóvel e proposta":"Imóvel"}</div><div class="g2"><div class="c" style="grid-column:1/-1"><span>Imóvel</span><b>${E(r.ref)}</b></div>${r.prop?`<div class="c"><span>Na carteira da Park Sul</span><b>${E(r.prop.carteira||"—")}</b></div><div class="c"><span>Corretor</span><b>${E(r.prop.corretor||r.corretor||"—")}</b></div><div class="c"><span>Valor de anúncio</span><b>${r.prop.anuncio?E(brlV(Number(r.prop.anuncio))):"—"}</b></div><div class="c"><span>Proposta</span><b>${r.prop.proposta==="Sim"&&r.prop.vprop?E(brlV(Number(r.prop.vprop))+" · submeter ao proprietário"):"Não · valor de anúncio"}</b></div>`:""}</div></div>`:""}${h}
 <p class="rod">Corretor responsável: ${E(r.corretor||"—")} · Recebida em ${E(dt(r.recebidaEm||r.criadoEm))} · Park Sul Imóveis</p></div></body></html>`}
 function abrirFichaDoc(r){const w=window.open("","_blank");if(!w){toast("Permita pop-ups para este site.");return}w.document.open();w.document.write(fichaDoc(r));w.document.close()}
 function fichaGuardar(id,data){(DATA.fichas||(DATA.fichas=new Map())).set(id,{...(DATA.fichas?.get(id)||{}),...data});avisar(new Set(["fichas"]))}
 // cobrar ou anexar documento que faltou (corretor, Secretaria de Vendas e master)
+function fichaDocsHtml(r,o={}){if(r.status!=="recebida")return "";const ax=r.anexos||{};const D=fichaDocs(r.tipo,r.dados?.ec,r.dados);
+  return `<div class="fpdocs lfdocs">${D.map(f=>{const L=ax[f.k]||[];
+    return L.length?L.map((x,i)=>`<a class="fpdoc ok" href="${esc(x.url||"#")}" target="_blank" rel="noopener" title="${esc(x.nome||"")}">✓ ${esc(f.l)}${L.length>1?` (${i+1})`:""}</a>`).join(""):f.req?`<button type="button" class="fpdoc falta" data-fpfalta="${esc(r.id)}">Falta · ${esc(f.l)}</button>`:""}).join("")}
+    ${o.anexar?`<button type="button" class="fpdoc add" data-fpanexa="${esc(r.id)}">+ Anexar documento</button>`:""}</div>`}
+function fichaAnexarDialog(id,kSel){const r=S.fichas?.get(id);if(!r)return;const D=fichaDocs(r.tipo,r.dados?.ec,r.dados);const falta=fichaFaltaRec(r).map(f=>f.k);kSel=kSel||falta[0];
+  openModal({sm:1,body:`<header><h2>Anexar documento</h2><button class="btn ghost x" data-close-btn>Fechar</button></header><div class="bd"><p class="note" style="margin:0 0 8px">${esc(r.dados?.nome||"")} · documento recebido pelo WhatsApp, e-mail ou em mãos.</p>
+    <div class="grid2"><label class="f">Documento<select class="sel" id="fa_k">${D.map(f=>`<option value="${f.k}" ${kSel===f.k?"selected":""}>${esc(f.l)}${falta.includes(f.k)?" · falta":""}</option>`).join("")}</select></label><label class="f">Arquivo (até 5)<input class="inp" type="file" id="fa_f" accept="image/*,application/pdf" multiple></label></div><p class="err" id="faErr"></p></div>
+    <footer><button class="btn" data-close-btn>Cancelar</button><button class="btn pri" id="faOk">Anexar</button></footer>`},()=>{$("#faOk").onclick=async()=>{const fs=[...($("#fa_f").files||[])].slice(0,5);if(!fs.length){$("#faErr").textContent="Escolha o arquivo.";return}
+      const b=$("#faOk");b.disabled=true;b.textContent="Enviando…";try{const k=$("#fa_k").value;const anexos=await fichaAnexos(fs.map(file=>({campo:k,file})));const res=await api("fichaAnexarSis",{id,anexos});
+        fichaGuardar(id,{anexos:res.anexos,faltando:res.faltando});const pr=r.procId&&S.locprocs?.get(r.procId);if(pr&&pr.docAval?.[id+"|"+k]?.st==="nao"){const da={...pr.docAval};delete da[id+"|"+k];db.doc("locprocs/"+r.procId).update({docAval:da})}closeModal();toast("Documento anexado");fichaAposAnexo(r)}catch(e){$("#faErr").textContent=e.message;b.disabled=false;b.textContent="Anexar"}}})}
+function fichaAposAnexo(r){if(!$("#v-fpainel").hidden)renderFPainel();if(r.procId&&S.locprocs?.get(r.procId))locVolta(r.procId)}
 function fichaCobrarDialog(id){const r=S.fichas?.get(id);if(!r)return;const I=FICHA_INFO[r.tipo||"vendedor"];const falta=fichaFaltaRec(r);const d=r.dados||{};
   const pn=String(d.nome||"").split(" ")[0];const url=r.t?fichaUrl(r.t):"";
-  const msg=`Olá, ${pn}! Aqui é da Park Sul Imóveis. Para seguirmos com o contrato de compra e venda${r.ref?` (${r.ref})`:""}, ainda falta${falta.length>1?"m":""}: ${falta.map(f=>f.l).join(", ")}.${url?` Pode enviar por este link: ${url}`:" Pode responder esta mensagem com o documento."} Obrigado!`;
+  const msg=`Olá, ${pn}! Aqui é da Park Sul Imóveis. Para seguirmos com ${I.cob||"o contrato de compra e venda"}${r.ref?` (${r.ref})`:""}, ainda falta${falta.length>1?"m":""}: ${falta.map(f=>f.l).join(", ")}.${url?` Pode enviar por este link: ${url}`:" Pode responder esta mensagem com o documento."} Obrigado!`;
   const tel=String(d.tel||"").replace(/\D/g,"");const wa=tel?`https://wa.me/${tel.length<=11?"55":""}${tel}?text=${encodeURIComponent(msg)}`:`https://wa.me/?text=${encodeURIComponent(msg)}`;
   openModal({sm:1,body:`<header><h2>Documentos faltando</h2><button class="btn ghost x" data-close-btn>Fechar</button></header>
   <div class="bd"><p style="margin:0 0 6px"><b>${esc(d.nome||"")}</b> · ${esc(I.titulo)}${r.ref?` · ${esc(r.ref)}`:""}</p>
   ${falta.length?`<ul class="fpfl">${falta.map(f=>`<li>${esc(f.l)}</li>`).join("")}</ul>`:`<p class="note">Nenhum documento faltando.</p>`}
-  <p class="note" style="margin:8px 0 6px">Cobrar ${esc(I.quem==="vendedor"?"o vendedor":"o comprador")}${tel?` · ${esc(d.tel)}`:""}</p>
+  <p class="note" style="margin:8px 0 6px">Cobrar o ${esc(I.quem)}${tel?` · ${esc(d.tel)}`:""}</p>
   <div class="placoes"><a class="btn sm wa" target="_blank" rel="noopener" href="${esc(wa)}">Cobrar pelo WhatsApp</a>${d.email?`<a class="btn sm" href="mailto:${esc(d.email)}?subject=${encodeURIComponent("Documentos para o contrato · Park Sul Imóveis")}&body=${encodeURIComponent(msg)}">Cobrar por e-mail</a>`:""}<button class="btn sm" type="button" id="fcCp">Copiar mensagem</button>${url?`<button class="btn sm ghost" type="button" id="fcCpl">Copiar link</button>`:""}</div>
   ${falta.length?`<fieldset class="autsec" style="margin-top:14px"><legend>Já recebeu o documento? Anexe aqui</legend><div class="grid2"><label class="f">Documento<select class="sel" id="fc_k">${falta.map(f=>`<option value="${f.k}">${esc(f.l)}</option>`).join("")}</select></label><label class="f">Arquivo<input class="inp" type="file" id="fc_f" accept="image/*,application/pdf" multiple></label></div><button class="btn pri sm" type="button" id="fcAx" style="justify-self:start">Anexar documento</button><p class="err" id="fcErr"></p></fieldset>`:""}</div>
   <footer><button class="btn" data-close-btn>Fechar</button></footer>`},()=>{$("#fcCp").onclick=()=>copiar(msg,"Mensagem copiada");if($("#fcCpl"))$("#fcCpl").onclick=()=>copiar(url,"Link copiado");
     if($("#fcAx"))$("#fcAx").onclick=async()=>{const fs=[...($("#fc_f").files||[])].slice(0,5);if(!fs.length){$("#fcErr").textContent="Escolha o arquivo.";return}
       const b=$("#fcAx");b.disabled=true;b.textContent="Enviando…";
       try{const k=$("#fc_k").value;const anexos=await fichaAnexos(fs.map(file=>({campo:k,file})));const res=await api("fichaAnexarSis",{id,anexos});
-        fichaGuardar(id,{anexos:res.anexos,faltando:res.faltando});closeModal();toast("Documento anexado e enviado à Secretaria de Vendas");if(!$("#v-fpainel").hidden)renderFPainel()}
+        fichaGuardar(id,{anexos:res.anexos,faltando:res.faltando});closeModal();toast(r.procId?"Documento anexado":"Documento anexado e enviado à Secretaria de Vendas");fichaAposAnexo(r)}
       catch(e){$("#fcErr").textContent=e.message;b.disabled=false;b.textContent="Anexar documento"}}})}
 // Imóvel da ficha: campos separados, juntados na referência ("Prime Residence · Bloco G · Apto 603 · SQS 308 · Park Sul")
 function fvRefMontar(){const v=k=>($("#fr_"+k)?.value||"").trim();const t=v("tipo"),un=v("un");
@@ -2174,6 +2304,7 @@ document.addEventListener("click",async e=>{
   const l=e.target.closest("[data-fvlink]");if(l){const r=S.fichas?.get(l.dataset.fvlink);if(r)fichaLinkDialog(r,l.dataset.fvlink);return}
   const dc=e.target.closest("[data-fvdoc]");if(dc){const r=S.fichas?.get(dc.dataset.fvdoc);if(r)abrirFichaDoc(r);return}
   const fa=e.target.closest("[data-fpfalta]");if(fa){fichaCobrarDialog(fa.dataset.fpfalta);return}
+  const fx=e.target.closest("[data-fpanexa]");if(fx){fichaAnexarDialog(fx.dataset.fpanexa,fx.dataset.k);return}
   if(e.target.closest("#fpPlan")){const b=e.target.closest("#fpPlan");b.disabled=true;try{const r=await api("fichaPlanilha",{});if(r.url)window.open(r.url,"_blank");else toast("Na demonstração a planilha não abre.")}catch(er){toast(er.message)}finally{b.disabled=false}return}
   if(e.target.closest("#fvEnviar")){e.preventDefault();const em=$("#fv_cmail").value.trim();if(!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(em)){$("#fvErr").textContent="Informe o seu e-mail para receber a ficha.";return}
     const im=fvRefMontar();if(im.erro){$("#fvErr").textContent=im.erro;$("#fvIni").scrollIntoView({behavior:"smooth",block:"start"});return}
@@ -2229,10 +2360,560 @@ async function fichaPublicaTela(t){
       if(!files.length){$("#fpErr").textContent="Escolha pelo menos um arquivo.";return}const b=$("#fpOk");b.disabled=true;b.textContent="Enviando…";
       try{const r=await api("fichaAnexar",{t,anexos:await fichaAnexos(files)});fim("Documentos enviados",`<p>Obrigado! Os documentos foram enviados para <b>${esc(info.corretor||"o seu corretor")}</b>, da Park Sul Imóveis.</p>${(r.faltando||[]).length?`<p class="note">Ainda falta: ${esc(r.faltando.map(f=>f.l).join(", "))}. Quando tiver, é só abrir este mesmo link.</p>`:""}`)}
       catch(e){b.disabled=false;b.textContent="Enviar documentos";$("#fpErr").textContent=e.message}};return}
-  $("#fpMsg").outerHTML=`<div class="apcond"><span class="opk">Dados do promitente ${esc(I.quem)}(a)</span><p style="margin:0">Informações necessárias para a elaboração do contrato de compra e venda.${info.ref?` Imóvel: <b>${esc(info.ref)}</b>.`:""} Corretor: <b>${esc(info.corretor||"")}</b>.</p></div><form class="autf" id="fpForm" novalidate>${fichaHtml(fichaSchema(tipo))}<p class="err" id="fpErr"></p><div class="autacts"><button type="submit" class="btn pri" id="fpOk">Enviar ficha ao corretor</button></div></form>`;
+  $("#fpMsg").outerHTML=`<div class="apcond"><span class="opk">${I.mod==="loc"?esc(I.titulo):`Dados do promitente ${esc(I.quem)}(a)`}</span><p style="margin:0">${I.mod==="loc"?esc(I.intro):"Informações necessárias para a elaboração do contrato de compra e venda."}${info.ref?` Imóvel: <b>${esc(info.ref)}</b>.`:""} Corretor: <b>${esc(info.corretor||"")}</b>.</p>${info.nota?`<p class="lfcond" style="margin:10px 0 0">${esc(info.nota)}</p>`:""}</div><form class="autf" id="fpForm" novalidate>${fichaHtml(fichaSchema(tipo))}<p class="err" id="fpErr"></p><div class="autacts"><button type="submit" class="btn pri" id="fpOk">Enviar ficha ao corretor</button></div></form>`;
   const f=$("#fpForm");fichaLigar(f);
-  f.onsubmit=async ev=>{ev.preventDefault();await fichaSubmeter({tipo,root:f,btn:$("#fpOk"),lbl:"Enviar ficha ao corretor",err:$("#fpErr"),acao:"fichaEnviar",ref:info.ref,corretor:info.corretor,payload:{t},
+  f.onsubmit=async ev=>{ev.preventDefault();await fichaSubmeter({tipo,root:f,btn:$("#fpOk"),lbl:"Enviar ficha ao corretor",err:$("#fpErr"),acao:"fichaEnviar",ref:info.ref,corretor:info.corretor,prop:info.prop||null,payload:{t},
     ok:(res,rec,r)=>fim("Ficha enviada ao corretor",`<p>Obrigado! Os seus dados e documentos foram enviados para <b>${esc(info.corretor||"o seu corretor")}</b>, da Park Sul Imóveis. Você também vai receber uma cópia da ficha em PDF no seu e-mail.</p>${r.falta.length?`<p class="note">Ficou faltando: ${esc(r.falta.map(x=>x.l).join(", "))}. Quando tiver, abra este mesmo link para enviar.</p>`:""}`)})}}
+
+
+/* ===================== MÓDULO DE LOCAÇÃO (beta) =====================
+   Fichas: proprietário (captação), locatário PF e PJ, fiador — mesmo motor das fichas de venda.
+   Processo (coleção locprocs): kind "loc" = proposta de locação; kind "adm" = captação para administração. */
+const LOC_ORIGENS=["Google","Instagram","Facebook","Site da Park Sul","Indicação","DF Imóveis","Wimóveis","Netimóveis","Placa no imóvel","Outro"];
+const LOC_REGIME_TRAB=["Funcionário privado (CLT)","Funcionário público (estatutário)","Funcionário público (CLT)","Empresário","Profissional liberal ou autônomo","Aposentado ou pensionista","Outro"];
+const LOC_GARANTIAS=["Fiador","Título de capitalização","Caução","Seguro fiança","Garantia enxoval (aluguel à vista)"]; // definida pelo administrativo com o locatário
+const LOC_UF_TIPOS=["Apartamento","Casa","Sala","Loja","Galpão","Prédio","Lote","Outro"];
+/* Termo LGPD (padrão Park Sul, todas as fichas) */
+const LGPD_VER="nov/2026";
+const LGPD_TERMO=[
+ ["Para que serve este termo","Este termo explica, de forma clara, quais dados pessoais a Park Sul Imóveis LTDA (CNPJ 18.157.109/0001-00), chamada aqui de controladora, coleta, para que usa e com quem compartilha. Ao aceitar, você, titular dos dados, dá o seu consentimento expresso, nos termos da Lei Geral de Proteção de Dados (Lei nº 13.709/2018), para que a controladora trate os seus dados pessoais: coleta, recepção, classificação, uso, acesso, reprodução, transmissão, processamento, arquivamento, armazenamento, avaliação, comunicação, transferência e eliminação."],
+ ["Dados que coletamos",["Dados cadastrais: nome completo, CPF ou CNPJ, RG com órgão e data de expedição, filiação, data de nascimento, sexo, estado civil, nacionalidade, profissão, endereço, telefone e e-mail.","Dados do cônjuge ou companheiro(a), dos fiadores e dos sócios, quando informados na ficha.","Dados financeiros: renda, documentos de comprovação de renda e de crédito, dados bancários e chave Pix.","Documentos e fotos enviados, inclusive foto segurando o documento.","Registros das conversas com a nossa equipe, por e-mail, WhatsApp, telefone ou outro meio.","Dados de pagamentos e faturamento.","Dados de navegação nos nossos sites e sistemas, como cookies, endereço IP, navegador e dispositivo."]],
+ ["Para que usamos os seus dados",["Analisar o cadastro e o crédito para locação, administração, compra e venda de imóveis.","Preparar, assinar e cumprir contratos, e realizar os procedimentos que vêm antes deles.","Administrar o imóvel: cobranças, boletos, débito automático, repasses, vistorias e manutenções.","Contratar e acompanhar garantias locatícias, como seguro fiança, título de capitalização e seguro incêndio.","Prevenir fraudes e garantir a segurança das operações.","Cumprir obrigações legais, regulatórias e fiscais.","Exercer direitos em processos judiciais, administrativos ou arbitrais, inclusive com o envio de dados a escritórios de advocacia em caso de inadimplência.","Falar com você sobre o atendimento e enviar ofertas e conteúdos por e-mail, WhatsApp e redes sociais. Você pode pedir para não receber as ofertas a qualquer momento.","Melhorar os nossos serviços e, em caso de reorganização ou venda da empresa, permitir a avaliação do negócio, com o mesmo nível de proteção."]],
+ ["Com quem compartilhamos","Compartilhamos somente o necessário para cada finalidade, com empresas que adotam padrões adequados de segurança e sigilo, como: Rede Netimóveis e portais de anúncio (DF Imóveis, Wimóveis, OLX, Viva Real e outros); sistema de gestão imobiliária (Simob) e serviços de tecnologia e armazenamento em nuvem; sites de consulta cadastral e de emissão de certidões; birôs de crédito e empresas de meios de pagamento; bancos; seguradoras e empresas de garantia locatícia (inclusive CredPago e CredSign); cartórios; condomínios e administradoras de condomínio; companhias de energia, água e gás (como CEB, Caesb e fornecedoras de gás); prestadores de serviço de manutenção do imóvel; serviços de e-mail e WhatsApp; parceiros de marketing; e autoridades públicas, quando a lei exigir."],
+ ["Onde guardamos e como protegemos","Os dados ficam nos servidores da Park Sul Imóveis e de fornecedores contratados, no Brasil ou em outro país, quando necessário para operar com segurança. Usamos medidas técnicas e administrativas de proteção, acesso restrito, tráfego criptografado e dever de sigilo dos colaboradores. Sempre que possível, os dados são tratados de forma anônima. A segurança dos aparelhos que você usa (celular, computador) é de sua responsabilidade."],
+ ["Por quanto tempo","Mantemos os dados enquanto durar a relação com você e até que você peça a exclusão. Depois do pedido, deixamos de usá-los para fins comerciais e os guardamos por até 5 (cinco) anos, ou enquanto houver obrigação legal, fiscal ou processual a cumprir."],
+ ["Os seus direitos","A qualquer momento, você pode pedir: confirmação de que tratamos os seus dados; acesso aos dados; correção de dados incompletos, inexatos ou desatualizados; anonimização, bloqueio ou eliminação de dados desnecessários ou excessivos; portabilidade a outro fornecedor; eliminação dos dados tratados com o seu consentimento (exceto nos casos do art. 16 da LGPD); informação sobre com quem compartilhamos; informação sobre a possibilidade de não consentir e as consequências disso; e revogação do consentimento. Você também pode procurar a Autoridade Nacional de Proteção de Dados (ANPD)."],
+ ["Revogação do consentimento","Você pode revogar este consentimento a qualquer momento, por e-mail ou carta (art. 8º, § 5º, da LGPD). Mesmo assim, a controladora poderá manter os dados para: cumprir obrigações legais ou exigências de órgãos de fiscalização; exercer direitos em processo judicial, administrativo ou arbitral; proteger a vida ou a integridade física do titular ou de terceiros; e atender a interesses legítimos, quando não prevalecerem os direitos do titular."],
+ ["Contato","E-mail para assuntos de privacidade e dados pessoais: parksullocacao@gmail.com · Atendimento: assistentedelocacao@parksulimoveis.com e financeiroadm@parksulimoveis.com · WhatsApp (61) 97402-9192 · Telefone (61) 3026-2211 · SGCV Lote 22, Mezanino L2, Shopping CasaPark, Park Sul, Brasília/DF, CEP 71215-720."]];
+function lgpdHtml(){return `<div class="lgpdt"><p class="lgpdh">TERMO DE PRIVACIDADE E CONSENTIMENTO · LGPD<br><small>Park Sul Imóveis LTDA · versão ${LGPD_VER}</small></p>${LGPD_TERMO.map(([t,c],i)=>`<h4>${i+1}. ${esc(t)}</h4>${Array.isArray(c)?`<ul>${c.map(x=>`<li>${esc(x)}</li>`).join("")}</ul>`:`<p>${esc(c)}</p>`}`).join("")}<p class="lgpdf">O titular declara que leu e concorda com este Termo de Privacidade e Consentimento e com a Política de Privacidade da Park Sul Imóveis LTDA.</p></div>`}
+const LOC_LGPD="Li e concordo com o Termo de Privacidade e Consentimento (LGPD) e com a Política de Privacidade da Park Sul Imóveis LTDA.";
+const LOC_PPE=["Não sou pessoa politicamente exposta (PPE)","Sou pessoa politicamente exposta (PPE)"];
+function locPessoa(px,o={}){const P=k=>px+k,cas=o.casado?{casado:1}:{};const r=o.req!==false?1:0;
+  return [{k:P("nome"),l:o.nomeL||"Nome completo",req:r,full:1,...cas},{k:P("nasc"),l:"Data de nascimento",t:"date",req:r,...cas},
+    {k:P("cpf"),l:"CPF",t:"cpf",req:r,...cas},{k:P("rg"),l:"RG e órgão emissor",req:r,...cas},
+    {k:P("natur"),l:"Naturalidade (cidade/UF)",req:o.cj?0:r,...cas},{k:P("nac"),l:"Nacionalidade",ph:"Ex.: brasileira",req:o.cj?0:r,...cas},
+    {k:P("tel"),l:"Telefone (WhatsApp)",t:"tel",req:o.cj?0:r,...cas},{k:P("email"),l:"E-mail",t:"email",req:o.cj?0:r,...cas}]}
+function locTrabalho(px,o={}){const P=k=>px+k,cas=o.casado?{casado:1}:{},r=o.cj?0:1;const R=P("regt");
+  const EMP=["Funcionário privado (CLT)","Funcionário público (estatutário)","Funcionário público (CLT)"],DONO=["Empresário"],AUT=["Profissional liberal ou autônomo"],APO=["Aposentado ou pensionista"],OUT=["Outro"];
+  const se=v=>({se:{k:R,v}});
+  return [{k:R,l:"Regime de trabalho",t:"sel",opts:LOC_REGIME_TRAB,req:r,full:1,...cas},
+    {k:P("regq"),l:"Qual? Descreva a sua ocupação",req:r,full:1,...cas,...se(OUT)},
+    {k:P("cargo"),l:"Profissão / cargo",req:r,...cas},
+    {k:P("emp"),l:"Empresa ou órgão onde trabalha",req:r,...cas,...se(EMP)},
+    {k:P("adm"),l:"Data de admissão",t:"date",req:r,...cas,...se(EMP)},
+    {k:P("empn"),l:"Nome da empresa",req:r,...cas,...se(DONO)},
+    {k:P("empcnpj"),l:"CNPJ da empresa",t:"cnpj",...cas,...se(DONO)},
+    {k:P("tempo"),l:"Há quanto tempo exerce a atividade",ph:"Ex.: 6 anos",req:r,...cas,...se(DONO.concat(AUT))},
+    {k:P("fonte"),l:"Fonte pagadora (INSS, órgão ou fundo)",req:r,...cas,...se(APO)},
+    ...(o.cj?[]:[{k:P("empend"),l:"Endereço comercial, com CEP",full:1,...se(EMP.concat(DONO,AUT))},{k:P("emptel"),l:"Telefone comercial",t:"tel",...se(EMP.concat(DONO,AUT))}]),
+    {k:P("renda"),l:"Renda mensal bruta (R$)",t:"money",req:r,...cas},{k:P("outras"),l:"Outras rendas (R$)",t:"money",ph:"0 se não tiver",...cas}]}
+function fichaSchemaLoc(tipo){
+  const decl=[{sec:"Declarações"},{k:"origem",l:"Como conheceu a Park Sul Imóveis",t:"sel",opts:LOC_ORIGENS,req:1},
+    {k:"ppe",l:"Pessoa politicamente exposta",t:"sel",opts:LOC_PPE,req:1},{k:"lgpd",l:LOC_LGPD,t:"aceite",req:1}];
+  const ec=[{sec:"Estado civil"},{k:"ec",l:"Estado civil",t:"sel",opts:EC_FICHA,req:1,full:1}];
+  if(tipo==="locador")return [
+    {sec:"Dados do imóvel"},{k:"fin",l:"Finalidade",t:"sel",opts:["Residencial","Comercial"],req:1},{k:"tipo",l:"Tipo do imóvel",t:"sel",opts:LOC_UF_TIPOS,req:1},
+    {k:"end",l:"Endereço completo (cidade/UF)",req:1,full:1},{k:"compl",l:"Complemento (bloco, apto etc.)"},{k:"cep",l:"CEP",t:"cep",req:1},
+    {k:"sit",l:"Situação do imóvel",t:"sel",opts:["Desocupado","Ocupado"],req:1},{k:"mob",l:"Condição",t:"sel",opts:["Sem mobília","Semimobiliado","Mobiliado"],req:1},
+    {k:"matr",l:"Nº da matrícula"},{k:"iptu",l:"Nº de inscrição do IPTU",req:1},{k:"area",l:"Área (m²)",t:"num",req:1},
+    {k:"desc",l:"Descrição do imóvel (cômodos, vagas etc.)",t:"txt",req:1},
+    {k:"cons_cond",l:"Incluídos no boleto do condomínio",t:"chk",opts:["Água","Energia","Gás","Internet"]},
+    {k:"cond_tel",l:"Contato da administração do condomínio",t:"tel"},{k:"cond_email",l:"E-mail da administração do condomínio",t:"email"},
+    {sec:"Dados do proprietário"},{k:"pessoa",l:"O contrato será em nome de",t:"sel",opts:["Pessoa física","Pessoa jurídica"],req:1,full:1},
+    {k:"nome",l:"Nome completo",req:1,full:1},{k:"cpf",l:"CPF",t:"cpf",req:1},{k:"rg",l:"RG e órgão emissor",req:1},
+    {k:"cnpj",l:"CNPJ",t:"cnpj",req:1,se:{k:"pessoa",v:"Pessoa jurídica"}},{k:"razao",l:"Razão social",req:1,se:{k:"pessoa",v:"Pessoa jurídica"}},
+    {k:"nac",l:"Nacionalidade",req:1,ph:"Ex.: brasileira"},{k:"prof",l:"Profissão",req:1},
+    {k:"tel",l:"Telefone (WhatsApp)",t:"tel",req:1},{k:"email",l:"E-mail",t:"email",req:1},{k:"endAtual",l:"Endereço atual, com CEP",req:1,full:1},
+    ...ec,
+    {sec:"Dados do cônjuge / companheiro(a)",casado:1,nota:"Obrigatório para casado(a) ou união estável."},
+    {k:"regime",l:"Regime de casamento",t:"sel",opts:REGIMES,casado:1},{k:"cj_nome",l:"Nome completo do cônjuge",casado:1,req:1,full:1},
+    {k:"cj_cpf",l:"CPF do cônjuge",t:"cpf",casado:1,req:1},{k:"cj_rg",l:"RG do cônjuge",casado:1},{k:"cj_nac",l:"Nacionalidade do cônjuge",casado:1},
+    {k:"cj_prof",l:"Profissão do cônjuge",casado:1},{k:"cj_tel",l:"Telefone do cônjuge",t:"tel",casado:1},{k:"cj_email",l:"E-mail do cônjuge",t:"email",casado:1},
+    {sec:"Conta para repasse dos aluguéis"},{k:"banco",l:"Banco",req:1},{k:"tconta",l:"Tipo de conta",t:"sel",opts:["Corrente","Poupança"],req:1},
+    {k:"agencia",l:"Agência",req:1},{k:"conta",l:"Conta (com dígito)",req:1},{k:"titular",l:"Nome do titular da conta",req:1},{k:"titdoc",l:"CPF ou CNPJ do titular",req:1},{k:"pix",l:"Chave Pix",full:1},
+    {sec:"Documentos",doc:1,nota:"Anexe foto ou PDF de cada documento (até 5 arquivos em cada)."},
+    {k:"ax_doc",l:"RG e CPF ou CNH do proprietário",t:"file",req:1,full:1},
+    {k:"ax_cas",l:"Certidão de casamento ou escritura de união estável",t:"file",casado:1,req:1,full:1},
+    {k:"ax_cjdoc",l:"RG e CPF ou CNH do cônjuge",t:"file",casado:1,req:1,full:1},
+    {k:"ax_pj",l:"Cartão CNPJ e contrato social",t:"file",req:1,full:1,se:{k:"pessoa",v:"Pessoa jurídica"}},
+    {k:"ax_end",l:"Comprovante de residência",t:"file",req:1,full:1},
+    {k:"ax_fat",l:"Faturas de água, energia e condomínio do imóvel",t:"file",req:1,full:1},
+    {k:"ax_onus",l:"Certidão de ônus atualizada do imóvel",t:"file",req:1,full:1},
+    {k:"ax_selfie",l:"Foto (selfie) segurando o documento",t:"file",req:1,full:1},
+    ...decl];
+  if(tipo==="locpj")return [
+    {sec:"Dados da empresa"},{k:"nome",l:"Razão social",req:1,full:1},{k:"fantasia",l:"Nome fantasia"},{k:"cnpj",l:"CNPJ",t:"cnpj",req:1},
+    {k:"ie",l:"Inscrição estadual",req:1},{k:"fund",l:"Data de fundação",t:"date",req:1},{k:"junta",l:"Nº de registro na Junta Comercial",req:1},
+    {k:"ativ",l:"Atividade",req:1},{k:"end",l:"Endereço da sede, com CEP",req:1,full:1},{k:"sede",l:"Sede",t:"sel",opts:["Própria","Alugada"],req:1},
+    {k:"tel",l:"Telefone (WhatsApp)",t:"tel",req:1},{k:"email",l:"E-mail",t:"email",req:1},
+    {sec:"Representante legal (quem assina o contrato)"},{k:"rep_nome",l:"Nome completo",req:1,full:1},{k:"rep_cpf",l:"CPF",t:"cpf",req:1},
+    {k:"rep_cargo",l:"Cargo na empresa",req:1},{k:"rep_tel",l:"Telefone (WhatsApp)",t:"tel",req:1},{k:"rep_email",l:"E-mail",t:"email",req:1},
+    {sec:"Sócios e administradores",nota:"Cada sócio ou administrador também preenche a ficha de pessoa física, pelo link que o corretor envia."},
+    ...[1,2,3,4].flatMap(i=>[{k:`s${i}_nome`,l:`Sócio/administrador ${i} · nome`},{k:`s${i}_cpf`,l:`Sócio/administrador ${i} · CPF`,t:"cpf"},{k:`s${i}_tel`,l:`Sócio/administrador ${i} · WhatsApp`,t:"tel"},{k:`s${i}_func`,l:`Sócio/administrador ${i} · função`,t:"sel",opts:["Sócio","Administrador","Sócio-administrador"]}]),
+    {sec:"Patrimônio da empresa"},{k:"pat_total",l:"Valor total do patrimônio (R$)",t:"money"},{k:"pat_desc",l:"Bens (imóveis, veículos, ações etc.)",t:"txt"},
+    {sec:"Documentos",doc:1,nota:"Anexe foto ou PDF de cada documento (até 5 arquivos em cada)."},
+    {k:"ax_cnpj",l:"Cartão do CNPJ atualizado",t:"file",req:1,full:1},{k:"ax_contrato",l:"Contrato social e últimas alterações",t:"file",req:1,full:1},
+    {k:"ax_junta",l:"Certidão atualizada da Junta Comercial",t:"file",req:1,full:1},{k:"ax_balanco",l:"Último balanço e balancete",t:"file",req:1,full:1},
+    {k:"ax_bens",l:"Relação de bens da empresa",t:"file",req:1,full:1},{k:"ax_nada",l:"Certidão de nada consta",t:"file",req:1,full:1},
+    {k:"ax_repdoc",l:"RG e CPF ou CNH do representante legal",t:"file",req:1,full:1},
+    ...decl];
+  const fiador=tipo==="fiador";
+  return [
+    ...(fiador?[]:[{sec:"Sobre a locação"},{k:"reside",l:"É você quem vai morar no imóvel?",t:"sel",opts:["Sim","Não"],req:1},
+      {k:"moradores",l:"Quem vai morar (nome e parentesco)",t:"txt",req:1,se:{k:"reside",v:"Não"}}]),
+    {sec:"Dados pessoais"},...locPessoa(""),{k:"end",l:"Endereço residencial completo",req:1,full:1},{k:"cep",l:"CEP",t:"cep",req:1},
+    ...ec,
+    {sec:"Dados do cônjuge / companheiro(a)",casado:1,nota:"Obrigatório para casado(a) ou união estável."},
+    {k:"regime",l:"Regime de casamento",t:"sel",opts:REGIMES,casado:1,req:fiador?1:0,full:1},
+    ...locPessoa("cj_",{casado:1,cj:1,nomeL:"Nome completo do cônjuge"}),
+    ...locTrabalho("cj_",{casado:1,cj:1}),
+    {sec:"Dados profissionais"},...locTrabalho(""),
+    ...(fiador?[{sec:"Imóvel dado em garantia",nota:"Imóvel próprio e quitado, de preferência no Distrito Federal."},
+      {k:"g_end",l:"Endereço do imóvel",req:1,full:1},{k:"g_matr",l:"Nº da matrícula",req:1},{k:"g_cart",l:"Cartório de registro"},{k:"g_valor",l:"Valor estimado (R$)",t:"money"}]:[]),
+    {sec:"Documentos",doc:1,nota:"Anexe foto ou PDF de cada documento (até 5 arquivos em cada)."},
+    {k:"ax_doc",l:"RG e CPF ou CNH",t:"file",req:1,full:1},{k:"ax_ir",l:"Imposto de renda completo + recibo de entrega",t:"file",req:1,full:1},
+    {k:"ax_renda",l:"Outros comprovantes de renda (contracheques, extratos)",t:"file",full:1},{k:"ax_end",l:"Comprovante de residência",t:"file",req:1,full:1},
+    {k:"ax_cas",l:"Certidão de casamento ou escritura de união estável",t:"file",casado:1,req:1,full:1},
+    ...(fiador?[{k:"ax_onus",l:"Certidão de ônus ou escritura do imóvel quitado",t:"file",req:1,full:1}]:[{k:"ax_selfie",l:"Foto (selfie) segurando o documento",t:"file",req:1,full:1}]),
+    {k:"ax_cjdoc",l:"RG e CPF ou CNH do cônjuge",t:"file",casado:1,req:1,full:1},{k:"ax_cjir",l:"Imposto de renda do cônjuge + recibo",t:"file",casado:1,full:1},
+    ...decl]}
+
+/* ---------- processo de locação ---------- */
+const LOC_ST={aberto:"Cadastro",analise:"Em análise",aprovado:"Aprovado",andamento:"Em andamento",concluido:"Concluído",reprovado:"Reprovado",desistencia:"Desistência",carteira:"Concluído · na carteira",passo:"Etapa"};
+/* Entrada (Contratos · Locação): ficha recebida → em andamento → concluído, como nas O.S. */
+const ENT_ET=[["aguardando","Aguardando ficha"],["novos","Cadastros recebidos"],["andamento","Em andamento"],["concluido","Concluídos"],["encerrada","Não seguiram"],["todas","Todos"]];
+const locEtapa=p=>{const st=p.status||"aberto";return st==="aberto"?(locPrincipal(locFichas(p.id))?.status==="recebida"?"novos":"aguardando"):["analise","aprovado","andamento"].includes(st)?"andamento":["concluido","carteira"].includes(st)?"concluido":"encerrada"};
+const LOC_PASSOS={loc:[["contrato","Contrato de locação assinado"],["vistoria","Vistoria de entrada feita"],["chaves","Chaves entregues ao locatário"]],
+  adm:[["docs","Documentos do proprietário conferidos"],["contrato","Contrato de administração assinado"],["chaves","Chaves recebidas na Park Sul"],["vistoria","Vistoria de entrada feita"]]};
+const locFaltam=p=>LOC_PASSOS[p.kind||"loc"].filter(([k])=>!p.passos?.[k]);
+function locEtapaTxt(p){const k=p.kind||"loc",st=p.status||"aberto";if(st==="aberto")return (k==="loc"&&!p.atend?"Novo · atender · ":"")+locFase(p)[1];
+  if(st==="analise")return "Em análise";if(st==="aprovado"||st==="andamento"){const f=locFaltam(p);return (st==="aprovado"?"Aprovado · ":"")+(f.length?"falta: "+f.map(x=>x[1].split(" ")[0].toLowerCase()).join(", "):"pronto para concluir")}
+  if(st==="concluido"||st==="carteira"){const em=p.concl?.em||p.cart?.em||"";return (k==="adm"?"Na carteira":"Concluído")+(em?" desde "+em.split("-").reverse().join("/"):"")}return LOC_ST[st]||st}
+const LOC_ADM=10; // taxa de administração (% do aluguel)
+const locCondTxt=pct=>`Condições da Park Sul Imóveis: intermediação de ${pct}% do primeiro aluguel, cobrada no primeiro mês (e de novo na renovação do contrato ou em uma nova locação). Nos meses seguintes, taxa de administração de ${LOC_ADM}% do aluguel.`;
+const LOC_MOT_REP=["Renda insuficiente","Restrição cadastral","Documentação incompleta","Garantia não aceita","Outro"];
+const LOC_MOT_DES=["Cliente desistiu","Escolheu outro imóvel","Proprietário desistiu","Sem retorno do cliente","Outro"];
+const locPode=()=>!!S.full||!!(S.corr?.get(S.sessao?.id)?.locacao);   // quem opera: master ou quem tem "Operação de locação" no cadastro
+const locFichas=pid=>[...(S.fichas||new Map()).entries()].map(([id,r])=>({id,...r})).filter(r=>r.procId===pid).sort((a,b)=>String(a.criadoEm).localeCompare(String(b.criadoEm)));
+const LOC_PAPEL={locpf:"Locatário",locpj:"Locatário (empresa)",fiador:"Fiador",socio:"Sócio/administrador",locador:"Proprietário"};
+function locFase(p){if((p.status||"aberto")!=="aberto")return [p.status,locEtapaTxt(p)];const F=locFichas(p.id);
+  const main=locPrincipal(F);if(!main||main.status!=="recebida")return ["aguardando",p.kind==="adm"?"Aguardando a ficha do proprietário":"Aguardando a ficha do locatário"];
+  const fl=locPend(p,F).map(x=>x.d.l);const outras=F.filter(f=>f!==main&&f.status!=="recebida");
+  if(fl.length||outras.length)return ["pendente",[fl.length?"Falta "+fl.length+" documento"+(fl.length>1?"s":""):"",outras.length?"aguardando "+Object.entries(outras.reduce((o,f)=>{const k=(LOC_PAPEL[f.papel||f.tipo]||"ficha").toLowerCase();o[k]=(o[k]||0)+1;return o},{})).map(([k,n])=>n>1?n+" "+(k==="fiador"?"fiadores":k+"s"):k).join(", "):""].filter(Boolean).join(" · ")];
+  return ["pronto",p.kind==="adm"?"Ficha completa":"Pronto para análise"]}
+const locPrincipal=F=>F.find(f=>["locpf","locpj","locador"].includes(f.papel||f.tipo));
+function locVisiveis(){const L=[...(S.locprocs||new Map()).entries()].map(([id,p])=>({id,...p}));const eu=semAcento(S.sessao?.nome||"");return locPode()?L:L.filter(p=>p.por===S.sessao?.id||semAcento(p.corretor||"")===eu)}
+/* Telas: menu de fichas (como em Fichas · Venda) → tela de cada ficha → painel de locação */
+const LOC_TILES=[["loc","Locação","Ficha do<br>locatário","Quem vai alugar, pessoa física ou empresa: dados, renda e documentos."],
+  ["locador","Administração","Ficha do<br>proprietário","Captação: imóvel, dados de repasse e condições de intermediação."]];
+const LOC_ICO='<svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="9" cy="8" r="3.5"/><path d="M2.5 20c.8-3.6 3.4-5.5 6.5-5.5s5.7 1.9 6.5 5.5"/><path d="M17 8h5M19.5 5.5v5"/></svg>';
+function renderLocFic(){const box=$("#lfBox");if(!box)return;const t=S.lfTela||"menu";if(S.ltAtual&&t===S.ltTela&&$("#ltForm")&&!$("#ltForm").hidden){const lst=$("#ltLista");if(lst)locFichaLista(t);return}
+  $("#subTitulo").textContent=t==="menu"?"Fichas · Locação":t==="painel"?(locPode()?"Painel de locação":"Minha locação"):t==="loc"?"Ficha do locatário":FICHA_INFO[t]?.titulo||"Fichas · Locação";
+  $("#lfVolta").hidden=t==="menu";if(t==="menu")return locMenu(box);if(t==="painel")return locPainel(box);return locFichaTela(box,t)}
+function locMenu(box){const L=locVisiveis();const n=k=>L.filter(p=>locFase({...p})[0]===k).length;
+  box.innerHTML=`<p class="note">Escolha a ficha. Cada ficha vai para o cliente pelo WhatsApp (sem precisar de Gmail) ou é preenchida junto com ele, e chega aqui no sistema.</p>
+  <div class="hgrid fvgrid">${LOC_TILES.map(([k,mk,b,md])=>`<button class="mtile" type="button" data-lftela="${k}"><span class="mic">${LOC_ICO}</span><span class="mk">${mk}</span><b>${b}</b><span class="md">${md}</span></button>`).join("")}
+  <button class="mtile" type="button" data-lftela="painel"><span class="mbadge">${(n("analise")+n("pronto"))||""}</span><span class="mic"><svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 3v18h18"/><path d="M7 15l4-4 3 3 5-6"/></svg></span><span class="mk">${locPode()?"Operação de locação":"Acompanhamento"}</span><b>${locPode()?"Painel de<br>locação":"Minha<br>locação"}</b><span class="md">${locPode()?"Propostas e captações por situação, análise e aprovação.":"Como estão as suas propostas e captações."}</span></button></div>`}
+function locFichaTela(box,tipo){const esc0=tipo==="loc";if(esc0)tipo="locpf";const I=FICHA_INFO[tipo],quem=I.quem;const loc=tipo==="locpf"||tipo==="locpj";
+  box.innerHTML=`<div class="autf"><p class="count">${esc(I.intro)}</p>
+  ${S.lfCapt?`<div class="lfaviso"><div><b>Falta a captação</b><span>${esc(S.lfCapt.ref)} não está na carteira: envie a ficha do proprietário para a Park Sul administrar.</span></div><button type="button" class="btn sm pri" id="ltCapt">Ficha do proprietário</button></div>`:""}
+  <fieldset class="autsec"><legend>Corretor, imóvel e valor <small class="s">· o corretor preenche e depois envia ao locatário</small></legend>
+   ${loc?`<div class="grid2">${lfQ("lt_pess","O locatário é pessoa física ou jurídica?",[["locpf","Pessoa física"],["locpj","Pessoa jurídica","empresa"]],esc0?"":tipo)}</div>`:""}<div class="lfresto" ${loc&&esc0?"hidden":""}><div class="grid2">
+   ${locCorrCampo("lt")}<span class="lfgap"></span>
+   ${locBuscaHtml("lt",tipo==="locador"?{nao:true,capt:false}:{})}
+   ${loc?`${lfQ("lt_prop","Teve proposta ou é o valor de anúncio?",[["nao","Não","pelo valor de anúncio"],["sim","Sim","o cliente propôs outro valor"]],"")}
+     <div class="lfvals" id="lt_valW" style="grid-column:1/-1" hidden><div class="grid2"><label class="f">Valor de anúncio (R$) *<input class="inp" id="lt_anun" inputmode="decimal" placeholder="Ex.: 3.500"></label>
+     <label class="f" id="lt_vpW" hidden>Valor da proposta (R$) *<input class="inp" id="lt_vprop" inputmode="decimal" placeholder="Ex.: 3.200"></label></div>
+     <div class="lfdif" id="lt_dif" hidden></div></div>`:""}
+   ${tipo==="locador"?`<label class="f">Atividade *<select class="sel" id="lt_at"><option>Locação</option><option>Venda e locação</option></select></label><label class="f">Valor de anúncio (R$) *<input class="inp" id="lt_anun" inputmode="decimal" placeholder="Ex.: 4.000"></label><label class="f">Intermediação (% do 1º aluguel) *<input class="inp" id="lt_pct" inputmode="numeric" value="100"></label><p class="note lfcond" style="grid-column:1/-1" id="lt_nota"></p>`:""}
+   </div>
+   <div class="autescolha"><button type="button" class="btn pri autbig" id="ltLink">Enviar para o ${esc(quem)} preencher</button><span class="note">O ${esc(quem)} recebe o link no WhatsApp (vale ${LINK_DIAS} dias), preenche os dados, anexa os documentos e envia. A ficha chega aqui no sistema, em PDF.</span>
+   <button type="button" class="autjunto" id="ltJunto">Preencher junto com o ${esc(quem)} agora</button></div></div></fieldset>
+  <div id="ltForm" hidden></div><p class="err" id="ltErr"></p><div class="autacts" id="ltActs" hidden><button type="button" class="btn pri" id="ltEnviar">Salvar e enviar a ficha</button></div></div><div id="ltLista"></div>`;
+  locBuscaLigar("lt",m=>{if(m&&m.valor&&$("#lt_anun")&&!$("#lt_anun").value){$("#lt_anun").value=Number(m.valor).toLocaleString("pt-BR");dif()}});
+  const dif=()=>{const d=$("#lt_dif");if(!d)return;const an=numBR($("#lt_anun").value),vp=numBR($("#lt_vprop").value);if(lfQval("lt_prop")!=="sim"||!(an>0)||!(vp>0)){d.hidden=true;return}
+    const df=vp-an,pc=df/an*100;d.hidden=false;d.className="lfdif "+(df<0?"neg":df>0?"pos":"");
+    d.innerHTML=`<span>Anúncio <b>${brlV(an)}</b></span><span>Proposta <b>${brlV(vp)}</b></span><span>Diferença <b>${df===0?"sem diferença":(df<0?"− ":"+ ")+brlV(Math.abs(df))+" ("+(df<0?"−":"+")+Math.abs(pc).toLocaleString("pt-BR",{maximumFractionDigits:1})+"%)"}</b></span><small>${df<0?"Abaixo do anúncio: a proposta será submetida ao proprietário.":df>0?"Acima do anúncio.":"Igual ao anúncio."}</small>`};
+  if(loc){lfQligar("lt_prop",v=>{$("#lt_valW").hidden=false;const pr=v==="sim";$("#lt_vpW").hidden=!pr;dif();setTimeout(()=>(pr?$("#lt_vprop"):$("#lt_anun").value?null:$("#lt_anun"))?.focus(),30)});$("#lt_anun").oninput=dif;$("#lt_vprop").oninput=dif}
+  if(tipo==="locador"){const nota=()=>{const n=Math.round(numBR($("#lt_pct").value));$("#lt_nota").textContent=locCondTxt(n>=1&&n<=100?n:100)};$("#lt_pct").oninput=nota;nota()}
+  if($("#ltCapt"))$("#ltCapt").onclick=()=>{const c=S.lfCapt;S.lfTela="locador";renderLocFic();$("#lt_end").value=c.ref;if(c.anun)$("#lt_anun").value=Number(c.anun).toLocaleString("pt-BR");if(c.corretor&&$("#lt_corr"))$("#lt_corr").value=c.corretor};
+  if(loc)lfQligar("lt_pess",v=>{S.lfTela=v;S.ltAtual=null;renderLocFic();setTimeout(()=>$("#lt_corr")?.focus(),30)});
+  if(esc0){$("#ltLista").innerHTML="";}else locFichaLista(tipo);
+  // lê a parte do corretor
+  const ler=()=>{const im=locLerImovel("lt");if(im.erro)throw new Error(im.erro);if(loc&&!lfQval("lt_prop"))throw new Error("Escolha se teve proposta ou se é o valor de anúncio.");const anun=numBR($("#lt_anun").value);if(!(anun>0))throw new Error("Informe o valor de anúncio.");
+    const prop=loc&&lfQval("lt_prop")==="sim";const vprop=prop?numBR($("#lt_vprop").value):anun;if(prop&&!(vprop>0))throw new Error("Informe o valor da proposta.");
+    const corretor=$("#lt_corr")?.value||S.sessao?.nome||"";const c=[...(S.contatos||new Map()).values()].find(x=>semAcento(x.nome)===semAcento(corretor));
+    return {...im,anun,prop,vprop,corretor,corrEmail:c?.email||""}};
+  const criar=async(x,cli)=>{const ref=db.collection("locprocs").doc();const pid=ref.id;const base={ref:x.ref,imovelId:x.imovelId,carteira:x.carteira,valor:x.vprop,anuncio:x.anun,proposta:!!x.prop,corretor:x.corretor,corrEmail:x.corrEmail,cliNome:cli.nome||"",cliTel:cli.tel||"",cliEmail:cli.em||"",status:"aberto",criadoEm:nowISO(),por:S.sessao?.id||"",porNome:S.sessao?.nome||""};
+    const propInfo={carteira:x.carteira?"Sim":"Não, captação nesta locação",anuncio:x.anun,proposta:x.prop?"Sim":"Não",vprop:x.prop?x.vprop:"",corretor:x.corretor};let nota="";
+    if(loc){await ref.set({...base,kind:"loc",garantia:"",tipoLoc:tipo,hist:locHist(null,"aberto",x.prop?`Proposta de ${brlV(x.vprop)} (anúncio ${brlV(x.anun)})`:"Ficha criada pelo valor de anúncio")});
+      if(!x.carteira&&x.capt)S.lfCapt={ref:x.ref,anun:x.anun,corretor:x.corretor,de:pid}}
+    else{const pct=Math.round(numBR($("#lt_pct").value));if(!(pct>=1&&pct<=100))throw new Error("A intermediação vai de 1% a 100% do primeiro aluguel.");
+      await ref.set({...base,kind:"adm",atividade:$("#lt_at").value,pct,adm:LOC_ADM,deProc:S.lfCapt?.de||"",hist:locHist(null,"aberto","Captação criada")});nota=locCondTxt(pct);if(S.lfCapt)S.lfCapt=null}
+    return await locCriarFicha(pid,tipo,tipo,{ref:x.ref,corretor:x.corretor,corrEmail:x.corrEmail,nome:cli.nome||"",tel:cli.tel||"",em:cli.em||""},{prop:propInfo,...(nota?{nota}:{})})};
+  $("#ltLink").onclick=()=>{let x;try{$("#ltErr").textContent="";x=ler()}catch(e){$("#ltErr").textContent=e.message;return}
+    openModal({sm:1,body:`<header><h2>Enviar para o ${esc(quem)}</h2><button class="btn ghost x" data-close-btn>Fechar</button></header><div class="bd"><p class="note" style="margin:0 0 8px">${esc(x.ref)}</p><div class="grid2">${locCliCampos("lk",quem)}</div><p class="err" id="lkErr"></p></div>
+    <footer><button class="btn" data-close-btn>Cancelar</button><button class="btn pri" id="lkOk">Gerar o link</button></footer>`},()=>{$("#lkOk").onclick=async()=>{const tel=$("#lk_ctel").value.replace(/\D/g,"");if(tel.length<10||tel.length>13){$("#lkErr").textContent="Informe o WhatsApp com DDD, para enviar o link.";return}
+      const em=$("#lk_cemail").value.trim();if(em&&!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(em)){$("#lkErr").textContent="E-mail inválido.";return}const bt=$("#lkOk");bt.disabled=true;
+      try{const r=await criar(x,{nome:nomePessoa($("#lk_cnome").value),tel,em});closeModal();renderLocFic();fichaLinkDialog({...r.data,papel:tipo},r.id)}catch(er){$("#lkErr").textContent=er.message;bt.disabled=false}}})};
+  $("#ltJunto").onclick=async()=>{const bt=$("#ltJunto");bt.disabled=true;try{$("#ltForm").hidden=false;$("#ltErr").textContent="";const x=ler();S.ltTela=tipo;S.ltAtual={pend:1};const r=await criar(x,{});S.ltAtual=r;$("#ltForm").innerHTML=fichaHtml(fichaSchema(tipo));fichaLigar($("#ltForm"));$("#ltForm").hidden=false;$("#ltActs").hidden=false;
+      box.querySelector(".autescolha").hidden=true;box.querySelector("fieldset.autsec").querySelectorAll("input,select,button").forEach(el=>el.disabled=true);box.querySelector("fieldset.autsec").classList.add("lftrav");$("#ltForm").scrollIntoView({behavior:"smooth",block:"start"})}catch(e){$("#ltErr").textContent=e.message}finally{bt.disabled=false}};
+  $("#ltEnviar").onclick=async()=>{const r=S.ltAtual;if(!r)return;await fichaSubmeter({tipo,root:$("#ltForm"),btn:$("#ltEnviar"),lbl:"Salvar e enviar a ficha",err:$("#ltErr"),acao:"fichaEnviar",ref:r.data.ref,corretor:r.data.corretor,prop:r.data.prop,payload:{t:r.data.t||r.t},
+    ok:(res)=>{const d=res?.data||{};fichaGuardar(r.id,{...d,procId:r.data.procId,papel:r.data.papel,prop:r.data.prop});const nm=d.dados?.nome;if(nm)db.doc("locprocs/"+r.data.procId).update({cliNome:nm,cliTel:String(d.dados?.tel||"").replace(/\D/g,"")});S.ltAtual=null;toast("Ficha salva e enviada");renderLocFic()}})}}
+function locFichaLista(tipo){const el=$("#ltLista");if(!el)return;const eu=semAcento(S.sessao?.nome||"");
+  const L=[...(S.fichas||new Map()).entries()].map(([id,r])=>({id,...r})).filter(r=>r.tipo===tipo&&r.procId&&(locPode()||r.por===S.sessao?.id||semAcento(r.corretor||"")===eu)).sort((a,b)=>String(b.criadoEm).localeCompare(String(a.criadoEm))).slice(0,30);
+  if(!L.length){el.innerHTML="";return}
+  el.innerHTML=`<div class="autlst"><h3>${locPode()?"Fichas recebidas e enviadas":"Minhas fichas"} · ${esc(FICHA_INFO[tipo].quem)}</h3>${L.map(r=>{const [st,lb]=fichaSit(r);
+    return `<div class="autli st-${({ok:"assinada",pendente:"pendente",vencida:"vencida",aguardando:"aguardando"})[st]}"><div><b>${esc(r.dados?.nome||(r.clienteNome?r.clienteNome+" · ainda não preencheu":"Ainda não preenchida"))}</b><small class="s">${esc(r.ref||"")}</small><small class="s">${esc(r.corretor||"")} · ${esc(dt(r.recebidaEm||r.criadoEm))}</small></div>
+      <span class="autst">${esc(lb)}</span><div class="oscb">${st==="aguardando"||st==="vencida"?`<button class="btn sm" type="button" data-fvlink="${esc(r.id)}">Link</button>`:""}${st==="pendente"?`<button class="btn sm" type="button" data-fpfalta="${esc(r.id)}">Cobrar documentos</button>`:""}${r.dados?`<button class="btn sm pri" type="button" data-fvdoc="${esc(r.id)}">Ver ficha</button>`:""}<button class="btn sm ghost" type="button" data-lfproc="${esc(r.procId)}">Proposta</button></div></div>`}).join("")}</div>`}
+function locCard(p){const aba=p.kind||"loc";const F=locFichas(p.id);const [fk,fl]=locFase(p);const et=locEtapa(p);const main=locPrincipal(F);const AV=p.fichaAval||{};const st=p.status||"aberto";
+  const pj=aba==="loc"?(p.tipoLoc==="locpj"||main?.tipo==="locpj"):(main?.dados?.pessoa==="Pessoa jurídica");
+  const tit=aba==="loc"?(main?.dados?.nome||p.cliNome||"Locatário"):((pj?main?.dados?.razao:"")||main?.dados?.nome||p.cliNome||"Proprietário");
+  const d10=x=>x?esc(dt(x).slice(0,10)):"";const val=aba==="loc"?(p.proposta&&p.anuncio?`Proposta ${esc(brlV(Number(p.valor)))} (anúncio ${esc(brlV(Number(p.anuncio)))})`:p.valor?esc(brlV(Number(p.valor)))+"/mês":""):(p.valor?"Anúncio "+esc(brlV(Number(p.valor))):"");
+  const ch=(l,v,c)=>`<span class="lfck ${c||""}"><i>${l}</i>${v}</span>`;const ck=[];
+  const cad=["aprovado","concluido"].includes(st)?ch("Cadastro","aprovado","ok"):st==="reprovado"?ch("Cadastro","reprovado","nao"):st==="desistencia"?ch("Cadastro","desistência","nao"):st==="analise"?ch("Cadastro","em análise","and"):st==="carteira"?ch("Cadastro","concluído · na carteira","ok"):st==="andamento"?ch("Cadastro","em andamento","and"):main?.status==="recebida"?ch("Cadastro","recebido",fk==="pendente"?"pen":""):ch("Cadastro","aguardando ficha","pen");ck.push(cad);
+  if(main){const a=AV[main.id],c=AV[main.id+":cj"];if(a)ck.push(ch(aba==="loc"?"Locatário":"Proprietário",a.st==="ok"?"aprovado":"reprovado",a.st));if(c)ck.push(ch("Cônjuge",c.st==="ok"?"aprovado":"reprovado",c.st))}
+  if(aba==="loc"){ck.push(p.garantia?ch("Garantia",esc(p.garantia)+(p.garRes?.st==="ok"?" ✓":""),p.garRes?.st==="ok"?"ok":"and"):(p.garTent||[]).length?ch("Garantia","não passou: "+esc(p.garTent.map(t=>t.g).join(", ")),"nao"):(p.garAprov||[]).length?ch("Garantia","aprovadas: "+esc(p.garAprov.join(", ")),"and"):ch("Garantia","a definir",""));
+    const grp=(pap,l)=>{const G=F.filter(f=>(f.papel||f.tipo)===pap);if(!G.length)return;const ok=G.filter(f=>AV[f.id]?.st==="ok").length,no=G.filter(f=>AV[f.id]?.st==="nao").length,ag=G.filter(f=>f.status!=="recebida").length;
+      ck.push(ch(l,[ok?ok+" aprovado"+(ok>1?"s":""):"",no?no+" reprovado"+(no>1?"s":""):"",ag?ag+" sem ficha":"",G.length-ok-no-ag>0?(G.length-ok-no-ag)+" a avaliar":""].filter(Boolean).join(" · "),no?"nao":ok===G.length?"ok":"and"))};
+    grp("fiador","Fiadores");grp("socio","Sócios");
+    if(p.proposta){const ps=p.propSit?.st||"pendente";ck.push(ch("Proposta",esc((LOC_PROP_ST[ps]||ps).replace(/^Proprietário /,"").replace(/^Aguardando o proprietário$/,"aguardando proprietário")),["aceita","contraok"].includes(ps)?"ok":["recusada","contranao"].includes(ps)?"nao":"and"))}}
+  else{const f=locFaltam(p);if(st==="andamento")ck.push(ch("Contrato",f.length?"falta: "+f.length+" etapa"+(f.length>1?"s":""):"pronto","and"))}
+  return `<button type="button" class="lfcard st-${fk} et-${et}" data-lfproc="${esc(p.id)}"><span class="lfst">${esc(fl)}</span>
+      <b>${esc(tit)} ${aba==="loc"||main?.dados?`<small class="lfpess">${pj?"Pessoa jurídica":"Pessoa física"}</small>`:""}</b><span class="lfref">${esc(p.ref||"Imóvel não informado")}</span>
+      <span class="lfmeta">${[val,"Corretor: "+esc(p.corretor||"—"),main?.recebidaEm?"Ficha chegou "+d10(main.recebidaEm):"Enviada "+d10(p.criadoEm)].filter(Boolean).join(" · ")}</span>
+      <span class="lfcks">${ck.join("")}</span></button>`}
+function locPainel(box){const aba=S.lfAba||"loc",fil=S.lfFil||"todas";
+  const L=locVisiveis().filter(p=>(p.kind||"loc")===aba).sort((a,b)=>String(b.criadoEm).localeCompare(String(a.criadoEm)));
+  const cont=k=>L.filter(p=>k==="todas"||locEtapa(p)===k).length;const vis=L.filter(p=>fil==="todas"||locEtapa(p)===fil);
+  box.innerHTML=`<div class="lftabs" role="tablist"><button type="button" class="lftab" data-lfaba="loc" aria-selected="${aba==="loc"}">Locação · inquilinos</button><button type="button" class="lftab" data-lfaba="adm" aria-selected="${aba==="adm"}">Administração · proprietários</button></div>
+  <div class="lfacts"><button class="btn pri" type="button" data-lftela="${aba==="loc"?"loc":"locador"}">${aba==="loc"?"+ Nova ficha do locatário":"+ Nova captação (ficha do proprietário)"}</button><button class="btn" type="button" data-goto="${aba==="loc"?"cloc":"cadm"}">Ver em Contratos · ${aba==="loc"?"Locação":"Administração"}</button></div>
+  <div class="lfchips">${[["todas","Todas"],...ENT_ET.filter(x=>x[0]!=="todas")].map(([k,l])=>`<button type="button" class="lfchip" data-lffil="${k}" aria-pressed="${fil===k}">${esc(l)} <b>${cont(k)}</b></button>`).join("")}</div>
+  ${vis.length?`<div class="lflist">${vis.map(locCard).join("")}</div>`:`<p class="note lfvazio">${L.length?"Nada neste filtro.":aba==="loc"?"Nenhuma ficha de locatário ainda.":"Nenhuma captação ainda."}</p>`}`}
+/* Contratos · Locação · Entrada: o mesmo esquema das O.S. (situação → cartões → janela com botões da etapa) */
+function renderEntrada(){const box=$("#ceBox");if(!box)return;
+  const k=S.ceKind||"loc",f=S.ceFil||"novos";const L=locVisiveis().filter(p=>(p.kind||"loc")===k).sort((a,b)=>String(b.criadoEm).localeCompare(String(a.criadoEm)));
+  const busca=semAcento(S.ceBusca||"").toLowerCase().trim();const casa=p=>!busca||semAcento([p.ref,p.cliNome,p.corretor,p.garantia,...locFichas(p.id).map(x=>x.dados?.nome||x.clienteNome)].filter(Boolean).join(" ")).toLowerCase().includes(busca);
+  const cont=e=>L.filter(p=>e==="todas"||locEtapa(p)===e).length;const vis=L.filter(p=>(f==="todas"||locEtapa(p)===f)&&casa(p));
+  if(!$("#ceBusca")){box.innerHTML=`<div class="oshead"><p class="note">${k==="loc"?"Locatários (pessoa física ou empresa): cada ficha do corretor chega aqui.":"Proprietários (pessoa física ou empresa): cada ficha de captação chega aqui."} Abra o cartão e mude a situação pelos botões: <b>aguardando ficha → cadastro recebido → em andamento → concluído</b>.</p>
+    <div class="placoes"><button class="btn pri" type="button" id="ceNova">${k==="loc"?"+ Nova ficha do locatário":"+ Nova ficha do proprietário"}</button></div>
+    <div class="seg" id="ceFiltro" role="group" aria-label="Situação">${ENT_ET.map(([e,l])=>`<button type="button" data-cef="${e}"></button>`).join("")}</div></div>
+    <input class="inp osbusca" id="ceBusca" type="search" placeholder="Buscar: imóvel, cliente, corretor…" value="${esc(S.ceBusca||"")}"><div id="ceLista"></div>`;
+    $("#ceBusca").oninput=e=>{S.ceBusca=e.target.value;renderEntrada()};$("#ceNova").onclick=()=>{S.lfManter=1;S.lfTela=k==="loc"?"loc":"locador";setView("locfic");S.lfManter=0}}
+  document.querySelectorAll("#ceFiltro [data-cef]").forEach(b=>{const e=b.dataset.cef;b.setAttribute("aria-pressed",e===f);b.textContent=ENT_ET.find(x=>x[0]===e)[1]+" ("+cont(e)+")"});
+  $("#ceLista").innerHTML=vis.length?`<div class="lflist">${vis.map(locCard).join("")}</div>`:`<div class="empty"><b>${busca?"Nada encontrado":"Nada aqui"}</b>${busca?"Tente o apartamento, o condomínio, o cliente ou o corretor.":f==="novos"?"Fichas que o cliente já preencheu: atenda e analise. Pode avançar mesmo com algum documento pendente.":f==="aguardando"?"O corretor enviou a ficha e o cliente ainda não preencheu.":f==="andamento"?"As fichas em análise e os contratos em preparação ficam aqui.":f==="concluido"?(k==="loc"?"Locações com contrato, vistoria e chaves entregues.":"Imóveis que entraram na carteira de administração."):""}</div>`}
+document.addEventListener("click",e=>{const f=e.target.closest("[data-cef]");if(f){S.ceFil=f.dataset.cef;renderEntrada()}});
+document.addEventListener("click",e=>{
+  const ps=e.target.closest('[data-lfacao="passo"]');if(ps){locPasso(ps.dataset.lfproc2,ps.dataset.passo);return}
+  const pp=e.target.closest('[data-lfacao="prop"]');if(pp){locPropAcao(pp.dataset.lfproc2,pp.dataset.prop);return}
+  const dd=e.target.closest("[data-lfdocs]");if(dd){locDocsDialog(dd.dataset.lfproc2,dd.dataset.lfdocs,dd.dataset.part||"");return}
+  const dv=e.target.closest("[data-docav]");if(dv){locDocAval(dv.dataset.lfproc2,dv.dataset.dk,dv.dataset.docav);return}
+  const fv=e.target.closest('[data-lfacao="fav"]');if(fv){locFiadorAval(fv.dataset.lfproc2,fv.dataset.fid,fv.dataset.fav);return}
+  const a=e.target.closest("[data-lfaba]");if(a){S.lfAba=a.dataset.lfaba;S.lfFil="todas";renderLocFic();return}
+  const f=e.target.closest("[data-lffil]");if(f){S.lfFil=f.dataset.lffil;renderLocFic();return}
+  if(e.target.closest("#lfVolta")){S.ltAtual=null;S.lfTela="menu";renderLocFic();return}
+  const tl=e.target.closest("[data-lftela]");if(tl){S.lfTela=tl.dataset.lftela;closeModal();renderLocFic();window.scrollTo({top:0});return}
+  const c=e.target.closest("[data-lfproc]");if(c){locProcDialog(c.dataset.lfproc);return}
+  const ad=e.target.closest("[data-lfadd]");if(ad){locAddFicha(ad.dataset.lfadd,ad.dataset.tipo);return}
+  const ac=e.target.closest("[data-lfacao]");if(ac){locAcao(ac.dataset.lfproc2,ac.dataset.lfacao,ac.dataset);return}});
+function locImovelOpts(){const L=[...(S.imoveis||new Map()).entries()].filter(([,m])=>!m.arquivado&&(m.finalidade==="locacao"||m.outra?.finalidade==="locacao"||m.finalidade!=="venda"));
+  return L.map(([id,m])=>({id,lb:rotulo(m)+(m.codigo?" · cód. "+m.codigo:""),m})).sort((a,b)=>a.lb.localeCompare(b.lb,"pt-BR"))}
+const locImovelCampo=pre=>`<label class="f" style="grid-column:1/-1">Imóvel *<input class="inp" id="${pre}_imv" list="${pre}_imvl" autocomplete="off" placeholder="Digite o código, o prédio ou a unidade"><datalist id="${pre}_imvl">${locImovelOpts().map(o=>`<option value="${esc(o.lb)}">`).join("")}</datalist><small class="note">Se o imóvel ainda não está no sistema, escreva o endereço.</small></label>`;
+const locCorrCampo=pre=>locPode()?`<label class="f">Corretor *<select class="sel" id="${pre}_corr">${corrList().map(n=>`<option ${semAcento(n)===semAcento(S.sessao?.nome||"")?"selected":""}>${esc(n)}</option>`).join("")}<option value="Park Sul Imóveis">Park Sul Imóveis</option></select></label>`:"";
+const locCliCampos=(pre,quem)=>`<label class="f" style="grid-column:1/-1">Nome do ${quem}<input class="inp" id="${pre}_cnome" placeholder="Para personalizar a mensagem"></label>
+  <label class="f">WhatsApp do ${quem} *<input class="inp" id="${pre}_ctel" inputmode="tel" placeholder="(61) 90000-0000"></label><label class="f">E-mail do ${quem}<input class="inp" id="${pre}_cemail" type="email" inputmode="email"></label>`;
+const LUPA='<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.5-3.5"/></svg>';
+const lfQ=(id,perg,ops,sel)=>`<label class="f lfq" style="grid-column:1/-1">${perg} *<select class="sel lfqs" id="${id}"><option value="" ${sel?"":"selected"} disabled>Escolha uma opção…</option>${ops.map(([v,l,d])=>`<option value="${v}" ${sel===v?"selected":""}>${l}${d?" · "+d:""}</option>`).join("")}</select></label>`;
+const lfQval=id=>$("#"+id)?.value||"";
+function lfQligar(id,cb){const g=$("#"+id);if(!g)return;g.onchange=()=>cb&&cb(g.value)}
+function locBuscaHtml(pre,o={}){return `${lfQ(pre+"_cart","O imóvel está na carteira da Park Sul?",[["sim","Sim","está no sistema"],["nao","Não","vou descrever o imóvel"]],o.nao?"nao":"")}
+  <div id="${pre}_simW" style="grid-column:1/-1" hidden><label class="f">Buscar o imóvel *<span class="lfsrch">${LUPA}<input class="inp" id="${pre}_q" autocomplete="off" placeholder="Ex.: 203 Prime, código ou endereço"></span></label><input type="hidden" id="${pre}_id"><div class="lfres" id="${pre}_res"></div><div class="lfsel" id="${pre}_sel" hidden></div></div>
+  <div id="${pre}_naoW" style="grid-column:1/-1" ${o.nao?"":"hidden"}><label class="f">Descreva o imóvel (residencial, bloco, unidade e endereço) *<input class="inp" id="${pre}_end" placeholder="Ex.: Prime Residence · Bloco I · Apto 203 · SQPS 101"></label>
+   ${o.capt===false?"":`<label class="chkl" style="margin-top:8px"><input type="checkbox" id="${pre}_capt" checked> <span><b>Fazer a captação também</b>: depois desta ficha, enviar a ficha do proprietário, para a Park Sul administrar o imóvel.</span></label>`}</div>`}
+function locBuscaLigar(pre,onSel){const cart=$(`#${pre}_cart`);const q=$(`#${pre}_q`),res=$(`#${pre}_res`),sel=$(`#${pre}_sel`);
+  lfQligar(pre+"_cart",v=>{const nao=v==="nao";$(`#${pre}_simW`).hidden=nao;$(`#${pre}_naoW`).hidden=!nao;onSel&&onSel(null,v);setTimeout(()=>(nao?$(`#${pre}_end`):($(`#${pre}_id`).value?null:q))?.focus(),30)});
+  const L=locImovelOpts().map(o=>({...o,hay:semAcento([o.m.codigo,unidadeTxt(o.m),o.m.unidade,o.m.bloco?"bloco "+o.m.bloco:"",o.m.numero,o.m.endereco,o.m.bairro,o.m.tipo].filter(Boolean).join(" ")).toLowerCase()}));
+  const mostra=()=>{const t=semAcento(q.value).toLowerCase().split(/\s+/).filter(Boolean);if(!t.length){res.innerHTML="";return}
+    const R=L.filter(o=>t.every(w=>o.hay.includes(w))).slice(0,8);
+    res.innerHTML=R.length?R.map(o=>`<button type="button" class="lfopt" data-id="${esc(o.id)}"><b>${esc(rotulo(o.m))}</b><span>${esc([o.m.codigo?"cód. "+o.m.codigo:"",o.m.bairro,STATUS[o.m.status]?.[0],o.m.valor?brlV(Number(o.m.valor)):""].filter(Boolean).join(" · "))}</span></button>`).join(""):`<p class="note" style="margin:6px 0">Nenhum imóvel encontrado. Se ele não está na carteira, responda “Não” em “está na carteira”.</p>`};
+  q.oninput=mostra;res.onclick=e=>{const b=e.target.closest("[data-id]");if(!b)return;const m=S.imoveis.get(b.dataset.id);$(`#${pre}_id`).value=b.dataset.id;res.innerHTML="";q.parentElement.parentElement.hidden=true;
+    sel.hidden=false;sel.innerHTML=`<div><b>${esc(rotulo(m))}</b><span class="note">${esc([m.codigo?"cód. "+m.codigo:"",m.bairro,m.valor?"anúncio "+brlV(Number(m.valor)):""].filter(Boolean).join(" · "))}</span></div><button type="button" class="btn sm ghost">Trocar</button>`;onSel&&onSel(m,"sim")};
+  sel.onclick=e=>{if(!e.target.closest("button"))return;$(`#${pre}_id`).value="";sel.hidden=true;q.parentElement.parentElement.hidden=false;q.value="";q.focus();onSel&&onSel(null,"sim")}}
+function locLerImovel(pre){const cv=lfQval(pre+"_cart");if(!cv)return {erro:"Responda se o imóvel está na carteira da Park Sul."};const nao=cv==="nao";
+  if(nao){const end=frase($(`#${pre}_end`).value);if(!end)return {erro:"Descreva o imóvel (residencial, bloco, unidade e endereço)."};return {ref:end,imovelId:"",carteira:false,capt:!!$(`#${pre}_capt`)?.checked}}
+  const id=$(`#${pre}_id`).value;if(!id)return {erro:"Busque e escolha o imóvel na lista (ou responda “Não” em “está na carteira”)."};const m=S.imoveis.get(id);return {ref:rotulo(m)+(m.codigo?" · cód. "+m.codigo:""),imovelId:id,carteira:true,m}}
+function locLerBase(pre){const imv=$(`#${pre}_imv`).value.trim();if(!imv)return {erro:"Informe o imóvel."};const o=locImovelOpts().find(x=>x.lb===imv);
+  const tel=$(`#${pre}_ctel`).value.replace(/\D/g,"");if(tel.length<10||tel.length>13)return {erro:"Informe o WhatsApp com DDD, para enviar o link."};
+  const em=$(`#${pre}_cemail`).value.trim();if(em&&!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(em))return {erro:"E-mail inválido."};
+  const corretor=$(`#${pre}_corr`)?.value||S.sessao?.nome||"";const c=[...(S.contatos||new Map()).values()].find(x=>semAcento(x.nome)===semAcento(corretor));
+  return {ref:o?o.lb:imv,imovelId:o?.id||"",tel,em,nome:nomePessoa($(`#${pre}_cnome`).value),corretor,corrEmail:c?.email||""}}
+async function locCriarFicha(pid,tipo,papel,b,extra){const r=await api("fichaLink",{tipo,ref:b.ref,corretor:b.corretor,corrEmail:b.corrEmail,clienteNome:b.nome,clienteEmail:b.em,clienteTel:b.tel,procId:pid,papel:papel||tipo,...(extra||{})});
+  fichaGuardar(r.id,{...r.data,procId:pid,papel:papel||tipo});return r}
+function locHist(p,st,obs){return [...(p?.hist||[]),{em:nowISO(),por:S.sessao?.nome||"",st,obs:obs||""}]}
+function locNovaProposta(){openModal({body:`<header><h2>Nova proposta de locação</h2><button class="btn ghost x" data-close-btn>Fechar</button></header>
+  <div class="bd"><div class="grid2">${locImovelCampo("np")}
+   <label class="f">Valor proposto do aluguel (R$) *<input class="inp" id="np_valor" inputmode="decimal" placeholder="Ex.: 3.500"></label>
+   <label class="f">Garantia pretendida *<select class="sel" id="np_gar"><option value="">Selecione…</option>${LOC_GARANTIAS.map(g=>`<option>${g}</option>`).join("")}</select></label>
+   <label class="f">Locatário *<select class="sel" id="np_tp"><option value="locpf">Pessoa física</option><option value="locpj">Pessoa jurídica (empresa)</option></select></label>${locCorrCampo("np")}
+   ${locCliCampos("np","locatário")}</div>
+   <label class="chkl" style="margin-top:10px"><input type="checkbox" id="np_anal" checked> <span>Marcar o imóvel como <b>Em análise</b> no sistema</span></label>
+   <p class="note" id="np_nfia" hidden>Depois de criar, use “+ Fiador” na proposta para mandar a ficha de cada fiador.</p><p class="err" id="npErr"></p></div>
+  <footer><button class="btn" data-close-btn>Cancelar</button><button class="btn pri" id="npOk">Criar e enviar o link</button></footer>`},()=>{
+    $("#np_gar").onchange=()=>$("#np_nfia").hidden=$("#np_gar").value!=="Fiador";
+    $("#npOk").onclick=async()=>{const b=locLerBase("np");if(b.erro){$("#npErr").textContent=b.erro;return}const v=numBR($("#np_valor").value);if(!(v>0)){$("#npErr").textContent="Informe o valor proposto do aluguel.";return}
+      const gar=$("#np_gar").value;if(!gar){$("#npErr").textContent="Escolha a garantia pretendida.";return}const tipo=$("#np_tp").value;
+      const bt=$("#npOk");bt.disabled=true;bt.textContent="Criando…";
+      try{const ref=db.collection("locprocs").doc();const p={kind:"loc",ref:b.ref,imovelId:b.imovelId,valor:v,garantia:gar,tipoLoc:tipo,corretor:b.corretor,corrEmail:b.corrEmail,cliNome:b.nome,cliTel:b.tel,cliEmail:b.em,status:"aberto",criadoEm:nowISO(),por:S.uid||"",porNome:S.sessao?.nome||"",hist:locHist(null,"aberto","Proposta criada")};
+        await ref.set(p);const r=await locCriarFicha(ref.id,tipo,tipo,b);
+        if($("#np_anal").checked&&b.imovelId){const m=S.imoveis.get(b.imovelId);if(m&&m.status==="disponivel"&&S.master)db.doc("imoveis/"+b.imovelId).update({status:"analise",atualizadoEm:nowISO()})}
+        closeModal();fichaLinkDialog({...r.data,papel:tipo},r.id)}catch(er){$("#npErr").textContent=er.message;bt.disabled=false;bt.textContent="Criar e enviar o link"}}})}
+function locNovaCaptacao(){openModal({body:`<header><h2>Nova captação · ficha do proprietário</h2><button class="btn ghost x" data-close-btn>Fechar</button></header>
+  <div class="bd"><div class="grid2">${locImovelCampo("nc")}
+   <label class="f">Atividade *<select class="sel" id="nc_at"><option>Locação</option><option>Venda e locação</option></select></label>
+   <label class="f">Valor de anúncio (R$) *<input class="inp" id="nc_valor" inputmode="decimal" placeholder="Ex.: 4.000"></label>
+   <label class="f">Intermediação (% do 1º aluguel) *<input class="inp" id="nc_pct" inputmode="numeric" value="100"></label>${locCorrCampo("nc")}
+   <p class="note lfcond" style="grid-column:1/-1" id="nc_nota"></p>
+   ${locCliCampos("nc","proprietário")}</div><p class="err" id="ncErr"></p></div>
+  <footer><button class="btn" data-close-btn>Cancelar</button><button class="btn pri" id="ncOk">Criar e enviar o link</button></footer>`},()=>{
+    const nota=()=>{const n=Math.round(numBR($("#nc_pct").value));$("#nc_nota").textContent=locCondTxt(n>=1&&n<=100?n:100)};$("#nc_pct").oninput=nota;nota();
+    $("#ncOk").onclick=async()=>{const b=locLerBase("nc");if(b.erro){$("#ncErr").textContent=b.erro;return}const v=numBR($("#nc_valor").value);if(!(v>0)){$("#ncErr").textContent="Informe o valor de anúncio.";return}
+      const pct=Math.round(numBR($("#nc_pct").value));if(!(pct>=1&&pct<=100)){$("#ncErr").textContent="A intermediação vai de 1% a 100% do primeiro aluguel.";return}
+      const bt=$("#ncOk");bt.disabled=true;bt.textContent="Criando…";
+      try{const ref=db.collection("locprocs").doc();const p={kind:"adm",ref:b.ref,imovelId:b.imovelId,valor:v,atividade:$("#nc_at").value,pct,adm:LOC_ADM,corretor:b.corretor,corrEmail:b.corrEmail,cliNome:b.nome,cliTel:b.tel,cliEmail:b.em,status:"aberto",criadoEm:nowISO(),por:S.uid||"",porNome:S.sessao?.nome||"",hist:locHist(null,"aberto","Captação criada")};
+        await ref.set(p);const r=await locCriarFicha(ref.id,"locador","locador",b,{nota:locCondTxt(pct)});closeModal();fichaLinkDialog({...r.data,papel:"locador"},r.id)}
+      catch(er){$("#ncErr").textContent=er.message;bt.disabled=false;bt.textContent="Criar e enviar o link"}}})}
+function locAddFicha(pid,tipo){const p=S.locprocs?.get(pid);if(!p)return;const quem=tipo==="fiador"?"fiador":"sócio ou administrador";
+  const nf=locFichas(pid).filter(f=>f.tipo==="fiador").length+1;openModal({sm:1,body:`<header><h2>${tipo==="fiador"?"Ficha do fiador "+nf+(nf<=LOC_FIADORES?" de "+LOC_FIADORES:""):"Ficha de sócio ou administrador"}</h2><button class="btn ghost x" data-close-btn>Fechar</button></header>
+  <div class="bd"><p class="note" style="margin:0 0 8px">${esc(p.ref||"")}${tipo!=="fiador"?" · preenche a ficha de pessoa física, ligada a esta proposta.":""}</p><div class="grid2">${locCliCampos("na",quem)}</div><p class="err" id="naErr"></p></div>
+  <footer><button class="btn" data-close-btn>Cancelar</button><button class="btn pri" id="naOk">Criar e enviar o link</button></footer>`},()=>{
+    $("#naOk").onclick=async()=>{const tel=$("#na_ctel").value.replace(/\D/g,"");if(tel.length<10||tel.length>13){$("#naErr").textContent="Informe o WhatsApp com DDD.";return}
+      const em=$("#na_cemail").value.trim();if(em&&!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(em)){$("#naErr").textContent="E-mail inválido.";return}
+      const bt=$("#naOk");bt.disabled=true;try{const r=await locCriarFicha(pid,tipo==="fiador"?"fiador":"locpf",tipo==="fiador"?"fiador":"socio",{ref:p.ref,corretor:p.corretor,corrEmail:p.corrEmail,nome:nomePessoa($("#na_cnome").value),tel,em});
+        db.doc("locprocs/"+pid).update({hist:locHist(p,p.status,(tipo==="fiador"?"Ficha de fiador":"Ficha de sócio")+" enviada"+($("#na_cnome").value?" · "+nomePessoa($("#na_cnome").value):""))});closeModal();fichaLinkDialog({...r.data,papel:tipo},r.id)}
+      catch(er){$("#naErr").textContent=er.message;bt.disabled=false}}})}
+/* pendências de documentos: faltando + recusados na conferência */
+const isCjDoc=k=>/^ax_cj/.test(k)||k==="ax_cas";const docPart=(d,part)=>!part?true:part==="cj"?isCjDoc(d.k):!isCjDoc(d.k);
+function locDocList(pid,r,pode,part){const p=S.locprocs?.get(pid)||{};const DA=p.docAval||{};const ax=r.anexos||{};const D=r.status==="recebida"?fichaDocs(r.tipo,r.dados?.ec,r.dados).filter(d=>docPart(d,part)):[];if(!D.length)return `<p class="note">${r.status==="recebida"?"Nenhum documento nesta parte.":"Ficha ainda não preenchida."}</p>`;
+  return `<div class="lfdocl">${D.map(d=>{const L=ax[d.k]||[];const a=DA[r.id+"|"+d.k]?.st;const cls=!L.length?(d.req?"pend":"opc"):a==="ok"?"ok":a==="nao"?"nao":"env";
+    return `<div class="lfdoc ${cls}"><div><b>${esc(d.l)}</b><span>${!L.length?(d.req?"Pendente":"Opcional · não enviado"):a==="ok"?"Aprovado":a==="nao"?"Recusado · pedir de novo":"Enviado · conferir"}</span>
+      ${L.length?`<span class="lfdocf">${L.map((x,i)=>`<a href="${esc(x.url||"#")}" target="_blank" rel="noopener">Abrir${L.length>1?" "+(i+1):""}</a>`).join("")}</span>`:""}</div>
+     ${pode?`<div class="lfdocb">${L.length&&!a?`<button class="btn sm" type="button" data-docav="ok" data-dk="${esc(r.id+"|"+d.k)}" data-lfproc2="${esc(pid)}" title="Aprovar documento">✓</button><button class="btn sm" type="button" data-docav="nao" data-dk="${esc(r.id+"|"+d.k)}" data-lfproc2="${esc(pid)}" title="Recusar documento">✗</button>`:""}${a?`<button class="btn sm ghost" type="button" data-docav="" data-dk="${esc(r.id+"|"+d.k)}" data-lfproc2="${esc(pid)}">Desfazer</button>`:""}<button class="btn sm${L.length?" ghost":""}" type="button" data-fpanexa="${esc(r.id)}" data-k="${esc(d.k)}">${L.length?"+ Arquivo":"Anexar"}</button></div>`:""}</div>`}).join("")}</div>`}
+function locDocsDialog(pid,fid,part){const r=S.fichas?.get(fid);if(!r)return;const cj=part==="cj";const pap=cj?"Cônjuge":LOC_PAPEL[r.papel||r.tipo]||"Ficha";const d0=r.dados||{};const d=cj?{nome:d0.cj_nome,cpf:d0.cj_cpf,ec:"",}:d0;const pend=locPend(S.locprocs?.get(pid)||{},[{id:fid,...r}]).filter(x=>docPart(x.d,part)).length;
+  openModal({body:`<header><h2>Documentação · ${esc(pap.toLowerCase())}</h2><button class="btn ghost x" data-close-btn>Fechar</button></header><div class="bd">
+   <div class="lfdh"><div><b>${esc(d.nome||r.clienteNome||"")}</b><span class="note">${[d.cpf?"CPF "+esc(d.cpf):"",d.cnpj?"CNPJ "+esc(d.cnpj):"",d.ec?esc(d.ec)+(fichaCasado(d.ec)&&d.cj_nome?" com "+esc(d.cj_nome):""):"",r.recebidaEm?"ficha recebida em "+esc(dt(r.recebidaEm)):""].filter(Boolean).join(" · ")}</span></div>
+    <div class="placoes">${r.dados?`<button class="btn sm pri" type="button" data-fvdoc="${esc(fid)}">Ver ficha completa</button>`:""}${pend&&locPode()?`<button class="btn sm" type="button" data-fpfalta="${esc(fid)}">Cobrar pelo WhatsApp</button>`:""}</div></div>
+   ${cj?`<p class="note" style="margin:0 0 8px">Cônjuge de ${esc(d0.nome||"")} · ${esc(d0.ec||"")}${d0.regime?" · "+esc(d0.regime):""}${d0.cj_renda?" · renda "+esc(d0.cj_renda):""}</p>`:""}${locDocList(pid,{id:fid,...r},locPode(),part)}</div>
+   <footer><button class="btn" type="button" id="ldVolta">‹ Voltar ao cadastro</button></footer>`},()=>{$("#ldVolta").onclick=()=>{closeModal();locProcDialog(pid)}});S.lfDocsCtx={pid,fid,part}}
+const locVolta=pid=>{const c=S.lfDocsCtx;closeModal();setTimeout(()=>c&&c.pid===pid?locDocsDialog(pid,c.fid,c.part):locProcDialog(pid),60)};
+function locPend(p,F){const DA=p.docAval||{};return F.filter(f=>f.status==="recebida").flatMap(f=>{const ax=f.anexos||{};return fichaDocs(f.tipo,f.dados?.ec,f.dados).filter(d=>d.req&&(!(ax[d.k]||[]).length||DA[f.id+"|"+d.k]?.st==="nao")).map(d=>({f,d,rec:DA[f.id+"|"+d.k]?.st==="nao"}))})}
+function locProcDialog(pid){const p=S.locprocs?.get(pid);if(!p)return;S.lfDocsCtx=null;const P={id:pid,...p};const [fk,fl]=locFase(P);const F=locFichas(pid);const loc=(p.kind||"loc")==="loc";const pode=locPode();
+  const fiads=F.filter(f=>(f.papel||f.tipo)==="fiador"),socs=F.filter(f=>(f.papel||f.tipo)==="socio");const AV=p.fichaAval||{};const DA=p.docAval||{};const main=locPrincipal(F);const md=main?.dados||{};
+  const ab=["aberto","analise","andamento"].includes(p.status||"aberto");const ap=p.aprov||{};const ct=p.cart||{};const st=p.status||"aberto";const faltam=locFaltam(p);
+  const B=(ac,l,pri)=>`<button class="btn${pri?" pri":""}" type="button" data-lfacao="${ac}" data-lfproc2="${esc(pid)}">${l}</button>`;
+  const pj=loc?(p.tipoLoc==="locpj"||main?.tipo==="locpj"):md.pessoa==="Pessoa jurídica";const d10=x=>x?esc(dt(x).slice(0,10)):"—";
+  /* 1. identificação */
+  const m=p.imovelId?S.imoveis?.get(p.imovelId):null;const an=Number(p.anuncio||(!p.proposta?p.valor:0)||0),vp=Number(p.valor||0);const desc=loc&&p.proposta&&an>0?(an-vp)/an*100:0;
+  const C=(l,v,full)=>`<div class="c"${full?' style="grid-column:1/-1"':""}><span>${l}</span><b>${v}</b></div>`;
+  const ident=`<div class="lfid st-${fk}"><div class="lfidtop"><span class="lfst">${esc(fl)}</span><span class="lfcorr">Corretor: <b>${esc(p.corretor||"—")}</b></span></div>
+    <div class="lfidg">${C(loc?"Locatário":"Proprietário",esc((pj&&!loc?md.razao:"")||md.nome||p.cliNome||"Aguardando a ficha")+` <small class="lfpess">${main?.dados||loc?(pj?"Pessoa jurídica":"Pessoa física"):"—"}</small>`,1)}
+     ${C("Data de envio da ficha",d10(p.criadoEm))}${C("Ficha recebida em",main?.recebidaEm?d10(main.recebidaEm):"aguardando")}
+     ${m?C("Unidade",esc(m.numero?(UN_LABEL[m.tipo]||"Unid.")+" "+m.numero:(m.unidade||unidadeTxt(m)||"—")))+C("Condomínio",esc(m.endereco||"—"))+C("Bloco",esc(m.bloco||"—")):C("Imóvel",esc(p.ref||"—"),1)}
+     ${loc?C("Valor de anúncio",an?esc(brlV(an)):"—")+C("Valor da proposta",p.proposta?esc(brlV(vp)):"sem proposta")+(p.proposta&&an?C("Desconto sobre o anúncio",desc>0?esc(desc.toLocaleString("pt-BR",{maximumFractionDigits:1}))+"% · "+esc(brlV(an-vp)):desc<0?"acima do anúncio":"sem desconto"):"")
+       :C("Valor de anúncio",an?esc(brlV(an)):"—")+C("Atividade",esc(p.atividade||"—"))+(p.pct?C("Intermediação / administração",esc(p.pct)+"% do 1º aluguel · "+esc(p.adm||LOC_ADM)+"%"):"")}
+     ${p.carteira===false?C("Carteira","fora da carteira (captação nesta locação)"):""}</div></div>`;
+  /* 2. pendências */
+  const pend=locPend(p,F);
+  const pendH=pend.length?`<div class="lfpend"><div class="lfpendh"><span class="lfst" style="background:#fde2dc;color:#a8321c">Falta documento</span>${pode?`<span class="note">Recebeu pelo WhatsApp? Anexe aqui e o cadastro se completa.</span>`:""}</div>
+    <div class="lfpendl">${pend.map(({f,d,rec})=>`<div class="lfpd"><div><b>${esc(d.l)}</b><span>${esc((f.dados?.nome||"").split(" ").slice(0,2).join(" "))} · ${esc(LOC_PAPEL[f.papel||f.tipo]||"Ficha")}${rec?" · recusado na conferência":""}</span></div>${pode?`<button class="btn sm pri" type="button" data-fpanexa="${esc(f.id)}" data-k="${esc(d.k)}">Anexar documento</button>`:""}</div>`).join("")}</div>
+    ${pode?`<div class="placoes">${[...new Set(pend.map(x=>x.f.id))].map(id=>`<button class="btn sm" type="button" data-fpfalta="${esc(id)}">Cobrar ${esc((S.fichas.get(id)?.dados?.nome||"").split(" ")[0])} pelo WhatsApp</button>`).join("")}</div>`:""}</div>`:"";
+  /* 3-5. análises */
+  const avRow=(rot,nome,key,sub,docs,part,linkF)=>{const a=AV[key];const n=docs?locPend(p,[docs]).filter(x=>docPart(x.d,part)).length:0;
+    return `<div class="lfprow ${a?.st||""}"><div class="lfprn"><span class="lfpap">${esc(rot)}</span><b>${esc(nome||"—")}</b>${sub?`<small class="s">${sub}</small>`:""}${a?.obs?`<small class="s">${esc(a.obs)}</small>`:""}</div>
+     <div class="lfanr">${docs?`<button class="btn sm" type="button" data-lfdocs="${esc(docs.id)}" data-part="${part||""}" data-lfproc2="${esc(pid)}">Documentação${n?` <i class="lfnb">${n}</i>`:""}</button>`:linkF?`<button class="btn sm" type="button" data-fvlink="${esc(linkF.id)}">Link da ficha</button>`:""}
+      ${a?`<span class="lfres ${a.st}">${a.st==="ok"?"Aprovado":a.st==="des"?"Desistiu":"Reprovado"}</span>`:`<span class="lfres">${key?"A analisar":"Aguardando ficha"}</span>`}
+      ${pode&&ab&&key?(a?`<button class="btn sm ghost" type="button" data-lfacao="fav" data-fav="" data-fid="${esc(key)}" data-lfproc2="${esc(pid)}">Refazer</button>`:`<button class="btn sm" type="button" data-lfacao="fav" data-fav="ok" data-fid="${esc(key)}" data-lfproc2="${esc(pid)}">Aprovado</button><button class="btn sm" type="button" data-lfacao="fav" data-fav="nao" data-fid="${esc(key)}" data-lfproc2="${esc(pid)}">Reprovado</button><button class="btn sm ghost" type="button" data-lfacao="fav" data-fav="des" data-fid="${esc(key)}" data-lfproc2="${esc(pid)}">Desistência</button>`):""}</div></div>`};
+  const avRowCj=(...x)=>avRow(...x).replace('class="lfprow ','class="lfprow lfcj ');
+  const pessoa=(f,rot)=>{const d=f.dados||{};const rec=f.status==="recebida";let h=avRow(rot,d.nome||f.clienteNome||"Ficha ainda não preenchida",rec?f.id:"",rec?"":"aguardando a ficha",rec?f:null,"tit",rec?null:f);
+    if(rec&&fichaCasado(d.ec)&&d.cj_nome)h+=avRowCj("Cônjuge",d.cj_nome,f.id+":cj",esc(d.ec)+(d.regime?" · "+esc(d.regime):""),f,"cj");return h};
+  const analises=main?`<h3 class="subt">${loc?"Locatário":"Proprietário"}</h3><div class="lfpbox">${pessoa(main,loc?(pj?"Locatário · empresa":"Locatário"):"Proprietário")}${socs.map((f,i)=>pessoa(f,"Sócio ou administrador"+(socs.length>1?" "+(i+1):""))).join("")}</div>`:"";
+  const fOk=fiads.filter(f=>!["nao","des"].includes(AV[f.id]?.st)),okF=fiads.filter(f=>AV[f.id]?.st==="ok").length;
+  const fiaH=loc&&p.garantia==="Fiador"?`<h3 class="subt">Fiadores <small class="s">· ${fOk.length} de ${LOC_FIADORES} válidos</small></h3><div class="lfpbox">${fiads.map((f,i)=>pessoa(f,"Fiador "+(i+1))).join("")||`<div class="lfprow"><small class="s">Nenhuma ficha de fiador ainda.</small></div>`}</div>
+    ${pode&&ab?`<div class="placoes">${fiads.some(f=>f.status!=="recebida"&&!["nao","des"].includes(AV[f.id]?.st))?B("fialinks","Enviar os links dos fiadores ao locatário",fOk.length<LOC_FIADORES||fiads.some(f=>f.status!=="recebida")):`${fOk.length<LOC_FIADORES?`<button class="btn sm pri" type="button" data-lfadd="${esc(pid)}" data-tipo="fiador">+ Ficha de outro fiador</button>`:""}`}</div>`:""}
+    ${okF>=LOC_FIADORES?`<div class="lfgok"><b>✓ Os ${okF} fiadores foram aprovados.</b>${pode?`<div class="placoes">${p.garRes?.st!=="ok"?B("garok","Garantia aprovada",1):""}${B("avisar","Avisar o locatário que vamos dar andamento",p.garRes?.st==="ok")}</div>`:""}</div>`:""}`:"";
+  const acoes=!pode?"":loc?(st==="aberto"?B("atender",p.atend?"Atender de novo":"Atender · WhatsApp",!p.atend)+B("analise","Iniciar análise",!!p.atend)+B("desistencia","Desistência"):st==="analise"?B("aprovar","Aprovar locação",1)+B("reprovar","Reprovar locação")+B("desistencia","Desistência"):st==="aprovado"?B("concluir","Concluir entrada",!faltam.length)+B("desistencia","Desistência"):B("reabrir","Reabrir"))
+    :(st==="aberto"?B("iniciar","Iniciar · em andamento",1)+B("desistencia","Desistência"):st==="andamento"?B("carteira","Concluir · entrar na carteira",!faltam.length)+B("desistencia","Desistência"):B("reabrir","Reabrir"));
+  const passos=(loc&&["aprovado","concluido"].includes(st))||(!loc&&["andamento","carteira"].includes(st))?`<h3 class="subt">${loc?"Contrato de locação":"Contrato de administração"}</h3><div class="lfpassos">${LOC_PASSOS[loc?"loc":"adm"].map(([k,l])=>{const d=p.passos?.[k];
+    return `<div class="lfpasso${d?" ok":""}"><span class="lfpck" aria-hidden="true">${d?"✓":""}</span><div><b>${esc(l)}</b><small class="s">${d?"Feito em "+esc(d.em.split("-").reverse().join("/"))+(d.por?" · "+esc(d.por):"")+(d.obs?" · "+esc(d.obs):""):k==="vistoria"&&ap.vist?"Agendada: "+esc(dt(ap.vist))+(ap.vistoriador?" · "+esc(ap.vistoriador):""):"Pendente"}</small></div>
+    ${pode&&!["concluido","carteira"].includes(st)?`<button class="btn sm${d?" ghost":""}" type="button" data-lfacao="passo" data-passo="${k}" data-lfproc2="${esc(pid)}">${d?"Desfazer":"Marcar feito"}</button>`:""}</div>`}).join("")}</div>`:"";
+  openModal({body:`<header><h2>${loc?"Contrato de locação · "+(pj?"empresa":"inquilino"):"Contrato de administração · proprietário"}</h2><button class="btn ghost x" data-close-btn>Fechar</button></header>
+  <div class="bd">${ident}${pendH}
+   ${loc&&p.atend?`<p class="note lfatend">✓ Atendido por ${esc(p.atend.por||"—")} em ${esc(dt(p.atend.em))}: ficha recebida e enviada para análise.</p>`:""}
+   ${analises}
+   ${loc?(()=>{const mOk=main&&AV[main.id]?.st==="ok";return locGarBloco(pid,p,pode&&(mOk||!!p.garantia||(p.garAprov||[]).length>0),ab,fiads).replace('<h3 class="subt">Garantia locatícia</h3>','<h3 class="subt">Garantia locatícia</h3>'+(!mOk&&!p.garantia?`<p class="note lfaviso2">Primeiro analise o locatário. Com ele aprovado, defina as garantias e envie as fichas dos fiadores, se for o caso.</p>`:""))})()+fiaH:""}
+   ${loc&&ab&&pj&&pode?`<div class="placoes"><button class="btn sm" type="button" data-lfadd="${esc(pid)}" data-tipo="socio">+ Sócio ou administrador (ficha PF)</button></div>`:""}
+   ${loc?locPropBloco(pid,p,pode):""}
+   ${["aprovado","concluido"].includes(p.status)&&p.aprov?`<div class="lfaprov"><b>Locação aprovada</b><span>Início ${esc(ap.inicio?ap.inicio.split("-").reverse().join("/"):"—")} · ${ap.valor?esc(brlV(Number(ap.valor)))+"/mês":""} · ${esc(ap.garantia||"")}${ap.vgar?" "+esc(brlV(Number(ap.vgar))):""}${ap.seguro?` · seguro incêndio ${esc(brlV(Number(ap.seguro)))}`:""}</span><span>Vistoria de entrada: ${esc(ap.vist?dt(ap.vist):"a agendar")}${ap.vistoriador?" · "+esc(ap.vistoriador):""}</span></div>`:""}
+   ${p.status==="carteira"?`<div class="lfaprov"><b>Na carteira desde ${esc(ct.em?ct.em.split("-").reverse().join("/"):"—")}</b><span>Aluguel ${ct.valor?esc(brlV(Number(ct.valor))):"—"} · região ${esc(ct.reg||"—")} · vistoria de entrada: ${esc(ct.vist||"—")}</span></div>`:""}
+   ${["reprovado","desistencia"].includes(p.status)&&p.motivo?`<div class="lfaprov rep"><b>${esc(LOC_ST[p.status])}</b><span>${esc(p.motivo)}</span></div>`:""}
+   ${passos}
+   ${acoes?`<div class="placoes lfacoes" style="margin-top:14px">${acoes}</div>`:""}
+   ${(()=>{const H=[...(p.hist||[])].reverse();const li=h=>`<li><span class="lfhd2">${esc(dt(h.em))} · ${esc(h.por||"")}</span>${esc(h.obs||LOC_ST[h.st]||h.st)}</li>`;return `<details class="lfhistd"><summary><b>Histórico</b> <span class="note">${H.length} registro${H.length>1?"s":""}${H[0]?" · último: "+esc((H[0].obs||LOC_ST[H[0].st]||"").slice(0,60))+" · "+esc(dt(H[0].em).slice(0,10)):""}</span></summary><ol class="lfhist">${H.map(li).join("")}</ol></details>`})()}</div>
+  <footer><button class="btn pri" data-close-btn>Fechar</button></footer>`})}
+function locPasso(pid,k){const p=S.locprocs?.get(pid);if(!p||!locPode())return;const L=LOC_PASSOS[p.kind||"loc"].find(x=>x[0]===k);if(!L)return;const ps={...(p.passos||{})};
+  const salva=v=>{if(v)ps[k]=v;else delete ps[k];db.doc("locprocs/"+pid).update({passos:ps,hist:locHist(p,"passo",(v?"":"Desfeito: ")+L[1]+(v?.obs?" · "+v.obs:"")),atualizadoEm:nowISO()});closeModal();setTimeout(()=>locProcDialog(pid),50)};
+  if(ps[k])return salva(null);
+  openModal({sm:1,body:`<header><h2>${esc(L[1])}</h2><button class="btn ghost x" data-close-btn>Fechar</button></header><div class="bd"><label class="f">Data *<input class="inp" id="lp_em" type="date" value="${new Date().toISOString().slice(0,10)}"></label>
+    <label class="f">Observação<input class="inp" id="lp_obs" placeholder="${k==="vistoria"?"Ex.: feita pelo Pedro":k==="contrato"?"Ex.: assinado digitalmente":""}"></label></div>
+    <footer><button class="btn" data-close-btn>Cancelar</button><button class="btn pri" id="lpOk">Marcar feito</button></footer>`},()=>{$("#lpOk").onclick=()=>salva({em:$("#lp_em").value||new Date().toISOString().slice(0,10),por:S.sessao?.nome||"",obs:frase($("#lp_obs").value)})})}
+function locSituacao(pid){const p=S.locprocs?.get(pid);if(!p)return;const loc=(p.kind||"loc")==="loc";const ab=p.status==="aberto"||p.status==="analise";
+  const ops=loc?(ab?[...(p.status==="aberto"?[["analise","Em análise","A equipe começou a analisar as fichas."]]:[]),["aprovar","Aprovado","Contrato fechado: informar início, garantia e vistoria de entrada."],["reprovar","Reprovado","Com o motivo da reprovação."],["desistencia","Desistência","O cliente ou o proprietário desistiu."]]:[["reabrir","Reabrir","Volta para Aguardando fichas / Em análise."]])
+    :(ab?[["carteira","Na carteira","Imóvel entrou na administração."],["desistencia","Desistência","O proprietário desistiu."]]:[["reabrir","Reabrir","Volta para a captação em aberto."]]);
+  openModal({sm:1,body:`<header><h2>Atualizar situação</h2><button class="btn ghost x" data-close-btn>Fechar</button></header>
+  <div class="bd"><p class="note" style="margin:0 0 10px">${esc(p.ref||"")} · agora: <b>${esc(locFase({id:pid,...p})[1])}</b></p><div class="lfsits">${ops.map(([k,l,d])=>`<button type="button" class="lfsit" data-lfacao="${k}" data-lfproc2="${esc(pid)}"><b>${esc(l)}</b><span>${esc(d)}</span></button>`).join("")}</div></div>
+  <footer><button class="btn" data-close-btn>Cancelar</button></footer>`})}
+const LOC_GAR_DICA={"Fiador":"Dois fiadores, cada um preenche a própria ficha.","Título de capitalização":"Título contratado pelo locatário.","Caução":"Depósito em dinheiro, normalmente até 3 aluguéis.","Seguro fiança":"A seguradora aprova e emite a apólice.","Garantia enxoval (aluguel à vista)":"O locatário paga o aluguel à vista."};
+const LOC_FIADORES=2;
+function locGarBloco(pid,p,pode,ab,fiads){const A=p.garAprov||[];const NP=(p.garTent||[]).map(t=>t.g);const AV=p.fichaAval||{};const fOk=fiads.filter(f=>!["nao","des"].includes(AV[f.id]?.st));
+  const B=(ac,l,pri,x="")=>`<button class="btn sm${pri?" pri":""}" type="button" data-lfacao="${ac}" data-lfproc2="${esc(pid)}"${x}>${l}</button>`;const an=["analise","aberto"].includes(p.status||"aberto");
+  const fiaRow=(f,i)=>{const a=AV[f.id];const [sf,lb]=fichaSit(f);const pend=f.status==="recebida"?fichaFaltaRec(f).length:0;
+    return `<div class="lffc ${a?.st||""}"><div class="lffcn"><span class="lfpap">Fiador ${i+1}</span><b>${esc(f.dados?.nome||f.clienteNome||"Ficha ainda não preenchida")}</b><small class="s">${f.status!=="recebida"?esc(lb):pend?"Falta "+pend+" documento"+(pend>1?"s":""):"Ficha e documentos completos"}${f.dados&&fichaCasado(f.dados.ec)?" · casado(a)":""}${a?.obs?" · "+esc(a.obs):""}</small></div>
+     <div class="lffcb">${a?`<span class="lfres ${a.st}">${a.st==="ok"?"Aprovado":a.st==="des"?"Desistiu":"Reprovado"}</span>`:f.status==="recebida"?`<span class="lfres">A analisar</span>`:""}
+      ${f.dados?`<button class="btn sm" type="button" data-lfdocs="${esc(f.id)}" data-lfproc2="${esc(pid)}">Documentação</button>`:`<button class="btn sm" type="button" data-fvlink="${esc(f.id)}">Link da ficha</button>`}
+      ${pode&&ab&&f.status==="recebida"?(a?`<button class="btn sm ghost" type="button" data-lfacao="fav" data-fav="" data-fid="${esc(f.id)}" data-lfproc2="${esc(pid)}">Refazer</button>`:`<button class="btn sm" type="button" data-lfacao="fav" data-fav="ok" data-fid="${esc(f.id)}" data-lfproc2="${esc(pid)}">Aprovado</button><button class="btn sm" type="button" data-lfacao="fav" data-fav="nao" data-fid="${esc(f.id)}" data-lfproc2="${esc(pid)}">Reprovado</button><button class="btn sm ghost" type="button" data-lfacao="fav" data-fav="des" data-fid="${esc(f.id)}" data-lfproc2="${esc(pid)}">Desistência</button>`):""}</div></div>`};
+  const okF=fiads.filter(f=>AV[f.id]?.st==="ok").length;
+  return `<h3 class="subt">Garantia locatícia</h3><div class="lfgbox">
+   <div class="lfgl"><span class="lfgk">Aprovadas para o locatário</span><div class="lfgv">${A.length?`<div class="lfgchips">${A.map(g=>`<span class="lfgchip ok${NP.includes(g)?" off":""}">${NP.includes(g)?"✗":"✓"} ${esc(g)}${NP.includes(g)?" · não passou":""}</span>`).join("")}</div>`:`<b>Ainda não definidas</b>`}
+     <small class="s">${A.length?esc([p.garAprovObs,p.garEnv?"enviadas ao locatário em "+dt(p.garEnv.em).slice(0,10):"ainda não enviadas ao locatário"].filter(Boolean).join(" · ")):"Depois da análise de cadastro e score, marque as garantias aprovadas."}</small>
+     ${pode&&an?`<div class="placoes">${B("garaprov",A.length?"Alterar":"Definir garantias aprovadas",!A.length)}${A.length&&!p.garantia?B("garenv",p.garEnv?"Enviar de novo ao locatário":"Enviar ao locatário",!p.garEnv):""}</div>`:""}</div></div>
+   ${A.length||p.garantia?`<div class="lfgl"><span class="lfgk">Escolhida pelo locatário</span><div class="lfgv">
+     <div class="lfgesc">${(A.length?A:[p.garantia]).map(g=>`<button type="button" class="lfgopt2${g===p.garantia?" on":""}" ${pode&&ab&&g!==p.garantia&&!NP.includes(g)?`data-lfacao="garesc" data-g="${esc(g)}" data-lfproc2="${esc(pid)}"`:"disabled"}>${g===p.garantia?"● ":"○ "}${esc(g)}</button>`).join("")}</div>
+     ${p.garantia?`<div class="lfgres">${p.garRes?.st==="ok"?`<span class="lfres ok">Garantia aprovada</span>`:`<span class="lfres">Resultado da garantia: a definir</span>${pode&&ab?B("garok","Aprovada",p.garantia!=="Fiador"||okF>=LOC_FIADORES)+B("garnao","Reprovada"):""}`}</div>`:`<small class="s">${pode&&ab?"Clique na garantia que o locatário escolheu.":"Aguardando a escolha do locatário."}</small>`}
+     ${(p.garTent||[]).length?`<small class="s lfgtent">Não passaram: ${(p.garTent||[]).map(t=>esc(t.g+(t.obs?" ("+t.obs+")":""))).join(" · ")}</small>`:""}</div></div>`:""}
+   ${p.garantia&&p.garantia!=="Fiador"&&p.garRes?.st==="ok"&&pode?`<div class="lfgok"><b>✓ Garantia aprovada: ${esc(p.garantia)}.</b><div class="placoes">${B("avisar","Avisar o locatário que vamos dar andamento",1)}</div></div>`:""}</div>`}
+const LOC_PROP_ST={pendente:"Aguardando o proprietário",aceita:"Proprietário aceitou",recusada:"Proprietário recusou",contra:"Contraproposta do proprietário",contraok:"Locatário aceitou a contraproposta",contranao:"Locatário recusou a contraproposta"};
+function locPropBloco(pid,p,pode){const ps=p.propSit||{st:"pendente"};const B=(k,l,pri)=>`<button class="btn sm${pri?" pri":""}" type="button" data-lfacao="prop" data-prop="${k}" data-lfproc2="${esc(pid)}">${l}</button>`;
+  const vp=Number(p.valorProp||p.valor),an=Number(p.anuncio);const fim=["aceita","contraok"].includes(ps.st);const pc=p.propCom;
+  return `<h3 class="subt">Proprietário</h3><div class="lfgbox">
+   <div class="lfgl"><span class="lfgk">Comunicado sobre a locação?</span><div class="lfgv">${pc?`<span class="lfres ok">Sim · ${esc(dt(pc.em).slice(0,10))}${pc.por?" · "+esc(pc.por):""}</span>`:`<span class="lfres">Ainda não</span>`}
+     ${pode?`<div class="placoes"><button class="btn sm${pc?" ghost":" pri"}" type="button" data-lfacao="propcom" data-lfproc2="${esc(pid)}">${pc?"Comunicar de novo":"Comunicar o proprietário"}</button></div>`:""}</div></div>
+   ${p.proposta?`<div class="lfgl"><span class="lfgk">Proposta</span><div class="lfgv"><b>${esc(brlV(vp))} · anúncio ${esc(brlV(an))}</b><span class="lfres ${fim?"ok":["recusada","contranao"].includes(ps.st)?"nao":""}">${esc(LOC_PROP_ST[ps.st]||ps.st)}</span>
+     <small class="s">${ps.contra?"contraproposta "+esc(brlV(Number(ps.contra))):""}${fim?" · valor fechado "+esc(brlV(Number(p.valor))):""}${ps.em?" · "+esc(dt(ps.em).slice(0,10))+(ps.por?" · "+esc(ps.por):""):""}${ps.obs?" · "+esc(ps.obs):""}</small>
+     ${pode?`<div class="placoes">${ps.st==="pendente"?B("aceita","Proprietário aceitou",1)+B("contra","Contraproposta")+B("recusada","Recusou"):ps.st==="contra"?B("contraok","Locatário aceitou",1)+B("contranao","Locatário recusou"):B("pendente","Refazer")}</div>`:""}</div></div>`:""}</div>`}
+function locFiadorAval(pid,key,st){const p=S.locprocs?.get(pid);if(!p||!locPode())return;const F=locFichas(pid);const cj=key.endsWith(":cj");const fid=cj?key.slice(0,-3):key;const f=F.find(x=>x.id===fid);
+  const pap=f?.papel||f?.tipo;const nome=cj?(f?.dados?.cj_nome||"cônjuge"):(f?.dados?.nome||f?.clienteNome||"");const qual=cj?"Cônjuge":pap==="socio"?"Sócio":pap==="fiador"?"Fiador":pap==="locador"?"Proprietário":"Locatário";const av={...(p.fichaAval||{})};
+  const salva=(v,h)=>{if(v)av[key]=v;else delete av[key];db.doc("locprocs/"+pid).update({fichaAval:av,hist:locHist(p,p.status,h),atualizadoEm:nowISO()});closeModal();setTimeout(()=>locProcDialog(pid),60)};
+  if(!st)return salva(null,"Análise refeita: "+qual.toLowerCase()+" "+nome);
+  if(st==="ok")return salva({st:"ok",em:nowISO(),por:S.sessao?.nome||""},qual+" aprovado: "+nome);
+  if(st==="des")return salva({st:"des",em:nowISO(),por:S.sessao?.nome||""},qual+" desistiu: "+nome);
+  openModal({sm:1,body:`<header><h2>${esc(qual)} reprovado</h2><button class="btn ghost x" data-close-btn>Fechar</button></header><div class="bd"><p class="note" style="margin:0 0 8px">${esc(nome)}${qual==="Fiador"?" não conta como fiador. Peça outro fiador ou ofereça outra garantia.":qual==="Locatário"?": com o locatário reprovado, use “Reprovar locação” para encerrar, ou ofereça outra garantia.":"."}</p><label class="f">Motivo<input class="inp" id="fr_obs" placeholder="Ex.: renda insuficiente, restrição no CPF, score baixo"></label></div>
+    <footer><button class="btn" data-close-btn>Cancelar</button><button class="btn pri" id="frOk">Reprovar</button></footer>`},()=>{$("#frOk").onclick=()=>{const obs=frase($("#fr_obs").value);salva({st:"nao",obs,em:nowISO(),por:S.sessao?.nome||""},qual+" reprovado: "+nome+(obs?" · "+obs:""))}})}
+function locDocAval(pid,dk,st){const p=S.locprocs?.get(pid);if(!p||!locPode())return;const [fid,k]=dk.split("|");const f=S.fichas?.get(fid);const d=f?fichaDocs(f.tipo,f.dados?.ec,f.dados).find(x=>x.k===k):null;const da={...(p.docAval||{})};
+  const ctx=S.lfDocsCtx;const salva=(v,h)=>{if(v)da[dk]=v;else delete da[dk];db.doc("locprocs/"+pid).update({docAval:da,hist:locHist(p,p.status,h),atualizadoEm:nowISO()});S.lfDocsCtx=ctx;locVolta(pid)};const nm=(d?.l||k)+" · "+((f?.dados?.nome||"").split(" ")[0]);
+  if(!st)return salva(null,"Conferência desfeita: "+nm);if(st==="ok")return salva({st:"ok",em:nowISO(),por:S.sessao?.nome||""},"Documento aprovado: "+nm);
+  openModal({sm:1,body:`<header><h2>Recusar documento</h2><button class="btn ghost x" data-close-btn>Fechar</button></header><div class="bd"><p class="note" style="margin:0 0 8px">${esc(nm)} volta para as pendências, para pedir de novo.</p><label class="f">Motivo<input class="inp" id="dr_obs" placeholder="Ex.: ilegível, vencido, falta o recibo"></label></div>
+    <footer><button class="btn" data-close-btn>Cancelar</button><button class="btn pri" id="drOk">Recusar</button></footer>`},()=>{$("#drOk").onclick=()=>{const obs=frase($("#dr_obs").value);salva({st:"nao",obs,em:nowISO(),por:S.sessao?.nome||""},"Documento recusado: "+nm+(obs?" · "+obs:""))}})}
+function locPropAcao(pid,k){const p=S.locprocs?.get(pid);if(!p||!locPode())return;const ps=p.propSit||{};const base={em:nowISO(),por:S.sessao?.nome||""};const vp=Number(p.valorProp||p.valor);
+  const salva=(d,obs)=>{const u={propSit:{...d,...base},valorProp:vp,valor:d.valor||vp,atualizadoEm:nowISO(),hist:locHist(p,p.status,LOC_PROP_ST[d.st]+(obs?" · "+obs:""))};db.doc("locprocs/"+pid).update(u);closeModal();setTimeout(()=>locProcDialog(pid),50)};
+  if(k==="aceita")return salva({st:"aceita",valor:vp},brlV(vp));
+  if(k==="pendente")return salva({st:"pendente",valor:vp},"proposta reaberta");
+  if(k==="contraok")return salva({st:"contraok",contra:ps.contra,valor:Number(ps.contra)},brlV(Number(ps.contra)));
+  if(k==="contranao")return salva({st:"contranao",contra:ps.contra,valor:vp});
+  openModal({sm:1,body:`<header><h2>${k==="contra"?"Contraproposta do proprietário":"Proprietário recusou"}</h2><button class="btn ghost x" data-close-btn>Fechar</button></header><div class="bd">
+    ${k==="contra"?`<label class="f">Valor da contraproposta (R$) *<input class="inp" id="pc_v" inputmode="decimal" placeholder="Ex.: 3.400"></label>`:""}<label class="f">Observação<input class="inp" id="pc_obs" placeholder="${k==="contra"?"Ex.: aceita com reajuste em 12 meses":"Ex.: não aceita abaixo do anúncio"}"></label><p class="err" id="pcErr"></p></div>
+    <footer><button class="btn" data-close-btn>Cancelar</button><button class="btn pri" id="pcOk">Salvar</button></footer>`},()=>{$("#pcOk").onclick=()=>{const obs=frase($("#pc_obs").value);
+      if(k==="contra"){const v=numBR($("#pc_v").value);if(!(v>0)){$("#pcErr").textContent="Informe o valor.";return}return salva({st:"contra",contra:v,obs,valor:vp},brlV(v)+(obs?" · "+obs:""))}salva({st:"recusada",obs,valor:vp},obs)}})}
+const locNome1=p=>{const F=locFichas(p.id||"");const n=p.cliNome||F.find(f=>f.tipo==="locpf"||f.tipo==="locpj")?.dados?.nome||"";return n.split(" ")[0]||""};
+const locTel=p=>{const F=locFichas(p.id||"");const t=String(p.cliTel||F.find(f=>f.tipo==="locpf"||f.tipo==="locpj")?.dados?.tel||"").replace(/\D/g,"");return t?(t.length<=11?"55":"")+t:""};
+function locWaDialog(pid,titulo,msg,onEnv){const p=S.locprocs?.get(pid);const tel=locTel({id:pid,...p});
+  openModal({sm:1,body:`<header><h2>${esc(titulo)}</h2><button class="btn ghost x" data-close-btn>Fechar</button></header><div class="bd"><p class="note" style="margin:0 0 6px">Confira a mensagem e envie pelo WhatsApp${tel?"":" (sem WhatsApp cadastrado: copie a mensagem)"}.</p>
+    <textarea class="inp" id="lw_msg" rows="10" style="width:100%;resize:vertical">${esc(msg)}</textarea></div>
+    <footer><button class="btn" type="button" id="lwCopia">Copiar mensagem</button>${tel?`<a class="btn pri" id="lwWa" target="_blank" rel="noopener">Abrir no WhatsApp</a>`:""}</footer>`},()=>{const m=()=>$("#lw_msg").value;let feito=false;const ok=()=>{if(!feito){feito=true;onEnv&&onEnv()}};
+    $("#lwCopia").onclick=async()=>{try{await navigator.clipboard.writeText(m())}catch{$("#lw_msg").select();try{document.execCommand("copy")}catch{}}toast("Mensagem copiada");ok()};
+    if($("#lwWa")){const at=()=>$("#lwWa").href="https://wa.me/"+tel+"?text="+encodeURIComponent(m());at();$("#lw_msg").oninput=at;$("#lwWa").onclick=()=>{ok();setTimeout(()=>{closeModal();locProcDialog(pid)},300)}}})}
+function locAcao(pid,ac,ds={}){const p=S.locprocs?.get(pid);if(!p||!locPode())return;if(ac==="situacao")return locSituacao(pid);
+  const eu=(S.sessao?.nome||"").split(" ")[0];const n1=locNome1({id:pid,...p});const salvo=(d,h)=>db.doc("locprocs/"+pid).update({...d,hist:locHist(p,p.status,h),atualizadoEm:nowISO()});
+  if(ac==="garesc"){const g=ds.g;if(!g)return;db.doc("locprocs/"+pid).update({garantia:g,garObs:"",garPor:S.sessao?.nome||"",garRes:null,hist:locHist(p,p.status,"Locatário escolheu a garantia: "+g),atualizadoEm:nowISO()});
+    if(g==="Fiador"){(async()=>{const AVx=p.fichaAval||{};const val=locFichas(pid).filter(f=>f.tipo==="fiador"&&!["nao","des"].includes(AVx[f.id]?.st));
+      for(let n=val.length;n<LOC_FIADORES;n++)await locCriarFicha(pid,"fiador","fiador",{ref:p.ref,corretor:p.corretor,corrEmail:p.corrEmail,nome:"",tel:"",em:""});
+      setTimeout(()=>locAcao(pid,"fialinks"),150)})();return}
+    toast("Garantia escolhida: "+g);setTimeout(()=>{closeModal();locProcDialog(pid)},60);return}
+  if(ac==="fialinks"){const AVx=p.fichaAval||{};const L=locFichas(pid).filter(f=>f.tipo==="fiador"&&f.status!=="recebida"&&!["nao","des"].includes(AVx[f.id]?.st));if(!L.length){toast("Todas as fichas de fiador já chegaram");return}
+    const msg=`Olá${n1?", "+n1:""}! Aqui é ${eu?eu+", ":""}da Park Sul Imóveis.\n\nPara a garantia com fiador da locação do imóvel ${p.ref||""}, cada fiador precisa preencher a própria ficha e anexar os documentos. Encaminhe um link para cada um:\n\n${L.map((f,i)=>"Fiador "+(i+1)+": "+fichaUrl(f.t)).join("\n")}\n\nOs links valem ${LINK_DIAS} dias. As fichas chegam direto para nós e seguem para análise. Qualquer dúvida, é só chamar por aqui.`;
+    return locWaDialog(pid,"Links das fichas dos fiadores",msg,()=>salvo({fiaEnv:{em:nowISO(),por:S.sessao?.nome||""}},"Links das fichas dos fiadores enviados ao locatário"))}
+  if(ac==="propcom"){const msg=`Olá! Aqui é ${eu?eu+", ":""}da Park Sul Imóveis.\n\nTemos um interessado na locação do seu imóvel ${p.ref||""}${p.proposta?`, com proposta de ${brlV(Number(p.valorProp||p.valor))} por mês (anúncio de ${brlV(Number(p.anuncio))})`:` pelo valor de ${brlV(Number(p.valor))} por mês`}. O cadastro está em análise e, assim que tivermos o resultado, retornamos com os próximos passos.\n\nQualquer dúvida, estamos à disposição.`;
+    return locWaDialog(pid,"Comunicar o proprietário",msg,()=>salvo({propCom:{em:nowISO(),por:S.sessao?.nome||""}},"Proprietário comunicado sobre a locação"))}
+  if(ac==="garok"){salvo({garRes:{st:"ok",em:nowISO(),por:S.sessao?.nome||""}},"Garantia aprovada: "+p.garantia);toast("Garantia aprovada");setTimeout(()=>{closeModal();locProcDialog(pid)},60);return}
+  if(ac==="garnao"){openModal({sm:1,body:`<header><h2>${esc(p.garantia)} não passou</h2><button class="btn ghost x" data-close-btn>Fechar</button></header><div class="bd"><p class="note" style="margin:0 0 8px">A garantia volta para “a definir”. Ofereça ao locatário outra das garantias aprovadas.</p>
+      <label class="f">Motivo<input class="inp" id="gn_obs" placeholder="${p.garantia==="Seguro fiança"?"Ex.: seguradora não aprovou o cadastro":"Ex.: fiador reprovado na análise"}"></label></div>
+      <footer><button class="btn" data-close-btn>Cancelar</button><button class="btn pri" id="gnOk">Salvar</button></footer>`},()=>{$("#gnOk").onclick=()=>{const obs=frase($("#gn_obs").value);
+      salvo({garTent:(p.garTent||[]).concat([{g:p.garantia,obs,em:nowISO(),por:S.sessao?.nome||""}]),garantia:"",garObs:"",garRes:null,garEnv:null},"Garantia não passou: "+p.garantia+(obs?" · "+obs:""));closeModal();toast("Ofereça outra garantia");setTimeout(()=>locProcDialog(pid),60)}});return}
+  if(ac==="avisar"){const fi=p.garantia==="Fiador";const msg=`Olá${n1?", "+n1:""}! Aqui é ${eu?eu+", ":""}da Park Sul Imóveis.\n\nBoa notícia: ${fi?"os fiadores foram aprovados":"a garantia "+(p.garantia||"").toLowerCase()+" foi aprovada"} para a locação do imóvel ${p.ref||""}.\n\nVamos dar andamento ao contrato e logo entramos em contato com os próximos passos. Qualquer dúvida, é só chamar por aqui.`;
+    return locWaDialog(pid,"Avisar o locatário",msg,()=>salvo({avisoGar:{em:nowISO(),por:S.sessao?.nome||""}},"Locatário avisado: "+(fi?"fiadores aprovados":"garantia aprovada")+" e andamento do contrato"))}
+  if(ac==="atender"){const msg=`Olá${n1?", "+n1:""}! Tudo bem? Aqui é ${eu?eu+", ":""}da Park Sul Imóveis.\n\nRecebemos a sua ficha cadastral para a locação do imóvel ${p.ref||""} e ela já segue para análise.\n\nVamos analisar toda a documentação e, se faltar alguma coisa, entramos em contato com você. Fique à vontade para tirar qualquer dúvida por aqui.\n\nObrigado!`;
+    return locWaDialog(pid,"Atender · ficha recebida",msg,()=>salvo({atend:{em:nowISO(),por:S.sessao?.nome||""}},"Atendimento: locatário avisado que a ficha foi recebida e segue para análise"))}
+  if(ac==="garaprov"){const A=p.garAprov||[];const extra=A.filter(g=>!LOC_GARANTIAS.includes(g));openModal({sm:1,body:`<header><h2>Garantias aprovadas</h2><button class="btn ghost x" data-close-btn>Fechar</button></header>
+    <div class="bd"><p class="note" style="margin:0 0 8px">Marque as garantias que a análise de cadastro e score aprovou para ${esc(p.cliNome||"o locatário")}. Ele escolhe uma delas.</p><div class="lfsits">${LOC_GARANTIAS.map(g=>`<label class="lfsit lfgopt"><input type="checkbox" name="ga_g" value="${esc(g)}" ${A.includes(g)?"checked":""}> <b>${esc(g)}</b><span>${esc(LOC_GAR_DICA[g]||"")}</span></label>`).join("")}</div>
+    <label class="f" style="margin-top:10px">Outra garantia<input class="inp" id="ga_out" value="${esc(extra.join(", "))}" placeholder="Ex.: fiador com imóvel no DF"></label>
+    <label class="f">Observação da análise<input class="inp" id="ga_obs" value="${esc(p.garAprovObs||"")}" placeholder="Ex.: caução de 3 aluguéis; seguro aprovado pela Porto"></label><p class="err" id="gaErr"></p></div>
+    <footer><button class="btn" data-close-btn>Cancelar</button><button class="btn pri" id="gaOk">Salvar</button></footer>`},()=>{$("#gaOk").onclick=()=>{const L=[...document.querySelectorAll('input[name="ga_g"]:checked')].map(x=>x.value).concat(frase($("#ga_out").value).split(/\s*,\s*/).filter(Boolean));
+      if(!L.length){$("#gaErr").textContent="Marque pelo menos uma garantia.";return}const obs=frase($("#ga_obs").value);
+      salvo({garAprov:L,garAprovObs:obs,garAprovPor:S.sessao?.nome||"",garAprovEm:nowISO()},"Garantias aprovadas: "+L.join(", ")+(obs?" · "+obs:""));closeModal();toast("Garantias aprovadas salvas");setTimeout(()=>locProcDialog(pid),60)}});return}
+  if(ac==="garenv"){const A=p.garAprov||[];const msg=`Olá${n1?", "+n1:""}! Aqui é ${eu?eu+", ":""}da Park Sul Imóveis.\n\nConcluímos a análise da sua ficha para a locação do imóvel ${p.ref||""}. ${A.length>1?"As garantias aprovadas para você são":"A garantia aprovada para você é"}:\n\n${A.map(g=>"• "+g+(g==="Fiador"?" (dois fiadores)":"")).join("\n")}${p.garAprovObs?"\n\n"+p.garAprovObs:""}\n\n${A.length>1?"Qual delas você prefere? Com a sua escolha, seguimos para a próxima etapa.":"Podemos seguir com ela?"} Qualquer dúvida, é só chamar por aqui.`;
+    return locWaDialog(pid,"Enviar garantias ao locatário",msg,()=>salvo({garEnv:{em:nowISO(),por:S.sessao?.nome||""}},"Garantias aprovadas enviadas ao locatário"))}
+  if(ac==="garantia"){const GL=(p.garAprov||[]).length?p.garAprov.concat(p.garantia&&!p.garAprov.includes(p.garantia)?[p.garantia]:[]):LOC_GARANTIAS;openModal({sm:1,body:`<header><h2>Garantia escolhida</h2><button class="btn ghost x" data-close-btn>Fechar</button></header>
+    <div class="bd"><p class="note" style="margin:0 0 8px">${esc(p.ref||"")} · ${esc(p.cliNome||"")}</p><div class="lfsits">${GL.map(g=>`<label class="lfsit lfgopt"><input type="radio" name="lg_g" value="${esc(g)}" ${g===p.garantia?"checked":""}> <b>${esc(g)}${(p.garTent||[]).some(t=>t.g===g)?" · já não passou":""}</b><span>${esc(LOC_GAR_DICA[g]||"")}</span></label>`).join("")}</div>
+    <label class="f" style="margin-top:10px">Observação (valor, nº de aluguéis, seguradora…)<input class="inp" id="lg_obs" value="${esc(p.garObs||"")}"></label><p class="err" id="lgErr"></p></div>
+    <footer><button class="btn" data-close-btn>Cancelar</button><button class="btn pri" id="lgOk">Salvar</button></footer>`},()=>{$("#lgOk").onclick=()=>{const g=document.querySelector('input[name="lg_g"]:checked')?.value;if(!g){$("#lgErr").textContent="Escolha a garantia.";return}
+      const obs=frase($("#lg_obs").value);db.doc("locprocs/"+pid).update({garantia:g,garObs:obs,garPor:S.sessao?.nome||"",garRes:null,hist:locHist(p,p.status,"Garantia: "+g+(obs?" · "+obs:"")),atualizadoEm:nowISO()});
+      closeModal();toast("Garantia definida");setTimeout(()=>{locProcDialog(pid);if(g==="Fiador"&&locFichas(pid).filter(f=>f.tipo==="fiador").length<LOC_FIADORES)setTimeout(()=>locAddFicha(pid,"fiador"),80)},60)}});return}const upd=d=>db.doc("locprocs/"+pid).update({...d,atualizadoEm:nowISO()});
+  const imv=st=>{if(p.imovelId&&S.imoveis.get(p.imovelId))db.doc("imoveis/"+p.imovelId).update({status:st,atualizadoEm:nowISO()})};
+  if(ac==="analise"){const [fk,fl]=locFase({id:pid,...p});const F_=locFichas(pid);const go=()=>{upd({status:"analise",hist:locHist(p,"analise","Análise iniciada"+(fk==="pendente"?" · pendências: "+F_.flatMap(f=>f.status==="recebida"?fichaFaltaRec(f).map(x=>x.l):[]).join(", "):""))});closeModal();setTimeout(()=>locProcDialog(pid),50);toast(fk==="pendente"?"Em análise · pendências anotadas":"Proposta em análise")};
+    if(fk==="aguardando"){openModal({sm:1,body:`<header><h2>Iniciar a análise?</h2></header><div class="bd"><p>A ficha do locatário ainda não foi preenchida. Pode iniciar mesmo assim, se já tiver os dados por outro meio.</p></div><footer><button class="btn" data-close-btn>Voltar</button><button class="btn pri" id="laOk">Iniciar mesmo assim</button></footer>`},()=>$("#laOk").onclick=go);return}go();return}
+  if(ac==="iniciar"){upd({status:"andamento",hist:locHist(p,"andamento","Contrato de administração em andamento")});closeModal();toast("Em andamento");setTimeout(()=>locProcDialog(pid),50);return}
+  if(ac==="concluir"){const f=locFaltam(p);openModal({sm:1,body:`<header><h2>Concluir a entrada</h2><button class="btn ghost x" data-close-btn>Fechar</button></header><div class="bd">
+      ${f.length?`<p class="note" style="margin:0 0 8px">Ainda falta: <b>${esc(f.map(x=>x[1]).join(", "))}</b>. Pode concluir mesmo assim.</p>`:`<p class="note" style="margin:0 0 8px">Contrato assinado, vistoria feita e chaves entregues.</p>`}
+      <label class="f">Data<input class="inp" id="lz_em" type="date" value="${new Date().toISOString().slice(0,10)}"></label>
+      ${p.imovelId?`<label class="chkl" style="margin-top:8px"><input type="checkbox" id="lz_alug" checked> <span>Marcar o imóvel como <b>Alugado</b></span></label>`:""}</div>
+      <footer><button class="btn" data-close-btn>Cancelar</button><button class="btn pri" id="lzOk">Concluir</button></footer>`},()=>{$("#lzOk").onclick=()=>{const em=$("#lz_em").value||new Date().toISOString().slice(0,10);
+      upd({status:"concluido",concl:{em,por:S.sessao?.nome||""},hist:locHist(p,"concluido","Entrada concluída em "+em.split("-").reverse().join("/"))});if($("#lz_alug")?.checked)imv("alugado");closeModal();toast("Locação concluída");setTimeout(()=>locProcDialog(pid),50)}});return}
+  if(ac==="reabrir"){const vol=(p.kind||"loc")==="loc"?(p.status==="concluido"?"aprovado":"aberto"):(p.status==="carteira"?"andamento":"aberto");upd({status:vol,hist:locHist(p,vol,"Reaberta")});closeModal();setTimeout(()=>locProcDialog(pid),50);return}
+  if(ac==="reprovar"||ac==="desistencia"){const mots=ac==="reprovar"?LOC_MOT_REP:LOC_MOT_DES;
+    openModal({sm:1,body:`<header><h2>${ac==="reprovar"?"Reprovar a proposta":"Registrar desistência"}</h2><button class="btn ghost x" data-close-btn>Fechar</button></header>
+    <div class="bd"><label class="f">Motivo *<select class="sel" id="lm_m"><option value="">Selecione…</option>${mots.map(m=>`<option>${m}</option>`).join("")}</select></label><label class="f">Observação<textarea class="inp" id="lm_o" rows="3"></textarea></label>
+    ${p.imovelId&&(p.kind||"loc")==="loc"?`<label class="chkl"><input type="checkbox" id="lm_disp" checked> <span>Voltar o imóvel para <b>Disponível</b></span></label>`:""}<p class="err" id="lmErr"></p></div>
+    <footer><button class="btn" data-close-btn>Cancelar</button><button class="btn pri" id="lmOk">Confirmar</button></footer>`},()=>{$("#lmOk").onclick=()=>{const m=$("#lm_m").value;if(!m){$("#lmErr").textContent="Escolha o motivo.";return}
+      const mot=[m,frase($("#lm_o").value)].filter(Boolean).join(" · ");const st=ac==="reprovar"?"reprovado":"desistencia";upd({status:st,motivo:mot,hist:locHist(p,st,mot)});
+      if($("#lm_disp")?.checked){const outra=[...S.locprocs.entries()].some(([id,x])=>id!==pid&&x.imovelId===p.imovelId&&["aberto","analise"].includes(x.status));if(!outra&&S.imoveis.get(p.imovelId)?.status==="analise")imv("disponivel")}
+      closeModal();toast(LOC_ST[st]+" registrada")}});return}
+  if(ac==="aprovar"){const hoje=new Date().toISOString().slice(0,10);
+    openModal({body:`<header><h2>Aprovar e fechar a locação</h2><button class="btn ghost x" data-close-btn>Fechar</button></header>
+    <div class="bd"><p class="note" style="margin:0 0 8px">${esc(p.ref||"")} · ${esc(p.cliNome||"")}. O cliente entra na base de Locação com estes dados.</p><div class="grid2">
+     <label class="f">Início do contrato *<input class="inp" id="la_ini" type="date" value="${hoje}"></label>
+     <label class="f">Aluguel (R$) *<input class="inp" id="la_val" inputmode="decimal" value="${p.valor?Number(p.valor).toLocaleString("pt-BR"):""}"></label>
+     <label class="f">Garantia aprovada *<select class="sel" id="la_gar">${LOC_GARANTIAS.map(g=>`<option ${g===p.garantia?"selected":""}>${g}</option>`).join("")}</select></label>
+     <label class="f">Valor da garantia (R$)<input class="inp" id="la_vgar" inputmode="decimal" placeholder="Ex.: caução de 3 aluguéis"></label>
+     <label class="f">Seguro incêndio (R$)<input class="inp" id="la_seg" inputmode="decimal"></label>
+     <label class="f">Seguro incêndio<select class="sel" id="la_segp"><option>A contratar</option><option>Contratado</option><option>Pago</option></select></label>
+     <label class="f">Vistoria de entrada · data e hora<input class="inp" id="la_vist" type="datetime-local"></label>
+     <label class="f">Vistoriador<input class="inp" id="la_vor" value="Pedro"></label></div>
+     <p class="note" style="margin:10px 0 0">Depois: contrato assinado, vistoria e entrega das chaves, em “Contrato de locação”.</p><p class="err" id="laErr"></p></div>
+    <footer><button class="btn" data-close-btn>Cancelar</button><button class="btn pri" id="laOk">Aprovar</button></footer>`},()=>{$("#laOk").onclick=()=>{const ini=$("#la_ini").value,val=numBR($("#la_val").value);
+      if(!ini){$("#laErr").textContent="Informe o início do contrato.";return}if(!(val>0)){$("#laErr").textContent="Informe o valor do aluguel.";return}
+      const vist=$("#la_vist").value?inputToISO($("#la_vist").value):"";const vg=numBR($("#la_vgar").value),sg=numBR($("#la_seg").value);
+      const aprov={inicio:ini,valor:val,garantia:$("#la_gar").value,vgar:isNaN(vg)?"":vg,seguro:isNaN(sg)?"":sg,seguroSit:$("#la_segp").value,vist,vistoriador:frase($("#la_vor").value),em:nowISO(),por:S.sessao?.nome||""};
+      upd({status:"aprovado",aprov,hist:locHist(p,"aprovado",`Início ${ini.split("-").reverse().join("/")} · ${brlV(val)} · ${aprov.garantia}${vist?" · vistoria "+dt(vist):""}`)});
+      closeModal();toast("Locação aprovada");setTimeout(()=>locProcDialog(pid),50)}});return}
+  if(ac==="carteira"){const hoje=new Date().toISOString().slice(0,10);const F=locFichas(pid);const d=F[0]?.dados||{};
+    openModal({sm:1,body:`<header><h2>Entrada na carteira de administração</h2><button class="btn ghost x" data-close-btn>Fechar</button></header>
+    <div class="bd"><div class="grid2"><label class="f">Data de entrada *<input class="inp" id="lc_em" type="date" value="${hoje}"></label>
+     <label class="f">Aluguel (R$) *<input class="inp" id="lc_val" inputmode="decimal" value="${p.valor?Number(p.valor).toLocaleString("pt-BR"):""}"></label>
+     <label class="f">Região *<select class="sel" id="lc_reg"><option value="">Selecione…</option>${(typeof REGIOES!=="undefined"?REGIOES:["Park Sul","Guará","Asa Sul","Asa Norte","Águas Claras","Taguatinga","Lago Norte","Lago Sul","Noroeste","Sudoeste","Octogonal","Samambaia","Gama","Riacho Fundo","Cruzeiro"]).map(r=>`<option>${esc(r)}</option>`).join("")}</select></label>
+     <label class="f">Vistoria de entrada?<select class="sel" id="lc_vis"><option>Não</option><option>Sim</option></select></label></div>
+     <p class="note">Proprietário: ${esc(d.nome||p.cliNome||"—")}</p><p class="err" id="lcErr"></p></div>
+    <footer><button class="btn" data-close-btn>Cancelar</button><button class="btn pri" id="lcOk">Confirmar</button></footer>`},()=>{$("#lcOk").onclick=()=>{const em=$("#lc_em").value,val=numBR($("#lc_val").value),reg=$("#lc_reg").value;
+      if(!em||!(val>0)||!reg){$("#lcErr").textContent="Informe a data, o aluguel e a região.";return}
+      upd({status:"carteira",cart:{em,valor:val,reg,vist:$("#lc_vis").value,prop:d.nome||p.cliNome||"",por:S.sessao?.nome||""},hist:locHist(p,"carteira",`Entrada em ${em.split("-").reverse().join("/")} · ${brlV(val)} · ${reg}`)});
+      closeModal();toast("Imóvel na carteira");setTimeout(()=>locProcDialog(pid),50)}});return}}
 
 /* ---------- Autorização por link: o corretor define as condições, o proprietário completa ---------- */
 const AUT_SIT={aguardando:"Aguardando o proprietário preencher e assinar",preenchida:"Assinado pelo proprietário · falta a sua assinatura",assinada:"Concluída e enviada",vencida:"Link vencido"};
@@ -2721,6 +3402,7 @@ function pessoaDialog(id){
    <label class="f">Acesso ao sistema *<select class="sel" id="rn_nivel">${Object.entries(NIVEL_LBL).map(([k,v])=>`<option value="${k}" ${nivelDe(c)===k?"selected":""}>${v}</option>`).join("")}</select></label></div>
    <div class="pdpode" id="rn_pode"></div>
    <label class="chkl" id="rn_contrW"><input type="checkbox" id="rn_contr" ${c.contratos?"checked":""}> <span><b>Secretaria de Vendas</b> · marque só para quem cuida dos contratos de venda (ex.: Samuel). Continua com o mesmo acesso e ganha a parte de vendas.</span></label>
+   <label class="chkl" id="rn_locW"><input type="checkbox" id="rn_loc" ${c.locacao?"checked":""}> <span><b>Operação de locação</b> · marque para quem analisa as fichas e atualiza a situação das propostas de locação. O acesso master já opera.</span></label>
    <div class="sec">Contato</div>
    <div class="grid2"><label class="f">E-mail * <small class="s">(recebe o convite para criar a senha)</small><input class="inp" id="rn_email" type="email" value="${esc(ct.email||"")}" placeholder="nome@email.com"></label>
    <label class="f">Telefone (WhatsApp) *<input class="inp" id="rn_whats" inputmode="tel" value="${esc(ct.whats?fmtTelFicha(ct.whats):"")}" placeholder="(61) 99999-9999"></label>
@@ -2741,7 +3423,7 @@ function pessoaDialog(id){
     $("#rn_aniv").oninput=e=>{let v=e.target.value.replace(/\D/g,"").slice(0,4);if(v.length>2)v=v.slice(0,2)+"/"+v.slice(2);e.target.value=v};
     pode();
     $("#rnOk").onclick=async()=>{const err=t=>{$("#rnErr").textContent=t};const novo=nomePessoa($("#rn_nome").value),velho=c.nome,tipo=$("#rn_tipo").value,acesso=$("#rn_nivel").value;
-      const email=$("#rn_email").value.trim().toLowerCase(),whats=$("#rn_whats").value.replace(/\D/g,""),aniv=$("#rn_aniv").value.trim(),tm=$("#rn_time").value,contr=acesso!=="master"&&$("#rn_contr").checked;
+      const email=$("#rn_email").value.trim().toLowerCase(),whats=$("#rn_whats").value.replace(/\D/g,""),aniv=$("#rn_aniv").value.trim(),tm=$("#rn_time").value,contr=acesso!=="master"&&$("#rn_contr").checked,locop=acesso!=="master"&&$("#rn_loc").checked;
       if(!novo||novo.split(" ").length<2)return err("Informe nome e sobrenome.");
       if(!emailOk(email))return err("Informe um e-mail válido: é para ele que vai o convite de acesso.");
       if(!whats||whats.length<10||whats.length>13)return err("Informe o telefone (WhatsApp) com DDD.");
@@ -2752,9 +3434,9 @@ function pessoaDialog(id){
       if(!id&&[...S.corr.entries()].some(([k,x])=>x.ativo!==false&&(S.acessos?.get(k)?.usuario||usuarioDe(x))===login))return err(`O usuário ${login} já existe. Use o nome pelo qual a pessoa é conhecida (ex.: com o segundo nome) ou fale com o suporte do sistema.`);
       $("#rnOk").disabled=true;
       try{
-        if(!id){const ref=db.collection("corretores").doc();await ref.set({nome:novo,ativo:true,tipo,acesso,contratos:contr,time:tm,criadoEm:nowISO()});logEv("corretor_in",{corretor:novo,detalhe:TIPO_LBL[tipo]+" · acesso "+NIVEL_LBL[acesso]})}
-        else{const up={};if(tipo!==(c.tipo||"corretor"))up.tipo=tipo;if(acesso!==nivelDe(c))up.acesso=acesso;if(contr!==!!c.contratos)up.contratos=contr;if(tm!==(c.time||""))up.time=tm;if(novo!==velho)up.nome=novo;
-          if(Object.keys(up).length){await db.doc("corretores/"+id).update(up);logEv("corretor_nome",{corretor:novo,detalhe:[up.nome?velho+" → "+novo:"",up.tipo?"Função: "+TIPO_LBL[tipo]:"",up.acesso?"Acesso: "+NIVEL_LBL[acesso]:"",up.contratos!==undefined?"Secretaria de Vendas: "+(contr?"liberado":"retirado"):""].filter(Boolean).join(" · ")||"Cadastro atualizado"})}
+        if(!id){const ref=db.collection("corretores").doc();await ref.set({nome:novo,ativo:true,tipo,acesso,contratos:contr,locacao:locop,time:tm,criadoEm:nowISO()});logEv("corretor_in",{corretor:novo,detalhe:TIPO_LBL[tipo]+" · acesso "+NIVEL_LBL[acesso]})}
+        else{const up={};if(tipo!==(c.tipo||"corretor"))up.tipo=tipo;if(acesso!==nivelDe(c))up.acesso=acesso;if(contr!==!!c.contratos)up.contratos=contr;if(locop!==!!c.locacao)up.locacao=locop;if(tm!==(c.time||""))up.time=tm;if(novo!==velho)up.nome=novo;
+          if(Object.keys(up).length){await db.doc("corretores/"+id).update(up);logEv("corretor_nome",{corretor:novo,detalhe:[up.nome?velho+" → "+novo:"",up.tipo?"Função: "+TIPO_LBL[tipo]:"",up.acesso?"Acesso: "+NIVEL_LBL[acesso]:"",up.contratos!==undefined?"Secretaria de Vendas: "+(contr?"liberado":"retirado"):"",up.locacao!==undefined?"Operação de locação: "+(locop?"liberada":"retirada"):""].filter(Boolean).join(" · ")||"Cadastro atualizado"})}
           if(novo!==velho){for(const [iid,m] of S.imoveis){const u2={};if(m.captador===velho)u2.captador=novo;if(m.retirada?.corretor===velho)u2.retirada={...m.retirada,corretor:novo};if(Object.keys(u2).length)await db.doc("imoveis/"+iid).update(u2)}
             for(const mv of S.movs){if(mv.corretor===velho)await db.doc("movimentos/"+mv.id).update({corretor:novo})}}}
         if(S.full){const r=await api("pessoaContato",{nome:novo,antes:velho||novo,email,whats,aniv,creci});if(r?.contato){S.contatos=S.contatos||new Map();for(const [k,x] of S.contatos)if(semAcento(x.nome)===semAcento(velho||novo))S.contatos.delete(k);S.contatos.set(r.contato.id,r.contato.data)}}
@@ -4533,10 +5215,10 @@ $("#hCorr").addEventListener("change",renderHist);$("#aq").addEventListener("inp
 document.querySelectorAll("#pfSit button").forEach(b=>b.onclick=()=>{const on=b.getAttribute("aria-pressed")!=="true";b.setAttribute("aria-pressed",on);if(![...document.querySelectorAll("#pfSit [aria-pressed=true]")].length)document.querySelector('#pfSit [data-sit="ativo"]').setAttribute("aria-pressed","true");renderCorr()});$("#hq").addEventListener("input",renderHist);
 $("#btnPin").onclick=()=>changePin("pin");$("#btnPinSt").onclick=()=>changePin("pinStatus");
 $("#btnAddCorr").onclick=()=>pessoaDialog(null);
-const SUBT={indloc:"Indicadores de locação",fpainel:"Painel de fichas",fvend:"Ficha do vendedor",fvenda:"Fichas · Venda",os:"O.S. · Ordem de serviço",pres:"Check-in de presença",aut:"Autorização de venda",ind:"Indicadores de captação",agenda:"Agenda de visitas",plantao:"Plantão de corretores",cad:"Cadastros de acesso",fora:"Chaves fora",hist:"Histórico",corr:"Equipe e usuários",caut:"Chaves em cautela",arq:"Baixados"};
-function setView(v){if(S.sessao&&!S.full&&["ind","indloc","fora","hist","corr","arq","caut","cad"].includes(v))v="home";if(S.sessao&&S.master&&!S.full&&!S.sessao.fichas&&["fvenda","fvend","aut","fpainel"].includes(v))v="home";if(v!=="plantao"&&S.plPrev){S.plPrev=false;S.plantao=S.plantaoReal||S.plantao}const sub=!!SUBT[v];document.documentElement.classList.toggle("subtela",sub);$("#subTitulo").textContent=SUBT[v]||"";document.documentElement.classList.toggle("inicio",v==="home");if(sub||v==="home")window.scrollTo({top:0});if(v==="home"&&S.ready)renderHome();if(v==="agenda"&&S.ready)renderAgenda();if(v==="pres"&&S.ready)renderPres();if(v==="fpainel"&&!podePainelFichas())v="home";if(v==="fvend")prepFicha();if(v==="fpainel")renderFPainel();if(v==="os"&&S.ready)renderOS();if(v==="ind"&&S.ready)renderInd();if(v==="indloc"&&S.ready)renderIndLoc();if(v==="aut")prepAut();
+const SUBT={centr:"Contratos · Locação",locfic:"Fichas · Locação",indloc:"Indicadores de locação",fpainel:"Painel de fichas",fvend:"Ficha do vendedor",fvenda:"Fichas · Venda",os:"O.S. · Ordem de serviço",pres:"Check-in de presença",aut:"Autorização de venda",ind:"Indicadores de captação",agenda:"Agenda de visitas",plantao:"Plantão de corretores",cad:"Cadastros de acesso",fora:"Chaves fora",hist:"Histórico",corr:"Equipe e usuários",caut:"Chaves em cautela",arq:"Baixados"};
+function setView(v){if(v==="cloc"||v==="cadm"){S.ceKind=v==="cloc"?"loc":"adm";S.ceFil=S.ceFil||"novos";v="centr"}if(v==="centr")SUBT.centr=S.ceKind==="adm"?"Contratos · Administração":"Contratos · Locação";if(S.sessao&&!S.full&&["ind","indloc","fora","hist","corr","arq","caut","cad"].includes(v))v="home";if(S.sessao&&S.master&&!S.full&&!S.sessao.fichas&&["fvenda","fvend","aut","fpainel"].includes(v))v="home";if(v!=="plantao"&&S.plPrev){S.plPrev=false;S.plantao=S.plantaoReal||S.plantao}const sub=!!SUBT[v];document.documentElement.classList.toggle("subtela",sub);$("#subTitulo").textContent=SUBT[v]||"";document.documentElement.classList.toggle("inicio",v==="home");if(sub||v==="home")window.scrollTo({top:0});if(v==="home"&&S.ready)renderHome();if(v==="agenda"&&S.ready)renderAgenda();if(v==="pres"&&S.ready)renderPres();if(v==="fpainel"&&!podePainelFichas())v="home";if(v==="locfic"&&document.documentElement.classList.contains("secvenda"))v="home";if(v==="locfic"){if(!S.lfManter)S.lfTela="menu";renderLocFic()}if(v==="centr"&&document.documentElement.classList.contains("secvenda"))v="home";if(v==="centr"){if($("#ceBusca"))$("#ceBox").innerHTML="";renderEntrada()}if(v==="fvend")prepFicha();if(v==="fpainel")renderFPainel();if(v==="os"&&S.ready)renderOS();if(v==="ind"&&S.ready)renderInd();if(v==="indloc"&&S.ready)renderIndLoc();if(v==="aut")prepAut();
   if(v==="loc"||v==="ven"){document.documentElement.dataset.fin=v;$("#btnNovoTop").dataset.new=v==="ven"?"venda":"locacao";if(S.ready)renderStats()}document.querySelectorAll(".tab").forEach(t=>t.setAttribute("aria-selected",t.dataset.v===v));
-  ["home","aut","ind","indloc","agenda","loc","ven","fora","hist","corr","arq","caut","cad","plantao","pres","os","fvenda","fvend","fpainel"].forEach(x=>$("#v-"+x).hidden=x!==v);try{localStorage.setItem("qc_view2",v)}catch{}try{selFab()}catch{}}
+  ["home","aut","ind","indloc","agenda","loc","ven","fora","hist","corr","arq","caut","cad","plantao","pres","os","fvenda","fvend","fpainel","locfic","centr"].forEach(x=>$("#v-"+x).hidden=x!==v);try{localStorage.setItem("qc_view2",v)}catch{}try{selFab()}catch{}}
 try{const v=localStorage.getItem("qc_view2");if((v==="loc"||v==="ven")&&!(SO_LOCACAO&&v==="ven"))document.documentElement.dataset.fin=v}catch{}
 (function(){let t="light";try{t=localStorage.getItem("qc_tema")||"light"}catch{}document.documentElement.dataset.theme=t;
   const b=$("#btnTema");const upd=()=>b&&b.setAttribute("aria-label",document.documentElement.dataset.theme==="dark"?"Mudar para o modo claro":"Mudar para o modo escuro");upd();
@@ -4547,7 +5229,7 @@ setInterval(()=>{if(S.ready&&!$("#modal").innerHTML)renderAll()},60000);
 
 /* ---------- Conexão (Google Apps Script + planilha) ---------- */
 // Atualização automática: se houver versão nova do painel no GitHub, recarrega sozinho
-const VERSAO_PAINEL="2026-11-15-v106";
+const VERSAO_PAINEL="2026-11-15-v107";
 async function checarVersao(){try{if(pendente&&pendente())return;const t=await fetch(location.pathname+"?v="+Date.now(),{cache:"no-store"}).then(r=>r.text());const m=t.match(/VERSAO_PAINEL="([^"]+)"/);if(m&&m[1]!==VERSAO_PAINEL){toast("Atualizando para a nova versão do painel…");setTimeout(()=>location.reload(),1200)}}catch{}}
 setInterval(checarVersao,5*60*1000);document.addEventListener("visibilitychange",()=>{if(document.visibilityState==="visible")checarVersao()});
 const API_URL="https://script.google.com/macros/s/AKfycbzkzXeDJUB698vFuUBdLUteSaUWGOmOjsy98-JzSHgwz5LKTXdpw1RnzjEMQWJlP-cjlw/exec";   // endereço do App da Web (termina em /exec)
@@ -4610,7 +5292,9 @@ function ligarEscutas(){
   const onErr=()=>{};
   db.collection("imoveis").onSnapshot(s=>{S.imoveis=new Map(s.docs.map(d=>[d.id,d.data()]));S.ready=true;schedule()},onErr);
   db.collection("acessos").onSnapshot(s=>{S.acessos=new Map(s.docs.map(d=>[d.id,d.data()]))},onErr);
-  db.collection("fichas").onSnapshot(s=>{S.fichas=new Map(s.docs.map(d=>[d.id,d.data()]));if(!$("#v-fvend").hidden)renderFichaLista();if(!$("#v-fpainel").hidden)renderFPainel()},onErr);
+  db.collection("fichas").onSnapshot(s=>{S.fichas=new Map(s.docs.map(d=>[d.id,d.data()]));if(!$("#v-fvend").hidden)renderFichaLista();if(!$("#v-fpainel").hidden)renderFPainel();if(!$("#v-locfic").hidden)renderLocFic();if(!$("#v-centr").hidden)renderEntrada()},onErr);
+  db.collection("locprocs").onSnapshot(s=>{S.locprocs=new Map(s.docs.map(d=>[d.id,d.data()]));if(!$("#v-locfic").hidden)renderLocFic();if(!$("#v-centr").hidden)renderEntrada();const V=locVisiveis();const n=locPode()?V.filter(p=>p.status==="analise").length:0;$("#hbLoc")&&($("#hbLoc").textContent=n?n+" em análise":"");
+    const rc=k=>V.filter(p=>(p.kind||"loc")===k&&locEtapa(p)==="novos").length;const a=rc("loc"),b=rc("adm");$("#hbCLoc")&&($("#hbCLoc").textContent=a?a+(a>1?" recebidos":" recebido"):"");$("#hbCAdm")&&($("#hbCAdm").textContent=b?b+(b>1?" recebidos":" recebido"):"")},onErr);
   db.collection("contatos").onSnapshot(s=>{S.contatos=new Map(s.docs.map(d=>[d.id,d.data()]));if(!$("#v-aut").hidden)autPreencheCorr()},onErr);
   db.collection("condominios").onSnapshot(s=>{S.conds=new Map(s.docs.map(d=>[d.id,d.data()]));if(S.ready&&(!$("#v-loc").hidden||!$("#v-ven").hidden))schedule()},onErr);
   db.collection("autorizacoes").onSnapshot(s=>{S.autz=new Map(s.docs.map(d=>[d.id,d.data()]));if(!$("#v-aut").hidden)renderAutLista();if(!$("#v-fpainel").hidden)renderFPainel()},onErr);
