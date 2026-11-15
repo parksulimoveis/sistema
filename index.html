@@ -830,25 +830,27 @@ html.colab:not(.fichasac) .secVenda{display:none!important}
 
 .list{display:grid;gap:6px}
 .head,.row{display:grid;gap:12px;align-items:center;padding:10px 12px 10px 14px}
-#listV .head,#listV .row{grid-template-columns:104px minmax(130px,1.1fr) minmax(130px,1.2fr) minmax(96px,.8fr) 96px 150px 120px 110px 128px 104px minmax(178px,1.2fr) minmax(140px,1fr) 96px}
-#listL .head,#listL .row{grid-template-columns:104px minmax(130px,1.1fr) minmax(130px,1.2fr) minmax(96px,.8fr) 96px 150px 110px 110px 128px 104px minmax(178px,1.2fr) minmax(140px,1fr) 96px}
+/* cabe na tela sem rolar para o lado: colunas de texto encolhem e quebram linha */
+#listV .head,#listV .row{grid-template-columns:96px minmax(84px,1fr) minmax(100px,1.25fr) minmax(70px,.7fr) 66px minmax(84px,.9fr) 112px 90px 116px 80px minmax(170px,1.4fr) 84px}
+#listL .head,#listL .row{grid-template-columns:96px minmax(84px,1fr) minmax(100px,1.25fr) minmax(70px,.7fr) 66px minmax(84px,.9fr) 100px 90px 116px 80px minmax(170px,1.4fr) 84px}
+.kret{margin-top:6px;font-size:.78rem}.kret small{display:block;color:var(--muted)}
+#listL .row>*,#listV .row>*{min-width:0;overflow-wrap:anywhere}
 /* Painel com rolagem própria: cabeçalho congelado no topo, código e unidade congelados à esquerda */
 .scrollx{overflow:auto;max-height:calc(100dvh - 24px);min-height:320px;border-radius:var(--r);overscroll-behavior:contain}
-#listL{min-width:1240px}
-#listV{min-width:1480px}
+#listL,#listV{min-width:0}
 #listL .val{font-weight:700;font-variant-numeric:tabular-nums;font-size:.86rem}#listL .days{font-size:.8rem}#listL .days small{display:block;color:var(--muted);font-size:.72rem}#listL .val small{font-weight:600;font-size:.72rem;opacity:.75}
 #listV .val{font-weight:700;font-variant-numeric:tabular-nums;font-size:.86rem}#listV .days{font-size:.8rem}#listV .days small{display:block;color:var(--muted);font-size:.72rem}
 .frz .head,.frz .row{column-gap:0}
-.frz .head>*,.frz .row>*{padding-right:12px}
+.frz .head>*,.frz .row>*{padding-right:8px}
 .frz .head{position:sticky;top:0;z-index:3;background:var(--bg);padding-block:8px;box-shadow:0 1px 0 var(--line)}
 .frz .row>.cod,.frz .row>.unc{position:sticky;z-index:1;background:color-mix(in oklab,var(--c) 30%,var(--surface));align-self:stretch;display:flex;flex-direction:column;justify-content:center}
 .frz .row>.cod{left:0}
 #listL .acts,#listV .acts{flex-direction:column;align-items:stretch;gap:4px}
 #listL .acts .btn,#listV .acts .btn{min-height:28px;padding:5px 8px;white-space:normal;line-height:1.15;font-size:.74rem;text-align:center;width:100%}
 #listV .acts{flex-direction:column;align-items:stretch;gap:4px}
-.frz .row>.unc{left:104px;position:static!important;background:none!important}
+.frz .row>.unc{left:96px;position:static!important;background:none!important}
 .frz .head>:first-child,.frz .head>:nth-child(2){position:sticky;background:var(--bg);z-index:4}
-.frz .head>:first-child{left:0}.frz .head>:nth-child(2){left:104px}
+.frz .head>:first-child{left:0}.frz .head>:nth-child(2){left:96px}
 .ptitle{display:flex;align-items:baseline;gap:10px;flex-wrap:wrap;margin:2px 0 12px}
 .ptitle small{font-size:.72rem;text-transform:uppercase;letter-spacing:.16em;color:var(--acc);font-weight:600;font-family:var(--f-mono)}
 :root[data-fin="ven"] .ptitle small{color:var(--brass-ink)}
@@ -965,7 +967,7 @@ label.f.big .inp{font-size:1.05rem;min-height:46px}
 .empty{padding:40px 16px;text-align:center;color:var(--muted);background:var(--surface);border:1px dashed var(--line);border-radius:var(--r)}
 .empty b{display:block;color:var(--fg);font-family:var(--f-display);font-size:1.1rem;margin-bottom:4px}
 
-@media (max-width:1060px){
+@media (max-width:1240px){
   .head{display:none}
   #listL,#listV{min-width:0}
   #listL .acts{flex-direction:row}
@@ -1709,7 +1711,7 @@ function renderLista(fin,p,listId,countId,rotuloFin){
   $(countId).innerHTML=`<span>${rows.length} de ${all.length} imóveis para ${rotuloFin}</span>${rows.length?`<span class="selbar"><button class="btn sm ghost" type="button" data-selall="${fin}">${rows.every(([id])=>SS.has(id))?"Desmarcar todos":"Selecionar todos ("+rows.length+")"}</button>${SS.size?`<button class="btn sm pri" type="button" data-selenv="${fin}">Enviar ${SS.size} ${SS.size===1?"imóvel":"imóveis"} ao cliente</button><button class="btn sm ghost" type="button" data-sellimpa="${fin}">Limpar</button>`:""}</span>`:""}`;
   if(!all.length){$(listId).innerHTML=`<div class="empty"><b>Nenhum imóvel para ${rotuloFin}</b>Use “+ Novo imóvel” para cadastrar o primeiro.</div>`;return}
   if(!rows.length){$(listId).innerHTML=`<div class="empty"><b>Nada encontrado</b>Ajuste a busca ou os filtros.</div>`;return}
-  $(listId).innerHTML=`<div class="head"><span>Código do anúncio</span><span>Unidade</span><span>Edifício / residencial</span><span>Bairro</span><span>Vaga de garagem</span><span>Corretor captador</span>${fin==="venda"?"<span>Valor anunciado</span><span>Período anunciado</span>":"<span>Valor do aluguel</span><span>Disponível há</span>"}<span>Status</span><span class="hk">Chave / senha</span><span>Quem retirou a chave</span><span>Retirada / devolução da chave</span><span></span></div>`+rows.map(([id,m])=>{
+  $(listId).innerHTML=`<div class="head"><span>Código do anúncio</span><span>Unidade</span><span>Edifício / residencial</span><span>Bairro</span><span>Vaga</span><span>Captador</span>${fin==="venda"?"<span>Valor anunciado</span><span>Período anunciado</span>":"<span>Valor do aluguel</span><span>Disponível há</span>"}<span>Status</span><span class="hk">Chave / senha</span><span>Chave: com quem / retirada</span><span></span></div>`+rows.map(([id,m])=>{
     const s=STATUS[m.status]||STATUS.indisponivel;const r=m.retirada;const lm=r?null:lastMov(id);
     const temChave=["chave","senha","cartao","chave_senha","parceiro"].includes(m.acesso);
     const rv=!r&&m.reserva?m.reserva:null;
@@ -1732,8 +1734,7 @@ function renderLista(fin,p,listId,countId,rotuloFin){
       ${true?`<div class="val" data-l="${fin==="venda"?"Valor anunciado":"Valor do aluguel"}">${m.valor?brl(m.valor)+(fin==="venda"?"":"<small>/mês</small>"):`<span class="acc">—</span>`}</div><div class="days" data-l="${fin==="venda"?"Período anunciado":"Disponível há"}">${m.dataAnuncio?`<b class="${(diasAnunciado(m)||0)>90&&!m.anuncioBaixaEm?"old":""}">${diasAnunciado(m)}</b> dias<small>desde ${esc(dOnly(m.dataAnuncio))}${m.anuncioBaixaEm?" · encerrado em "+esc(dOnly(m.anuncioBaixaEm)):""}</small>`:`<span class="acc">sem data</span>`}</div>`:""}
       ${statusCell(id,m)}
       <div class="keyc" data-l="Chave / senha"><div class="tagbox">${secretTags(id,m)}</div></div>
-      <div class="kc" data-l="Quem retirou a chave">${corr}</div>
-      <div class="kc" data-l="Retirada / devolução da chave">${retEnt}</div>
+      <div class="kc" data-l="Quem retirou a chave">${corr}${retEnt&&retEnt!=="—"?`<div class="kret">${retEnt}</div>`:""}</div>
       ${actsCell(id,m)}</div>`}).join("");
 }
 function renderLoc(){renderLista("locacao","l","#listL","#countL","locação")}
@@ -4425,7 +4426,7 @@ setInterval(()=>{if(S.ready&&!$("#modal").innerHTML)renderAll()},60000);
 
 /* ---------- Conexão (Google Apps Script + planilha) ---------- */
 // Atualização automática: se houver versão nova do painel no GitHub, recarrega sozinho
-const VERSAO_PAINEL="2026-11-14-v92";
+const VERSAO_PAINEL="2026-11-14-v93";
 async function checarVersao(){try{if(pendente&&pendente())return;const t=await fetch(location.pathname+"?v="+Date.now(),{cache:"no-store"}).then(r=>r.text());const m=t.match(/VERSAO_PAINEL="([^"]+)"/);if(m&&m[1]!==VERSAO_PAINEL){toast("Atualizando para a nova versão do painel…");setTimeout(()=>location.reload(),1200)}}catch{}}
 setInterval(checarVersao,5*60*1000);document.addEventListener("visibilitychange",()=>{if(document.visibilityState==="visible")checarVersao()});
 const API_URL="https://script.google.com/macros/s/AKfycbzkzXeDJUB698vFuUBdLUteSaUWGOmOjsy98-JzSHgwz5LKTXdpw1RnzjEMQWJlP-cjlw/exec";   // endereço do App da Web (termina em /exec)
