@@ -1579,7 +1579,10 @@ function mobCell(id,m,marcado){
 // Captador: "Park Sul Imóveis" = lead livre para qualquer corretor; nome de corretor = ele é o responsável pelos leads
 const PSI_CAPT="Park Sul Imóveis";
 // Captadores habilitados: marcados na aba Corretores (ou validados pelo cadastro como corretor da Park Sul)
-function captadoresAtivos(){return [...S.corr.values()].filter(c=>c.ativo!==false&&(c.captador===true||(c.tipo||"corretor")==="corretor")).map(c=>c.nome)}
+// Captador = quem traz imóveis para a Park Sul (aparece no campo "Captador" e nos Indicadores de captação).
+// Automático: corretores e diretoria são captadores; colaborador não. Dá para mudar pessoa a pessoa.
+const ehCaptador=c=>!!c&&(c.captador===true||(c.captador!==false&&["corretor","diretor","diretora"].includes(c.tipo||"corretor")));
+function captadoresAtivos(){return [...S.corr.values()].filter(c=>c.ativo!==false&&ehCaptador(c)).map(c=>c.nome)}
 function captCell(id,m){
   const c=m.captador||"";
   if(!c)return `<div class="bai capc" data-l="Corretor captador"><span class="acc">—</span></div>`;
@@ -2567,7 +2570,7 @@ function renderCorr(){
   const list=[...S.corr.entries()].filter(([,c])=>inat||c.ativo!==false).sort((a,b)=>cmp(a[1].nome,b[1].nome));
   $("#btnPin").hidden=!S.admin||SEM_SENHAS;$("#btnPinSt").hidden=!S.admin||SEM_SENHAS;
   if(!list.length){$("#corrBox").innerHTML=`<div class="empty"><b>Nenhum corretor na lista</b>Inclua os nomes para usar nas retiradas e como captador.</div>`;return}
-  $("#corrBox").innerHTML=`<div class="acsbar"><p class="count">${[...S.corr.values()].filter(c=>c.ativo!==false).length} pessoas ativas (diretoria, corretores e colaboradores)</p></div><div class="tblwrap"><table><thead><tr><th>Nome</th><th>Usuário</th><th>Função</th><th>Acesso</th>${S.full?"<th>WhatsApp</th><th>Aniversário</th><th>Incluído em</th><th>Senha</th>":""}<th>Captador</th><th>Chaves em mãos</th><th>Retiradas registradas</th><th>Última retirada</th><th>Situação</th><th></th></tr></thead><tbody>${list.map(([id,c])=>`<tr><td><b>${esc(c.nome)}</b>${S.full?`<div class="s">${contatoDe(c.nome).email?esc(contatoDe(c.nome).email):'<span class="late">sem e-mail</span>'}</div>`:""}</td><td><code>${esc(S.acessos.get(id)?.usuario||usuarioDe(c))}</code></td><td>${esc(TIPO_LBL[c.tipo||"corretor"])}</td><td><span class="nivtag nv-${nivelDe(c)}">${NIVEL_LBL[nivelDe(c)]}</span>${c.contratos?` <span class="nivtag nv-fichas">Secretaria de Vendas</span>`:""}</td>${S.full?`<td>${contatoDe(c.nome).whats?esc(fmtTelFicha(contatoDe(c.nome).whats)):"—"}</td><td>${esc(contatoDe(c.nome).aniv||((S.aniv||[]).find(x=>semAcento(x.nome)===semAcento(c.nome))||{}).dia||"—")}</td><td>${c.criadoEm?esc(dt(c.criadoEm).split(" ")[0]):"—"}</td><td>${c.ativo===false?"—":senhaCel(id,c)}</td>`:""}<td>${S.canWrite?`<button class="btn sm ${c.captador?"capon":""}" data-act="toggleCapt" data-id="${esc(id)}" title="${c.captador?"Tirar da lista de captadores":"Incluir na lista de captadores"}">${c.captador?"✓ Captador":"—"}</button>`:(c.captador?"Sim":"—")}</td><td>${em[c.nome]||0}</td><td>${tot[c.nome]||0}</td><td>${ult[c.nome]?esc(dt(ult[c.nome])):"—"}</td><td>${c.ativo===false?`<span class="pill" style="--c:var(--st-indi)">Desativado</span>${c.desativadoEm?`<div class="s">desde ${esc(dt(c.desativadoEm).split(" ")[0])}</div>`:""}`:'<span class="pill" style="--c:var(--st-disp)">Ativo</span>'}</td><td>${S.canWrite?`<div class="acts"><button class="btn sm ghost" data-act="renCorr" data-id="${esc(id)}">Editar</button><button class="btn sm" data-act="toggleCorr" data-id="${esc(id)}">${c.ativo===false?"Reativar":"Desativar"}</button></div>`:""}</td></tr>`).join("")}</tbody></table></div>`;
+  $("#corrBox").innerHTML=`<div class="acsbar"><p class="count">${[...S.corr.values()].filter(c=>c.ativo!==false).length} pessoas ativas (diretoria, corretores e colaboradores)</p></div><div class="tblwrap"><table><thead><tr><th>Nome</th><th>Usuário</th><th>Função</th><th>Acesso</th>${S.full?"<th>Telefone (WhatsApp)</th><th>CRECI</th><th>Aniversário</th><th>Incluído em</th><th>Senha</th>":""}<th>Captador</th><th>Chaves em mãos</th><th>Retiradas registradas</th><th>Última retirada</th><th>Situação</th><th></th></tr></thead><tbody>${list.map(([id,c])=>`<tr><td><b>${esc(c.nome)}</b>${S.full?`<div class="s">${contatoDe(c.nome).email?esc(contatoDe(c.nome).email):'<span class="late">sem e-mail</span>'}</div>`:""}</td><td><code>${esc(S.acessos.get(id)?.usuario||usuarioDe(c))}</code></td><td>${esc(TIPO_LBL[c.tipo||"corretor"])}</td><td><span class="nivtag nv-${nivelDe(c)}">${NIVEL_LBL[nivelDe(c)]}</span>${c.contratos?` <span class="nivtag nv-fichas">Secretaria de Vendas</span>`:""}</td>${S.full?`<td>${contatoDe(c.nome).whats?esc(fmtTelFicha(contatoDe(c.nome).whats)):'<span class="late">falta</span>'}</td><td>${contatoDe(c.nome).creci?esc(contatoDe(c.nome).creci):(["corretor","diretor","diretora"].includes(c.tipo||"corretor")?'<span class="late">falta</span>':"—")}</td><td>${esc(contatoDe(c.nome).aniv||((S.aniv||[]).find(x=>semAcento(x.nome)===semAcento(c.nome))||{}).dia||"—")}</td><td>${c.criadoEm?esc(dt(c.criadoEm).split(" ")[0]):"—"}</td><td>${c.ativo===false?"—":senhaCel(id,c)}</td>`:""}<td>${S.canWrite?`<button class="btn sm ${ehCaptador(c)?"capon":""}" data-act="toggleCapt" data-id="${esc(id)}" title="${ehCaptador(c)?"Tirar da lista de captadores":"Incluir na lista de captadores"}">${ehCaptador(c)?"✓ Sim":"Não"}</button>`:(ehCaptador(c)?"Sim":"Não")}</td><td>${em[c.nome]||0}</td><td>${tot[c.nome]||0}</td><td>${ult[c.nome]?esc(dt(ult[c.nome])):"—"}</td><td>${c.ativo===false?`<span class="pill" style="--c:var(--st-indi)">Desativado</span>${c.desativadoEm?`<div class="s">desde ${esc(dt(c.desativadoEm).split(" ")[0])}</div>`:""}`:'<span class="pill" style="--c:var(--st-disp)">Ativo</span>'}</td><td>${S.canWrite?`<div class="acts"><button class="btn sm ghost" data-act="renCorr" data-id="${esc(id)}">Editar</button><button class="btn sm" data-act="toggleCorr" data-id="${esc(id)}">${c.ativo===false?"Reativar":"Desativar"}</button></div>`:""}</td></tr>`).join("")}</tbody></table></div>`;
 }
 /* ---------- Links de primeiro acesso (cada pessoa cria a própria senha) ---------- */
 const acsMsg=x=>`Olá, ${x.nome.split(" ")[0]}! Este é o seu link pessoal para criar a senha do Sistema Park Sul (seu usuário: ${x.usuario}). Ele vale por 3 dias e só pode ser usado uma vez. Não compartilhe:\n${x.link}`;
@@ -2631,10 +2634,11 @@ function pessoaDialog(id){
    <label class="f">Função *<select class="sel" id="rn_tipo">${TIPO_OPTS.map(([k,v])=>`<option value="${k}" ${(c.tipo||"corretor")===k?"selected":""}>${v}</option>`).join("")}</select></label>
    <label class="f">Acesso ao sistema *<select class="sel" id="rn_nivel">${Object.entries(NIVEL_LBL).map(([k,v])=>`<option value="${k}" ${nivelDe(c)===k?"selected":""}>${v}</option>`).join("")}</select></label></div>
    <div class="pdpode" id="rn_pode"></div>
-   <label class="chkl" id="rn_contrW"><input type="checkbox" id="rn_contr" ${c.contratos?"checked":""}> Secretaria de Vendas (menu de vendas: fichas, autorizações e painel)</label>
+   <label class="chkl" id="rn_contrW"><input type="checkbox" id="rn_contr" ${c.contratos?"checked":""}> <span><b>Secretaria de Vendas</b> · marque só para quem cuida dos contratos de venda (ex.: Samuel). Continua com o mesmo acesso e ganha a parte de vendas.</span></label>
    <div class="sec">Contato</div>
    <div class="grid2"><label class="f">E-mail * <small class="s">(recebe o convite para criar a senha)</small><input class="inp" id="rn_email" type="email" value="${esc(ct.email||"")}" placeholder="nome@email.com"></label>
-   <label class="f">WhatsApp<input class="inp" id="rn_whats" inputmode="tel" value="${esc(ct.whats||"")}" placeholder="(61) 99999-9999"></label>
+   <label class="f">Telefone (WhatsApp) *<input class="inp" id="rn_whats" inputmode="tel" value="${esc(ct.whats?fmtTelFicha(ct.whats):"")}" placeholder="(61) 99999-9999"></label>
+   <label class="f"><span id="rn_creciL">CRECI</span> <small class="s">(sai na autorização e nos documentos de venda)</small><input class="inp" id="rn_creci" value="${esc(ct.creci||"")}" placeholder="Ex.: 12345-F"></label>
    <label class="f">Aniversário <small class="s">(dia/mês)</small><input class="inp" id="rn_aniv" inputmode="numeric" maxlength="5" value="${esc(anivAtual)}" placeholder="08/09"></label>
    <label class="f">Equipe (locação)<select class="sel" id="rn_time"><option value="">Sem equipe</option>${TIMES_LOC.map(t=>`<option ${(c.time||(id&&LOC_TIME_PADRAO[id])||"")===t?"selected":""}>${t}</option>`).join("")}</select></label></div>
    ${id?`<p class="note" style="margin:0">Se mudar o nome, ele também é atualizado nos imóveis em que a pessoa é captadora, nas chaves que estão com ela e no histórico de retiradas.</p>`:`<p class="note" style="margin:0">Depois de incluir, a pessoa aparece na lista com o botão <b>Enviar convite</b>. Nada é enviado antes de você tocar nele.</p>`}
@@ -2642,9 +2646,11 @@ function pessoaDialog(id){
   <footer><button class="btn" data-close-btn>Cancelar</button><button class="btn pri" id="rnOk">${id?"Salvar":"Incluir"}</button></footer>`},()=>{
     let nivelMexido=!!id;
     const user=()=>{const n=nomePessoa($("#rn_nome").value)||"";$("#rn_user").value=n?(id&&S.acessos?.get(id)?.usuario)||(primeiroNome({nome:n})+"."+$("#rn_tipo").value):""};
-    const pode=()=>{const nv=$("#rn_nivel").value;const nm=(nomePessoa($("#rn_nome").value)||"").split(" ")[0]||"A pessoa";
-      $("#rn_pode").innerHTML=`<b>O que ${esc(nm)} vai acessar · ${esc(NIVEL_LBL[nv])}</b><ul>${NIVEL_PODE[nv].map(t=>`<li>${esc(t)}</li>`).join("")}</ul>`;$("#rn_contrW").hidden=nv==="master";user()};
-    $("#rn_nome").oninput=pode;$("#rn_nivel").onchange=()=>{nivelMexido=true;pode()};
+    const precisaCreci=()=>["corretor","diretor","diretora"].includes($("#rn_tipo").value);
+    const pode=()=>{$("#rn_creciL").textContent=precisaCreci()?"CRECI *":"CRECI";const nv=$("#rn_nivel").value;const nm=(nomePessoa($("#rn_nome").value)||"").split(" ")[0]||"A pessoa";
+      const sv=nv!=="master"&&$("#rn_contr").checked;
+      $("#rn_pode").innerHTML=`<b>O que ${esc(nm)} vai acessar · ${esc(NIVEL_LBL[nv])}${sv?" + Secretaria de Vendas":""}</b><ul>${NIVEL_PODE[nv].filter(t=>!(sv&&/^Menu de vendas só/.test(t))).map(t=>`<li>${esc(t)}</li>`).join("")}${sv?"<li><b>Secretaria de Vendas:</b> painel de fichas, todas as fichas de comprador e vendedor, autorizações de venda e a planilha de contratos</li>":""}</ul>`;$("#rn_contrW").hidden=nv==="master";user()};
+    $("#rn_nome").oninput=pode;$("#rn_contr").onchange=pode;$("#rn_nivel").onchange=()=>{nivelMexido=true;pode()};
     $("#rn_tipo").onchange=()=>{if(!nivelMexido)$("#rn_nivel").value=nivelDe({tipo:$("#rn_tipo").value});pode()};
     $("#rn_aniv").oninput=e=>{let v=e.target.value.replace(/\D/g,"").slice(0,4);if(v.length>2)v=v.slice(0,2)+"/"+v.slice(2);e.target.value=v};
     pode();
@@ -2652,7 +2658,8 @@ function pessoaDialog(id){
       const email=$("#rn_email").value.trim().toLowerCase(),whats=$("#rn_whats").value.replace(/\D/g,""),aniv=$("#rn_aniv").value.trim(),tm=$("#rn_time").value,contr=acesso!=="master"&&$("#rn_contr").checked;
       if(!novo||novo.split(" ").length<2)return err("Informe nome e sobrenome.");
       if(!emailOk(email))return err("Informe um e-mail válido: é para ele que vai o convite de acesso.");
-      if(whats&&(whats.length<10||whats.length>13))return err("WhatsApp inválido. Use DDD + número.");
+      if(!whats||whats.length<10||whats.length>13)return err("Informe o telefone (WhatsApp) com DDD.");
+      const creci=$("#rn_creci").value.trim().toUpperCase();if(precisaCreci()&&!creci)return err("Informe o CRECI: ele sai na autorização e nos documentos de venda.");
       if(aniv){const m=aniv.match(/^(\d{2})\/(\d{2})$/);if(!m||+m[1]<1||+m[1]>31||+m[2]<1||+m[2]>12)return err("Aniversário inválido. Use dia/mês, ex.: 08/09.")}
       if(novo!==velho&&corrList(true).some(x=>x.toLowerCase()===novo.toLowerCase()))return err("Já existe uma pessoa com esse nome na lista.");
       const login=primeiroNome({nome:novo})+"."+tipo;
@@ -2664,7 +2671,7 @@ function pessoaDialog(id){
           if(Object.keys(up).length){await db.doc("corretores/"+id).update(up);logEv("corretor_nome",{corretor:novo,detalhe:[up.nome?velho+" → "+novo:"",up.tipo?"Função: "+TIPO_LBL[tipo]:"",up.acesso?"Acesso: "+NIVEL_LBL[acesso]:"",up.contratos!==undefined?"Secretaria de Vendas: "+(contr?"liberado":"retirado"):""].filter(Boolean).join(" · ")||"Cadastro atualizado"})}
           if(novo!==velho){for(const [iid,m] of S.imoveis){const u2={};if(m.captador===velho)u2.captador=novo;if(m.retirada?.corretor===velho)u2.retirada={...m.retirada,corretor:novo};if(Object.keys(u2).length)await db.doc("imoveis/"+iid).update(u2)}
             for(const mv of S.movs){if(mv.corretor===velho)await db.doc("movimentos/"+mv.id).update({corretor:novo})}}}
-        if(S.full){const r=await api("pessoaContato",{nome:novo,antes:velho||novo,email,whats,aniv});if(r?.contato){S.contatos=S.contatos||new Map();for(const [k,x] of S.contatos)if(semAcento(x.nome)===semAcento(velho||novo))S.contatos.delete(k);S.contatos.set(r.contato.id,r.contato.data)}}
+        if(S.full){const r=await api("pessoaContato",{nome:novo,antes:velho||novo,email,whats,aniv,creci});if(r?.contato){S.contatos=S.contatos||new Map();for(const [k,x] of S.contatos)if(semAcento(x.nome)===semAcento(velho||novo))S.contatos.delete(k);S.contatos.set(r.contato.id,r.contato.data)}}
         closeModal();toast(id?"Cadastro atualizado":TIPO_LBL[tipo].replace(" PSI","")+" incluído. Quando quiser, toque em Enviar convite.");renderCorr()
       }catch(e){$("#rnOk").disabled=false;err(writeErr(e))}};
   });
@@ -2740,7 +2747,7 @@ let statusLiberadoAte=0;
 function pedirStatus(id,fin){if(Date.now()<statusLiberadoAte){statusDialog(id,fin);return}pinDialog("Alterar status",()=>{statusLiberadoAte=Date.now()+5*6e4;statusDialog(id,fin)},"pinStatus")}
 // Texto automático embaixo de cada status
 function subPadrao(st,fin){const loc=fin==="locacao";
-  return {disponivel:loc?"Para locação":"Para venda",analise:loc?"Ficha cadastral":"Proposta",alugado:"Contrato assinado",vendido:"Contrato assinado",indisponivel:""}[st]||""}
+  return {disponivel:loc?"Para locação":"Para venda",analise:loc?"Ficha cadastral":"Proposta",alugado:"Entregar a chave ao inquilino",vendido:"Contrato assinado",indisponivel:"Devolver ao proprietário"}[st]||""}
 function subStatus(m){if(m.status==="vendido"&&m.comprador)return "Vendido para "+m.comprador+" · aguardando retirada da chave";return m.statusObs||subPadrao(m.status,m.finalidade)}
 const MOT_VENDA=["vai_retirar","retirou","devolver","outro"];
 const MOTIVOS_IND=[
@@ -2749,6 +2756,7 @@ const MOTIVOS_IND=[
   ["devolver","Imóvel será devolvido ao proprietário em…"],
   ["vendido","Imóvel foi vendido"],
   ["para_venda","Imóvel saiu de locação para venda"],
+  ["ocupado","Ocupado (tem inquilino no imóvel)"],
   ["desocupacao","Imóvel em desocupação"],
   ["outro","Outro motivo…"]];
 function statusDialog(id,fin){
@@ -4362,7 +4370,7 @@ document.addEventListener("click",e=>{
     else if(a==="baixa")pedirBaixa(id,t.dataset.fin);
     else if(a==="reativar")reativarImv(id,t.dataset.fin);
     else if(a==="renCorr")renomearCorr(id);
-    else if(a==="toggleCapt"){const c=S.corr.get(id);const v=!c.captador;db.doc("corretores/"+id).update({captador:v}).then(()=>{logEv("captador_lista",{corretor:c.nome,detalhe:v?"Incluído na lista de captadores":"Retirado da lista de captadores"});toast(c.nome+(v?" agora é captador":" saiu da lista de captadores"))}).catch(err=>toast(writeErr(err)))}
+    else if(a==="toggleCapt"){const c=S.corr.get(id);const v=!ehCaptador(c);db.doc("corretores/"+id).update({captador:v}).then(()=>{logEv("captador_lista",{corretor:c.nome,detalhe:v?"Incluído na lista de captadores":"Retirado da lista de captadores"});toast(c.nome+(v?" agora é captador":" saiu da lista de captadores"))}).catch(err=>toast(writeErr(err)))}
     else if(a==="foto")fotoDialog(id);
     else if(a==="retirar")retiradaDialog(id);else if(a==="devolver")devolucaoDialog(id);else if(a==="editar")imovelForm(id);
     else if(a==="toggleCorr")ativarPessoa(id);
@@ -4417,7 +4425,7 @@ setInterval(()=>{if(S.ready&&!$("#modal").innerHTML)renderAll()},60000);
 
 /* ---------- Conexão (Google Apps Script + planilha) ---------- */
 // Atualização automática: se houver versão nova do painel no GitHub, recarrega sozinho
-const VERSAO_PAINEL="2026-11-14-v90";
+const VERSAO_PAINEL="2026-11-14-v92";
 async function checarVersao(){try{if(pendente&&pendente())return;const t=await fetch(location.pathname+"?v="+Date.now(),{cache:"no-store"}).then(r=>r.text());const m=t.match(/VERSAO_PAINEL="([^"]+)"/);if(m&&m[1]!==VERSAO_PAINEL){toast("Atualizando para a nova versão do painel…");setTimeout(()=>location.reload(),1200)}}catch{}}
 setInterval(checarVersao,5*60*1000);document.addEventListener("visibilitychange",()=>{if(document.visibilityState==="visible")checarVersao()});
 const API_URL="https://script.google.com/macros/s/AKfycbzkzXeDJUB698vFuUBdLUteSaUWGOmOjsy98-JzSHgwz5LKTXdpw1RnzjEMQWJlP-cjlw/exec";   // endereço do App da Web (termina em /exec)
