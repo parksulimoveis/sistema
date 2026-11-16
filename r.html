@@ -1,0 +1,11 @@
+<!doctype html>
+<html lang="pt-BR"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="robots" content="noindex,nofollow"><title>Park Sul Imóveis</title>
+<style>body{margin:0;min-height:100vh;display:grid;place-items:center;background:#0B1628;color:#D9C4A3;font:16px/1.5 Arial,Helvetica,sans-serif;text-align:center}b{color:#fff;letter-spacing:.18em}p{margin:10px 0 0;color:#cfd6e4}a{color:#D9C4A3}</style></head>
+<body><div><b>PARK SUL</b> IMÓVEIS<p id="m">Abrindo…</p></div>
+<script>
+/* Clique de e-mail marketing: registra o clique no sistema e abre o link da campanha (só links da própria campanha). */
+(async()=>{const q=new URLSearchParams(location.search);const c=q.get("c")||"",n=q.get("n")||"";
+  const API="https://script.google.com/macros/s/AKfycbzkzXeDJUB698vFuUBdLUteSaUWGOmOjsy98-JzSHgwz5LKTXdpw1RnzjEMQWJlP-cjlw/exec";
+  try{const r=await fetch(API+"?ck="+encodeURIComponent(c)+"&n="+encodeURIComponent(n));const j=await r.json();if(j.u&&/^https?:\/\//.test(j.u)){location.replace(j.u);return}}catch(e){}
+  document.getElementById("m").innerHTML='Não foi possível abrir o link. <a href="https://parksulimoveis.com.br">Ir para o site da Park Sul</a>';})();
+</script></body></html>
