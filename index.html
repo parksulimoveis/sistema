@@ -2286,8 +2286,8 @@ function fichaDoc(r){const tipo=r.tipo||"vendedor",sch=fichaSchema(tipo),titulo=
 .g2{display:grid;grid-template-columns:1fr 1fr}.c{padding:5px 10px;border-top:1px solid #eee7da;border-right:1px solid #eee7da}.c span{display:block;font-size:7.5pt;color:#6B7A99;text-transform:uppercase;letter-spacing:.06em}.c b{font-size:10pt}.c b.pend{color:#B3261E}
 .rod{font-size:8.5pt;color:#6B7A99;margin-top:12px}@media print{body{background:#fff}.bar{display:none}.pg{margin:0;padding:0;max-width:none}}</style></head><body><div class="bar">Ficha pronta para imprimir ou salvar em PDF. <button onclick="window.print()">Imprimir / salvar em PDF</button></div><div class="pg">
 <div class="hd"><div><h1>${E(titulo)}</h1><h2>${E(I.sub||"INFORMAÇÕES PARA O CONTRATO DE COMPRA E VENDA")}</h2></div><img src="${AUT_LOGO}" alt="Park Sul Imóveis"></div>
-${r.ref?`<div class="bx"><div class="bt">${r.prop?"Imóvel e proposta":"Imóvel"}</div><div class="g2"><div class="c" style="grid-column:1/-1"><span>Imóvel</span><b>${E(r.ref)}</b></div>${r.prop?`<div class="c"><span>Na carteira da Park Sul</span><b>${E(r.prop.carteira||"—")}</b></div><div class="c"><span>Corretor</span><b>${E(r.prop.corretor||r.corretor||"—")}</b></div><div class="c"><span>Valor de anúncio</span><b>${r.prop.anuncio?E(brlV(Number(r.prop.anuncio))):"—"}</b></div><div class="c"><span>Proposta</span><b>${r.prop.proposta==="Sim"&&r.prop.vprop?E(brlV(Number(r.prop.vprop))+" · submeter ao proprietário"):"Não · valor de anúncio"}</b></div>`:""}</div></div>`:""}${h}
-<p class="rod">Corretor responsável: ${E(r.corretor||"—")} · Recebida em ${E(dt(r.recebidaEm||r.criadoEm))} · Park Sul Imóveis</p></div></body></html>`}
+${r.ref?`<div class="bx"><div class="bt">${r.prop?"Imóvel e proposta":"Imóvel"}</div><div class="g2"><div class="c" style="grid-column:1/-1"><span>Imóvel</span><b>${E(r.ref)}</b></div>${r.prop?`<div class="c"><span>Na carteira da Park Sul</span><b>${E(r.prop.carteira||"—")}</b></div><div class="c"><span>Corretor</span><b>${E(nomeDoc(r.prop.corretor||r.corretor)||"—")}</b></div><div class="c"><span>Valor de anúncio</span><b>${r.prop.anuncio?E(brlV(Number(r.prop.anuncio))):"—"}</b></div><div class="c"><span>Proposta</span><b>${r.prop.proposta==="Sim"&&r.prop.vprop?E(brlV(Number(r.prop.vprop))+" · submeter ao proprietário"):"Não · valor de anúncio"}</b></div>`:""}</div></div>`:""}${h}
+<p class="rod">Corretor responsável: ${E(nomeDoc(r.corretor)||"—")} · Recebida em ${E(dt(r.recebidaEm||r.criadoEm))} · Park Sul Imóveis</p></div></body></html>`}
 function abrirFichaDoc(r){const w=window.open("","_blank");if(!w){toast("Permita pop-ups para este site.");return}w.document.open();w.document.write(fichaDoc(r));w.document.close()}
 function fichaGuardar(id,data){(DATA.fichas||(DATA.fichas=new Map())).set(id,{...(DATA.fichas?.get(id)||{}),...data});avisar(new Set(["fichas"]))}
 // cobrar ou anexar documento que faltou (corretor, Secretaria de Vendas e master)
@@ -4242,6 +4242,8 @@ async function conviteTela(t){T_CONV=t;mostra("tForm");$("#tSair").hidden=true;$
   catch(e){$("#tMsg").textContent=e.message;$("#tNova").disabled=$("#tNova2").disabled=true;$("#tSair").hidden=false;$("#tSair").textContent="Ir para a entrada";T_CONV=""}}
 // Incluir ou editar uma pessoa: função, nível de acesso (com o que ela enxerga), contatos e aniversário.
 // Contatos e aniversário ficam na aba "Corretores" da planilha (a mesma dos avisos aos condomínios e do mural).
+// nome completo (aba Corretores, coluna H) nos documentos das fichas; no sistema continua o nome curto
+function nomeDoc(n){const c=n?contatoDe(n):{};return c.completo||n||""}
 function contatoDe(nome){const k=semAcento(nome||"");const L=[...(S.contatos?S.contatos.values():[])];return L.find(x=>semAcento(x.nome||"")===k)||{}}
 function renomearCorr(id){pessoaDialog(id)}
 // Ativar / desativar: desativado perde o acesso na hora (sessão e convites deixam de valer); o histórico continua
@@ -6095,7 +6097,7 @@ setInterval(()=>{if(S.ready&&!$("#modal").innerHTML)renderAll()},60000);
 
 /* ---------- Conexão (Google Apps Script + planilha) ---------- */
 // Atualização automática: se houver versão nova do painel no GitHub, recarrega sozinho
-const VERSAO_PAINEL="2026-11-16-v132";
+const VERSAO_PAINEL="2026-11-16-v133";
 async function checarVersao(){try{if(pendente&&pendente())return;const t=await fetch(location.pathname+"?v="+Date.now(),{cache:"no-store"}).then(r=>r.text());const m=t.match(/VERSAO_PAINEL="([^"]+)"/);if(m&&m[1]!==VERSAO_PAINEL){toast("Atualizando para a nova versão do painel…");setTimeout(()=>location.reload(),1200)}}catch{}}
 setInterval(checarVersao,5*60*1000);document.addEventListener("visibilitychange",()=>{if(document.visibilityState==="visible")checarVersao()});
 const API_URL="https://script.google.com/macros/s/AKfycbzkzXeDJUB698vFuUBdLUteSaUWGOmOjsy98-JzSHgwz5LKTXdpw1RnzjEMQWJlP-cjlw/exec";   // endereço do App da Web (termina em /exec)
