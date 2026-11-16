@@ -5291,7 +5291,7 @@ function osCard(id,o){const st=o.status||"aberta";const reps=osRepsDe(o);const s
       ${osTotaisHtml(reps)}
       ${o.quando?`<small class="s">Melhor dia para o atendimento: <b>${esc(fmtDH(o.quando))}</b></small>`:""}
 
-      <div class="osacts">${S.master&&S.canWrite?(st==="aberta"?`<button class="btn sm pri" type="button" data-osexec="${esc(id)}">Atender</button><button class="btn sm ghost" type="button" data-osarq="${esc(id)}">Cancelar O.S.</button>`:st==="andamento"||st==="execucao"?`<button class="btn sm pri" type="button" data-osexec="${esc(id)}">${st==="execucao"?"Acompanhar execução":"Executar"}</button><button class="btn sm ghost" type="button" data-osarq="${esc(id)}">Cancelar O.S.</button>`:st==="concluida"?`<button class="btn sm pri" type="button" data-osbaixa="${esc(id)}">Arquivar e enviar relatório</button><button class="btn sm" type="button" data-osexec="${esc(id)}">Ver reparos</button>`:`<button class="btn sm" type="button" data-osexec="${esc(id)}">Ver histórico</button>`):""}<button class="btn sm" type="button" data-osdoc="${esc(id)}">Documento da O.S. (PDF)</button></div>
+      <div class="osacts">${S.master&&S.canWrite?(st==="aberta"?`<button class="btn sm pri" type="button" data-osexec="${esc(id)}">Atender</button><button class="btn sm ghost" type="button" data-osarq="${esc(id)}">Cancelar O.S.</button>`:st==="andamento"||st==="execucao"?`<button class="btn sm pri" type="button" data-osexec="${esc(id)}">${st==="execucao"?"Acompanhar execução":"Executar"}</button><button class="btn sm ghost" type="button" data-osarq="${esc(id)}">Cancelar O.S.</button>`:st==="concluida"?`<button class="btn sm pri" type="button" data-osbaixa="${esc(id)}">Arquivar e enviar relatório</button><button class="btn sm" type="button" data-osexec="${esc(id)}">Ver reparos</button>`:`<button class="btn sm" type="button" data-osexec="${esc(id)}">Ver reparos</button>`):""}<button class="btn sm" type="button" data-oshist="${esc(id)}">Ver histórico</button><button class="btn sm" type="button" data-osdoc="${esc(id)}">Documento da O.S. (PDF)</button></div>
     </article>`}
 // Concluir: dá baixa na O.S. (sai de "Concluídas" e fica só em "Todas", para consulta)
 // Concluída → Arquivar: vai para "Arquivadas" e o relatório (PDF, fotos e orçamentos) sai por e-mail para o solicitante e os responsáveis
@@ -5517,13 +5517,19 @@ ${(x.atv||[]).some(t=>(t.orcs||[]).length)?`<h3>Orçamentos</h3><table><thead><t
 ${x.obs?`<p class="rel" style="background:#F8F8F6;border-color:#6B7A99">${E(x.obs)}</p>`:""}
 ${atv?`<h3>Reparos</h3><table><thead><tr><th>Reparo</th><th>Profissional</th><th>Responsabilidade</th><th>Valor orçado</th><th>Status</th></tr></thead><tbody>${atv}</tbody></table>${totHtml}`:""}
 ${fotos.length?`<h3>Fotos</h3><div class="fotos">${fotos.map(f=>`<img src="${E(f.url)}" alt="">`).join("")}</div>`:(o.fotos||[]).length?`<p><small>${o.fotos.length} foto(s) guardadas na pasta "Park Sul · OS" do Drive.</small></p>`:""}
-${(o.hist||[]).length?`<h3>Histórico</h3><ul class="hist">${o.hist.map(t=>`<li><b>${E(dt(t.em))}</b> · ${E(t.txt)}</li>`).join("")}</ul>`:""}
+${""/* histórico fica só dentro da O.S. no sistema, não sai no documento */}
 <div class="ass"><div><b>${E(o.arqPor||S.sessao?.nome||"")}</b><br>${o.arqPor?"Finalizou a O.S.":"Responsável"} · Park Sul Imóveis</div><div><b>${E(a.nome||"")}</b><br>Solicitante${a.tipo?" · "+E(a.tipo):""}</div></div>
 <p class="rod">Park Sul Imóveis · documento gerado pelo Sistema Park Sul em ${E(dt(new Date().toISOString()))}</p>
 </div></body></html>`}
 function abrirDocOS(id){const o=S.os?.get(id);if(!o)return;const w=window.open("","_blank");if(!w){toast("O navegador bloqueou a nova janela. Permita pop-ups para este site.");return}
   w.document.open();w.document.write(docOS(o));w.document.close();logEv("os",{corretor:S.sessao?.nome||"",detalhe:"Documento da O.S. "+osNum(o.num)+" gerado · "+o.imovel})}
 document.addEventListener("click",e=>{const b=e.target.closest("[data-osdoc]");if(b)abrirDocOS(b.dataset.osdoc)});
+// Histórico da O.S.: só leitura, interno (não sai no documento)
+document.addEventListener("click",e=>{const b=e.target.closest("[data-oshist]");if(!b)return;const o=(S.os||new Map()).get(b.dataset.oshist);if(!o)return;
+  const h=[...(o.hist||[])].sort((a,c)=>String(a.em||"").localeCompare(String(c.em||"")));
+  openModal({sm:1,body:`<header><h2>Histórico · O.S. ${esc(osNum(o.num))}</h2><button class="btn ghost x" data-close-btn>Fechar</button></header>
+  <div class="bd">${h.length?`<ul class="oshist">${h.map(x=>`<li><span>${esc(dt(x.em))}</span>${esc(x.txt)}</li>`).join("")}</ul>`:`<p class="muted">Ainda não há registros.</p>`}</div>
+  <footer><button class="btn pri" data-close-btn>Fechar</button></footer>`})});
 /* Execução da O.S. (colaboradores da manutenção): situação, responsabilidade, orçamento aprovado, prestador e data do atendimento */
 const OS_RESP={proprietario:"Proprietário",inquilino:"Inquilino",condominio:"Condomínio",seguradora:"Seguradora",parksul:"Park Sul Imóveis",outro:"Outro"};
 const fmtDH=v=>v?v.slice(8,10)+"/"+v.slice(5,7)+(v.length>10?" às "+v.slice(11,16):""):"";
@@ -6089,7 +6095,7 @@ setInterval(()=>{if(S.ready&&!$("#modal").innerHTML)renderAll()},60000);
 
 /* ---------- Conexão (Google Apps Script + planilha) ---------- */
 // Atualização automática: se houver versão nova do painel no GitHub, recarrega sozinho
-const VERSAO_PAINEL="2026-11-16-v129";
+const VERSAO_PAINEL="2026-11-16-v132";
 async function checarVersao(){try{if(pendente&&pendente())return;const t=await fetch(location.pathname+"?v="+Date.now(),{cache:"no-store"}).then(r=>r.text());const m=t.match(/VERSAO_PAINEL="([^"]+)"/);if(m&&m[1]!==VERSAO_PAINEL){toast("Atualizando para a nova versão do painel…");setTimeout(()=>location.reload(),1200)}}catch{}}
 setInterval(checarVersao,5*60*1000);document.addEventListener("visibilitychange",()=>{if(document.visibilityState==="visible")checarVersao()});
 const API_URL="https://script.google.com/macros/s/AKfycbzkzXeDJUB698vFuUBdLUteSaUWGOmOjsy98-JzSHgwz5LKTXdpw1RnzjEMQWJlP-cjlw/exec";   // endereço do App da Web (termina em /exec)
